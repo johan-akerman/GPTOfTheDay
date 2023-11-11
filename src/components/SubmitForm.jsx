@@ -5,6 +5,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function SubmitForm() {
   const categories = [
+    "-",
     "Productivity",
     "DALL-E",
     "Writing",
@@ -19,23 +20,17 @@ export default function SubmitForm() {
   const [gpt, setGpt] = useState("");
   const [category, setCategory] = useState(categories[0]);
   const [email, setEmail] = useState("");
-  const [tagline, setTagline] = useState("");
+
   const [missingInfo, setMissingInfo] = useState(false);
 
   function handleSubmit() {
-    if (
-      gpt.length == 0 ||
-      category.length == 0 ||
-      email == 0 ||
-      tagline.length == 0
-    ) {
+    if (gpt.length == 0 || category == "-" || email.length == 0) {
       setMissingInfo(true);
     } else {
       let obj = {
         gpt: gpt,
         category: category,
         email: email,
-        tagline: tagline,
       };
 
       console.log(obj);
@@ -43,27 +38,24 @@ export default function SubmitForm() {
       setGpt("");
       setCategory(categories[0]);
       setEmail("");
-      setTagline("");
       setMissingInfo(false);
     }
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-2xl w-96 mx-auto p-6">
+    <div className="bg-white rounded-lg shadow-2xl p-6">
       <div className="flex flex-col">
-        <h1 className="text-3xl text-center font-semibold mb-8">
-          Submit your GPT!
-        </h1>
+        <h1 className="text-3xl text-center font-semibold mb-8">Submit GPT</h1>
 
         <div className="flex flex-col gap-2 mb-3">
-          <label className="text-sm font-medium text-gray-900">
-            Your GPTs URL
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
+            GPT URL
           </label>
 
           <input
-            className="py-2 pl-2 pr-4 rounded-lg  focus:outline-none bg-gray-100 grow"
+            className="py-2 pl-2 pr-4 rounded-lg  focus:outline-none bg-gray-100 grow border-2"
             name="url"
-            placeholder="Your GPT URL"
+            placeholder="GPT URL"
             value={gpt}
             onChange={(e) => setGpt(e.target.value)}
             autoComplete="off"
@@ -71,11 +63,13 @@ export default function SubmitForm() {
         </div>
 
         <div className="flex flex-col gap-2 mb-3">
-          <label className="text-sm font-medium text-gray-900">Category</label>
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-3">
+            Category
+          </label>
 
           <Listbox value={category} onChange={setCategory}>
             <div className="relative mt-1 z-10">
-              <Listbox.Button className="relative w-full cursor-default text-left focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm py-2 pl-2 pr-4 rounded-lg  focus:outline-none bg-gray-100 grow">
+              <Listbox.Button className="border-2 relative w-full cursor-default text-left focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300  py-2 pl-2 pr-4 rounded-lg  focus:outline-none bg-gray-100 grow">
                 <span className="block truncate">{category}</span>
                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                   <FontAwesomeIcon icon={faChevronDown} />
@@ -87,12 +81,12 @@ export default function SubmitForm() {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 focus:outline-none ">
                   {categories.map((c) => (
                     <Listbox.Option
                       key={c}
                       className={({ active }) =>
-                        `relative select-none py-2 pl-10 pr-4 cursor-pointer ${
+                        `relative select-none py-2 pl-2 pr-4 cursor-pointer ${
                           active ? "bg-gray-100" : "text-gray-900"
                         }`
                       }
@@ -118,29 +112,16 @@ export default function SubmitForm() {
         </div>
 
         <div className="flex flex-col gap-2 mb-3">
-          <label className="text-sm font-medium text-gray-900">
-            Your email
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-3">
+            Your Email
           </label>
 
           <input
-            className="py-2 pl-2 pr-4 rounded-lg  focus:outline-none bg-gray-100 grow"
+            className="py-2 pl-2 pr-4 rounded-lg  focus:outline-none bg-gray-100 grow border-2"
             name="email"
             placeholder="Your Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            autoComplete="off"
-          />
-        </div>
-        <div className="flex flex-col gap-2 mb-3">
-          <label className="text-sm font-medium text-gray-900">Tagline</label>
-
-          <textarea
-            rows="3"
-            className="py-2 pl-2 pr-4 rounded-lg  focus:outline-none bg-gray-100 grow"
-            name="tagline"
-            placeholder="Tagline"
-            value={tagline}
-            onChange={(e) => setTagline(e.target.value)}
             autoComplete="off"
           />
         </div>

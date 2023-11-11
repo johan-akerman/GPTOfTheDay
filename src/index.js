@@ -2,20 +2,25 @@ import React from "react";
 import "./index.css";
 import { createRoot } from "react-dom/client";
 
-import Feed from "./pages/Feed";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Rental from "./pages/Rental";
-import New from "./pages/SubmitGPT";
-import ReactGA from "react-ga";
-import Directory from "./pages/Directory";
 
-const trackingID = "G-76FM0PB6C2";
-ReactGA.initialize(trackingID);
+import New from "./pages/SubmitGPT";
+import Directory from "./pages/Directory";
+import Leaderboard from "./pages/Leaderboard";
+import Home from "./pages/Home";
+import SignUp from "./pages/SignUp";
+import LogIn from "./pages/LogIn";
+import Gpt from "./pages/Gpt";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Feed />,
+    element: <Home />,
+  },
+
+  {
+    path: "/leaderboard",
+    element: <Leaderboard />,
   },
 
   {
@@ -24,19 +29,25 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/lund/:rental",
-    element: <Rental />,
+    path: "/gpts/:gpt",
+    element: <Gpt />,
   },
 
   {
     path: "/submit",
     element: <New />,
   },
+
+  {
+    path: "/sign-up",
+    element: <SignUp />,
+  },
+
+  {
+    path: "/log-in",
+    element: <LogIn />,
+  },
 ]);
 
 const root = createRoot(document.getElementById("root"));
-root.render(
-  
-    <RouterProvider router={router} />
-  
-);
+root.render(<RouterProvider router={router} />);

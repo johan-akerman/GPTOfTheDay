@@ -30,7 +30,7 @@ export function InfoBar() {
           className="cursor-pointer px-5 py-1 border border-transparent font-medium rounded-md text-green bg-white text-lg transform ease-in duration-100 hover:bg-gray-100"
           onClick={() => handleSubmit()}
         >
-          Sign up for free
+          Subscribe
         </button>
       </div>
     </div>

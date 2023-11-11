@@ -1,22 +1,12 @@
 import React, { useState } from "react";
-import { Jumbotron } from "../components/Jumbotron";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
-import RentalCard from "../components/RentalCard";
-import { InfoBar } from "../components/InfoBar";
-import lundData from "../data/lund.json";
-import { Fragment } from "react";
-import { Listbox, Transition } from "@headlessui/react";
+import GPTCard from "../components/GPTCard";
+import gptData from "../data/gpts.json";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import ReactGA from "react-ga";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faChevronDown,
-  faCircleChevronUp,
-  faSearch,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import SelectCategory from "../components/SelectCategory";
 
 export default function Directory() {
@@ -30,18 +20,17 @@ export default function Directory() {
     { id: 6, title: "Education", icon: "📚", selected: false },
     { id: 7, title: "Lifestyle", icon: "🌴", selected: false },
     { id: 8, title: "Just for Fun", icon: "😄", selected: false },
+    { id: 9, title: "Miscellaneous", icon: "📦", selected: false },
   ]);
-  const options = ["Option 1", "Option 2", "Option 3", "Option 4"];
-  const [selectedOptions, setSelectedOptions] = useState([]);
 
-  const handleFilterChange = (selected) => {
-    setSelectedOptions(selected);
-  };
-  const [data, setData] = useState([]);
-  const [selected, setSelected] = useState(categories[0]);
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname);
-    let tmp = lundData;
+    window.scrollTo(0, 0);
+  }, []);
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    let tmp = gptData;
     tmp.sort(function (a, b) {
       // Sort by average rating.
       if (a.averageRating > b.averageRating) return -1;
@@ -66,49 +55,59 @@ export default function Directory() {
 
   return (
     <>
-      <InfoBar />
       <Navbar />
 
-      <div className="bg-white">
-        <div className="w-11/12 mx-auto h-full pt-8 md:pb-28 pb-12">
-          <div className="grid grid-cols-12 gap-20">
-            <div className="col-span-4">
-              <div class="w-full relative mx-auto text-gray-600 bg-grayish border-2 border-gray-300 px-5 text-lg py-2 rounded-lg flex items-center">
-                <FontAwesomeIcon icon={faSearch} className="" />
-                <input
-                  class="h-10 pl-2 pr-4 rounded-lg  focus:outline-none bg-transparent grow"
-                  name="search"
-                  placeholder="Search for GPTs"
-                />
-              </div>
-
-              <h1>Sort by</h1>
-              <SelectCategory />
-              <h1>Categories</h1>
-              <div className="flex flex-wrap gap-x-1 gap-y-2 mt-4">
-                {categories.map((c) => {
-                  return (
-                    <span
-                      className={`cursor-pointer text-sm font-medium me-2 px-3 py-2 rounded-lg  border-2 ${
-                        c.selected
-                          ? "bg-green text-white border-green"
-                          : "bg-gray-100 text-gray-900"
-                      }`}
-                      onClick={() => handleCategoryUpdate(c.id)}
-                    >
-                      {c.icon} {"  "} {c.title}
-                    </span>
-                  );
-                })}
+      <div className="bg-grayish">
+        <div className="md:w-9/12 w-11/12 mx-auto h-full pt-20 md:pb-28 pb-12">
+          <div className="grid grid-cols-12 gap-4">
+            <div className="md:col-span-4 col-span-12">
+              <div className="bg-white border rounded-lg p-4">
+                <label class="mt-2 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  Search
+                </label>
+                <div class="w-full relative mx-auto  border-gray-300  flex items-center cursor-pointer font-medium me-2 px-3 py-2 rounded-lg  border-2  bg-gray-100 text-gray-900 text-sm">
+                  <FontAwesomeIcon icon={faSearch} className="" />
+                  <input
+                    class="pl-2 pr-4 rounded-lg  focus:outline-none bg-transparent grow"
+                    name="search"
+                    placeholder="Search for GPTs..."
+                    autoComplete="off"
+                  />
+                </div>
+                <label class="mt-6 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  Sort by
+                </label>
+                <SelectCategory />
+                <label class="mt-6 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  Categories
+                </label>
+                <div className="flex flex-wrap gap-x-1 gap-y-2 mt-4">
+                  {categories.map((c) => {
+                    return (
+                      <span
+                        className={`cursor-pointer text-sm font-medium me-2 px-3 py-2 rounded-lg  border-2 ${
+                          c.selected
+                            ? "bg-green text-white border-green"
+                            : "bg-gray-100 text-gray-900"
+                        }`}
+                        onClick={() => handleCategoryUpdate(c.id)}
+                      >
+                        {c.icon} {"  "} {c.title}
+                      </span>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
-            <div className="col-span-8">
-              <div className="w-full">
-                {data.slice(0, 15).map((property, i) => {
-                  return <RentalCard property={property} i={i} key={i} />;
-                })}
-              </div>
+            <div className="md:col-span-8 col-span-12 flex flex-col gap-2">
+              {data.slice(0, 10).map((property, i) => {
+                return <GPTCard property={property} i={i} key={i} />;
+              })}
+
+              <button className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-green text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto">
+                Load more
+              </button>
             </div>
           </div>
         </div>
