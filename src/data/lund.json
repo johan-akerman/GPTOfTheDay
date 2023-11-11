@@ -1,0 +1,504 @@
+[
+  {
+    "url": "bokompakt",
+    "title": "Bokompakt",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/bokompakt/bk_puff.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+
+  {
+    "url": "dammhagen",
+    "title": "Dammhagen",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/dammhagen/bb_dh_puff.jpg",
+    "averageRating": 4,
+    "reviews": [
+      {
+        "rating": 4,
+        "review": "Bodde i en kompislägenhet på Dammhagen under 2 år. Superbra läge och väldigt fräscha rum. Det enda som går att klaga på i 2 rums lägenheterna är att det inte finns så mycket sociala ytor då det bara är ett väldigt litet kök.",
+        "type": "2 rum",
+        "name": "Johan",
+        "photos": [],
+        "date": "29 Maj 2023"
+      }
+    ]
+  },
+
+  {
+    "url": "delphi",
+    "title": "Delphi",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/delphi/delphi_puff.jpg",
+    "averageRating": 4.5,
+    "reviews": [
+      {
+        "rating": 5,
+        "review": "Gillar verkligen min lägenhet, välplanerad och fint område runt omkring. 10-15 min m cykel till centrum, vilket jag tycker är helt planerbart :)",
+        "type": "Korridorsrum",
+        "name": "Simon",
+        "photos": [],
+        "date": "31 Juni 2023"
+      },
+      {
+        "rating": 4,
+        "review": "Lite långt från centrum men fina rum och trevligt område omring :) Väldigt nära till LTH om man pluggar där",
+        "type": "Korridorsrum",
+        "name": "Anonym",
+        "photos": [],
+        "date": "29 Maj 2023"
+      }
+    ]
+  },
+
+  {
+    "url": "gylleholm",
+    "title": "Gylleholm",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/gylleholm/gy_puff.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+
+  {
+    "url": "hippocampus",
+    "title": "Hippocampus",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/hippocampus/hc_puff.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+
+  {
+    "url": "klosterangen",
+    "title": "Klosterängen",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/klosterangen/kl_puff.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+
+  {
+    "url": "kamnarsratten",
+    "title": "Kämnärsrätten",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/kamnarsratten/ka_puff.jpg",
+    "averageRating": 4,
+    "reviews": [
+      {
+        "rating": 4,
+        "review": "Gamla hus, men har inte haft några problem och man får väldigt mycket för pengarna. när jag delar med 2 andra betalar 2700 i månaden för en 4a Lugnt område utan mycket fester, på gott och ont. Största minus är att det känns långt från stan.",
+        "type": "4 rum",
+        "name": "Anonym",
+        "photos": [],
+        "date": "30 Maj 2023"
+      }
+    ]
+  },
+
+  {
+    "url": "magasinet",
+    "title": "Magasinet",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/magasinet/mag_puff.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+  {
+    "url": "marathon",
+    "title": "Marathon",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/marathon/ma_puff.jpg",
+    "averageRating": 5,
+    "reviews": [
+      {
+        "rating": 5,
+        "review": "Precis flyttat in i en super fin, fräsch och väl planerad 1a på 23 kvm. Perfekt läge med nära till både LTH och stan!",
+        "type": "1 rum",
+        "name": "Johan",
+        "photos": [],
+        "date": "1 Juni 2023"
+      }
+    ]
+  },
+  {
+    "url": "parentesen",
+    "title": "Parentesen",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/parentesen/par_puff.jpg",
+    "averageRating": 5,
+    "reviews": [
+      {
+        "rating": 5,
+        "review": "",
+        "type": "Korridorsrum",
+        "name": "Anonym",
+        "photos": [],
+        "date": "30 Maj 2023"
+      },
+      {
+        "rating": 5,
+        "review": "Absolut bästa stället i Lund. Vildaste, mest sociala, roligaste. Finns inget annat ställe man får ett så bra studentliv.",
+        "type": "Korridorsrum",
+        "name": "Anonym",
+        "photos": [],
+        "date": "30 Maj 2023"
+      },
+      {
+        "rating": 5,
+        "review": "Gemenskapen och läget gör allt!",
+        "type": "Korridorsrum",
+        "name": "Anonym",
+        "photos": [],
+        "date": "30 Maj 2023"
+      },
+      {
+        "rating": 5,
+        "review": "Parran är dunder! Du kommer inte ångra dig",
+        "type": "Korridorsrum",
+        "name": "Joaquim",
+        "photos": [],
+        "date": "30 Maj 2023"
+      },
+      {
+        "rating": 5,
+        "review": "Otrolig gemenskap, bra läge, fräscha boenden och gemensamma utrymmen",
+        "type": "Korridorsrum",
+        "name": "Anonym",
+        "photos": [],
+        "date": "30 Maj 2023"
+      },
+      {
+        "rating": 5,
+        "review": "Parran är bra men D4 bäst. Trust me",
+        "type": "Korridorsrum",
+        "name": "Joaquim",
+        "photos": [],
+        "date": "30 Maj 2023"
+      },
+      {
+        "rating": 5,
+        "review": "Bott här i 3.5 år och det är utan tvekan Lunds bästa studentboende",
+        "type": "Korridorsrum",
+        "name": "Julia",
+        "photos": [],
+        "date": "30 Maj 2023"
+      },
+      {
+        "rating": 5,
+        "review": "Bott här i snart tre år och älskar det. Om du vill bo socialt finns det inget bättre ställe.",
+        "type": "Korridorsrum",
+        "name": "Axel",
+        "photos": [],
+        "date": "29 Maj 2023"
+      }
+    ]
+  },
+
+  {
+    "url": "park",
+    "title": "Park",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/park/pk_puff.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+
+  {
+    "url": "pierus",
+    "title": "Pierus",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/pireus/prs_puff.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+
+  {
+    "url": "proto",
+    "title": "Proto",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/proto/pr_puff.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+
+  {
+    "url": "sagoeken",
+    "title": "Sagoeken",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/sagoeken/sg_puff.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+
+  {
+    "url": "sparta",
+    "title": "Sparta",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/sparta/sp_puff.jpg",
+    "averageRating": 4,
+    "reviews": [
+      {
+        "rating": 4,
+        "review": "Ligger någolunda centralt i lund och nära till både ekonomihögskolan och lth, lite trista byggnader och kan vara dålig utsikt från korridorsrum men annars fina rum och kök. Nära till ica och gym, och även trevligt promenadområde runt omkring.",
+        "type": "Korridorsrum",
+        "name": "Anonym",
+        "photos": [],
+        "date": "29 Maj 2023"
+      }
+    ]
+  },
+
+  {
+    "url": "studentlyckan",
+    "title": "Studentlyckan",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/studentlyckan/stl_puff.jpg",
+    "averageRating": 5,
+    "reviews": [
+      {
+        "rating": 5,
+        "review": "Lugnt område med lite äldre studenter",
+        "type": "2 rum",
+        "name": "Amin",
+        "photos": [],
+        "date": "29 Maj 2023"
+      },
+      {
+        "rating": 5,
+        "review": "Bästa stället i Lund om man vill flytta ihop med sin partner. Nära stan, fina promenadrundor vid åkrarna söderut. Stor och fin innergård med massa grillar och volleybollplan. Vissa lägenheter har alla fönster åt samma håll, välj då den sida som har fönster åt innegården så får ni trevligare utsikt. Som sagt bra för par, kan vara svårt att bo med en kompis pga planlösningen och blir för dyrt att bo själv.",
+        "type": "2 rum",
+        "name": "Ludvig",
+        "photos": [],
+        "date": "29 Maj 2023"
+      }
+    ]
+  },
+
+  {
+    "url": "tomegapsgarden",
+    "title": "Tomegapsgården",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/tomegap/tom_puff.jpg",
+    "averageRating": 5,
+    "reviews": [
+      {
+        "rating": 5,
+        "review": "Skönt häng! Rent! Sjuk baksida och bra läge",
+        "type": "Korridorsrum",
+        "name": "Hannes",
+        "photos": [],
+        "date": "29 Maj 2023"
+      }
+    ]
+  },
+
+  {
+    "url": "ulrikedal",
+    "title": "Ulrikedal",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/ulrikedal/ulr_puff.jpg",
+    "averageRating": 4,
+    "reviews": [
+      {
+        "rating": 5,
+        "review": "",
+        "type": "Korridorsrum",
+        "name": "Anonym",
+        "photos": [],
+        "date": "30 Maj 2023"
+      },
+      {
+        "rating": 3,
+        "review": "Jag bodde i en kompislägenhet på Ulrikedal VT2020. Rätt så liten lägenhet och den skulle behöva lite renovering. Men annars superbra läge nära stan och väldigt billig! Också stort plus att det fanns mataffär nära! Skulle gärna bo på Ulrikedal igen!  ",
+        "type": "2 rum",
+        "name": "Johan",
+        "photos": [],
+        "date": "29 Maj 2023"
+      }
+    ]
+  },
+
+  {
+    "url": "vegalyckan",
+    "title": "Vegalyckan",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/vegalyckan/vega_puff.jpg",
+    "averageRating": 5,
+    "reviews": [
+      {
+        "rating": 5,
+        "review": "Riktigt fräscht och tyst. Nära till bussen och ICA. Bor i ett loft med min flickvän. Mysigt! Enda dåliga är att jag fick ett rätt dåligt förråd på vinden.",
+        "type": "1 rum",
+        "name": "Theo",
+        "photos": [],
+        "date": "29 Maj 2023"
+      }
+    ]
+  },
+
+  {
+    "url": "vildanden",
+    "title": "Vildanden",
+    "thumbnail": "https://www.afbostader.se/globalassets/bostadsomraden/vildanden/vi_av_puff.jpg",
+    "averageRating": 2,
+    "reviews": [
+      {
+        "rating": 3,
+        "review": " Flyttade in i en korridor mitt första år i Lund, var en väldigt fräsch korridor och mysigt boende. Fanns bra lokaler med tex Bastu och Pingisbord som gick att boka, det ända negativa var att det ligger långt från LTH.",
+        "type": "Korridorsrum",
+        "name": "Axel",
+        "photos": [],
+        "date": "29 Maj 2023"
+      },
+      {
+        "rating": 1,
+        "review": "Jag flyttade in i en 1a på Vildanden när jag började plugga i Lund. Det var mitt första studentboende. Generellt fräscht men det ligger rätt avskilt från resten av Lund och det händer inte så mycket ute vid Vildanden.",
+        "type": "1 rum",
+        "name": "Johan",
+        "photos": [],
+        "date": "29 Maj 2023"
+      }
+    ]
+  },
+  {
+    "url": "michael_hansens_kollegium",
+    "title": "Michael Hansens Kollegium",
+    "thumbnail": "https://lh3.googleusercontent.com/p/AF1QipM8QCfOeIkM399WC56KL55Dj3NDw5R6zLsRJmgG=s1360-w1360-h1020",
+    "averageRating": 4,
+    "reviews": [
+      {
+        "rating": 4,
+        "review": "Bättre än average ur alla perspektiv, men inte extremt bra ur något. Renare, mer socialt, billigare osv. Folk som hade rum mot innegården hade dock svårt att sova under LTHs nollningsperiod.",
+        "type": "Korridorsrum",
+        "name": "Lukas",
+        "photos": [],
+        "date": "29 Maj 2023"
+      },
+      {
+        "rating": 4,
+        "review": "Bodde här mina första 3 år i Lund. Väldigt nära LTH och EHL. Trivdes väldigt bra i mitt rum, bättre standard än många andra korridorer. Rimlig hyra. Dessutom var min korre trevlig under alla åren!",
+        "type": "Korridorsrum",
+        "name": "Theo",
+        "photos": [],
+        "date": "29 Maj 2023"
+      }
+    ]
+  },
+  {
+    "url": "parasollet",
+    "title": "Parasollet",
+    "thumbnail": "https://k2a.se/wp-content/uploads/2021/09/DJI_0150-1-1442x1080.jpg",
+    "averageRating": 3,
+    "reviews": [
+      {
+        "rating": 3,
+        "review": "Bodde här mina första två år när det var nytt och spårvagnen började gå. Området har blivit bra med Hemköp, gym och lilla ved. Väldigt smidigt att ta spårvagnen till stan. Lägenheterna är bra planerade och fräscha. Negativa är att det ligger lite avskiljdes och hyran var ganska saftigt för läget.",
+        "type": "1 rum",
+        "name": "Hannes",
+        "photos": [],
+        "date": "29 Maj 2023"
+      }
+    ]
+  },
+  {
+    "url": "helgonagarden",
+    "title": "Helgonagården",
+    "thumbnail": "https://k2a.se/wp-content/uploads/2021/09/MG_6513-1620x1080.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+  {
+    "url": "ostgota_nation",
+    "title": "Östgöta Nation",
+    "thumbnail": "https://www.studentlund.se/wp-content/uploads/2015/06/OG_HEADER_Hus_1.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+  {
+    "url": "vastgota_nation",
+    "title": "Västgöta Nation",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/2/24/V%C3%A4stg%C3%B6ta_nation%2C_Lund.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+  {
+    "url": "lunds_nation",
+    "title": "Lunds Nation",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Lunds_nation_080508.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+  {
+    "url": "malmo_nation",
+    "title": "Malmö Nation",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Malm%C3%B6_nation%2C_Lund.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+  {
+    "url": "helsingkrona_nation",
+    "title": "Helsingkrona Nation",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/5/50/Helsingkrona_nation_080508.jpg",
+    "averageRating": 4,
+    "reviews": [
+      {
+        "rating": 5,
+        "review": "Svinroligt ställe om man är aktiv, men inte för alla. Själv har jag haft enormt många roliga år här. Framförallt kommer man in bra om man flyttar in som ny och vill vara aktiv. Då väntar det konstant fester, event och massa trevligt korre-häng. Dessutom nära för de som pluggar vid LTH eller EC. Fräscht! Nackdel för den kvällströtta människan på helgen eller för den som vill ha billigast möjliga.",
+        "type": "Korridorsrum",
+        "name": "Anonym",
+        "photos": [],
+        "date": "30 Maj 2023"
+      },
+
+      {
+        "rating": 3,
+        "review": "Bor i korridorsrum på nationen. Väldigt bra läge, väldigt trevligt kök/vardagsrum och man är nästan garanterad att vara omgiven med trevliga människor. Hyran var redan rätt hög innan jag flyttade in, men pga elpriser och räntehöjningar har denna höjts ytterligare och det är verkligen inte 'värt det' längre trots att det är riktigt nice att bo här (betalar 4600kr/mån 10 månader om året). Störigt, men förståeligt, att hissen hålls avstängd under festtimmarna. Låter sjukt mycket från bygget under morgonen vilket är rätt störigt, men det lär vara över inom 1 år iaf",
+        "type": "Korridorsrum",
+        "name": "Anonym",
+        "photos": [],
+        "date": "30 Maj 2023"
+      }
+    ]
+  },
+  {
+    "url": "sydskanska_nationen",
+    "title": "Sydskånska Nationen",
+    "thumbnail": "https://sydskanska.se/wp-content/uploads/2020/05/huset.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+  {
+    "url": "kristianstads_nation",
+    "title": "Kristianstads Nation",
+    "thumbnail": "https://www.studentlund.se/wp-content/uploads/2015/06/Namnlo%CC%88s-design-11.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+  {
+    "url": "blekingska_nationen",
+    "title": "Blekingska Nationen",
+    "thumbnail": "https://www.lundagard.se/wp-content/uploads/2022/08/IMG_2322-1024x683.jpg",
+    "averageRating": 0,
+    "reviews": []
+  },
+  {
+    "url": "goteborgs_nation",
+    "title": "Göteborgs Nation",
+    "thumbnail": "https://nylandskanationen.files.wordpress.com/2019/10/gbgs.jpg?w=620&h=414",
+    "averageRating": 0,
+    "reviews": []
+  },
+  {
+    "url": "hallands_nation",
+    "title": "Hallands Nation",
+    "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Hallands_Nation.jpg",
+    "averageRating": 5,
+    "reviews": [
+      {
+        "rating": 5,
+        "review": "Bra hus med skön gemenskap",
+        "type": "Korridorsrum",
+        "name": "Haris",
+        "photos": [],
+        "date": "30 Maj 2023"
+      }
+    ]
+  },
+  {
+    "url": "kalmar_nation",
+    "title": "Kalmar Nation",
+    "thumbnail": "data:image/jpeg;base64,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",
+    "averageRating": 0,
+    "reviews": []
+  },
+  {
+    "url": "wermlands_nation",
+    "title": "Wermlands Nation",
+    "thumbnail": "https://kulturportallund.se/wp-content/uploads/2010/11/KUM_varmlands02.jpg",
+    "averageRating": 0,
+    "reviews": []
+  }
+]
