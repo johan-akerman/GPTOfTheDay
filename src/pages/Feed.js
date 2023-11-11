@@ -7,13 +7,19 @@ import { InfoBar } from "../components/InfoBar";
 import lundData from "../data/lund.json";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import ReactGA from "react-ga";
+import { getCurrentUser, getGpt } from "../firebase";
 
 export default function Feed() {
   const [data, setData] = useState([]);
+  const [user, setUser] = useState(getCurrentUser())
+  const gpt = getGpt(0);
+  console.log(gpt);
 
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname);
+    setUser(getCurrentUser())
+  }, [])
+  useEffect(() => {
+    
     let tmp = lundData;
     tmp.sort(function (a, b) {
       // Sort by average rating.
@@ -27,10 +33,11 @@ export default function Feed() {
     setData(tmp);
   }, []);
 
+
   return (
     <>
       <InfoBar />
-      <Navbar />
+      <Navbar user={user} setUser={setUser}/>
       <Jumbotron />
       <div className="bg-white">
         <div className="md:w-8/12 w-11/12 mx-auto h-full pt-8 md:pb-28 pb-12">

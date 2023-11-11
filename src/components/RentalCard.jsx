@@ -37,13 +37,13 @@ export default function GPTCard({ property, i }) {
               Visit
             </Link>
 
-            <div className="cursor-pointer px-5 py-2 border-2  hover:border-green font-medium rounded-md text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group">
+            <button className="cursor-pointer px-5 py-2 border-2  hover:border-green font-medium rounded-md text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group">
               <FontAwesomeIcon
                 icon={faArrowUp}
                 className="mr-1.5 group-hover:animate-bounce transform ease-in-out group-hover:text-green"
               />{" "}
               531
-            </div>
+            </button>
           </div>
         </div>
       </div>
