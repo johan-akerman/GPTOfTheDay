@@ -15,7 +15,7 @@ export default function MobileMenu({ user, setUser }) {
   };
 
   return (
-    <div className="px-4">
+    <div className="lg:hidden block">
       <Popover className="relative">
         {({ open, close }) => (
           <>

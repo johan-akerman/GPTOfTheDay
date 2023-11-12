@@ -11,7 +11,7 @@ export default function SubmitGPT() {
   return (
     <>
       <Navbar />
-      <div className="bg-grayish h-screen">
+      <div className="bg-lightBrown h-screen">
         <div className="md:w-4/12 w-11/12 mx-auto h-full md:pt-32  p-0 pt-32 gap-3">
           <SubmitForm />
         </div>

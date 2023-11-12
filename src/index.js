@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import New from "./pages/SubmitGPT";
 import Directory from "./pages/Directory";
-import Leaderboard from "./pages/Leaderboard";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
@@ -16,11 +15,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-  },
-
-  {
-    path: "/leaderboard",
-    element: <Leaderboard />,
   },
 
   {

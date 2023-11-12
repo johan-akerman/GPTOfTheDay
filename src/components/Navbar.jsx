@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { getCurrentUser, logOut, signInUserGoogle } from "../firebase";
 import MobileMenu from "./MobileMenu";
 
+import logo from "../images/logo.png";
+
 export function Navbar({ user, setUser }) {
   const handleLogin = () => {
     signInUserGoogle().then((user) => setUser(getCurrentUser()));
@@ -15,41 +17,31 @@ export function Navbar({ user, setUser }) {
   };
 
   return (
-    <div className="bg-green w-full">
+    <div className="bg-mediumBrown w-full">
       <div className="py-6 md:w-9/12 w-11/12 mx-auto flex justify-between ">
-        <div className="flex items-center gap-8">
-          <Link className="text-4xl text-white font-medium capitalize" to="/">
-            RateMyGPTs
-          </Link>
+        <Link className="text-4xl text-white font-medium capitalize" to="/">
+          <img src={logo} className="h-16 mr-4" />
+        </Link>
 
+        <div className="flex justify-between items-center gap-4">
           <Link
-            className="lg:block hidden text-lg text-white font-medium"
-            to="/leaderboard"
-          >
-            Leaderboard
-          </Link>
-
-          <Link
-            className="lg:block hidden text-lg text-white font-medium"
+            className="lg:block hidden text-lg text-darkBrown font-medium"
             to="/directory"
           >
             Browse all GPTs
           </Link>
 
           <Link
-            className="lg:block hidden text-lg text-white font-medium"
+            className="lg:block hidden text-lg text-darkBrown font-medium mr-10 ml-4"
             to="/submit"
           >
             Submit GPT
           </Link>
-        </div>
-
-        <div className="flex justify-between items-center gap-4">
           <MobileMenu user={user} setUser={setUser} />
           {user ? (
             <button
               onClick={() => handleLogOut}
-              className="lg:block hidden cursor-pointer px-5 py-2 border border-transparent font-medium rounded-md text-green bg-white text-lg transform ease-in duration-100 hover:bg-gray-100 "
+              className="lg:block hidden cursor-pointer px-5 py-2 border border-transparent font-medium rounded-md text-orange-400 bg-white text-lg transform ease-in duration-100 hover:bg-gray-100 "
             >
               Log out
             </button>
@@ -58,13 +50,13 @@ export function Navbar({ user, setUser }) {
               {" "}
               <Link
                 to="/log-in"
-                className="lg:block hidden cursor-pointer px-5 py-1.5  font-medium rounded-md text-white border-2 bg-green border-white text-lg transform ease-in duration-100 hover:bg-white hover:text-green "
+                className="lg:block hidden cursor-pointer px-5 py-1.5  font-medium rounded-md text-darkBrown border-2 bg-transparent border-darkBrown text-lg transform ease-in duration-100 hover:bg-darkBrown hover:text-lightBrown "
               >
                 Log in
               </Link>
               <Link
                 to="/sign-up"
-                className="lg:block hidden cursor-pointer px-5 py-1.5 border-2 border-transparent font-medium rounded-md text-green bg-white text-lg transform ease-in duration-100 hover:bg-gray-100 "
+                className="lg:block hidden cursor-pointer px-5 py-1.5 border-2 border-transparent font-medium rounded-md text-mediumBrown bg-darkBrown text-lg transform ease-in duration-100 hover:bg-opacity-80 "
               >
                 Sign up
               </Link>

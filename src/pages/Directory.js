@@ -57,7 +57,7 @@ export default function Directory() {
     <>
       <Navbar />
 
-      <div className="bg-grayish">
+      <div className="bg-lightBrown">
         <div className="md:w-9/12 w-11/12 mx-auto h-full pt-20 md:pb-28 pb-12">
           <div className="grid grid-cols-12 gap-4">
             <div className="md:col-span-4 col-span-12">
@@ -87,7 +87,7 @@ export default function Directory() {
                       <span
                         className={`cursor-pointer text-sm font-medium me-2 px-3 py-2 rounded-lg  border-2 ${
                           c.selected
-                            ? "bg-green text-white border-green"
+                            ? "bg-orange-400 text-white border-orange-400"
                             : "bg-gray-100 text-gray-900"
                         }`}
                         onClick={() => handleCategoryUpdate(c.id)}
@@ -105,7 +105,7 @@ export default function Directory() {
                 return <GPTCard property={property} i={i} key={i} />;
               })}
 
-              <button className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-green text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto">
+              <button className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-orange-400 text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto">
                 Load more
               </button>
             </div>

@@ -23,7 +23,7 @@ export default function UpvoteButton() {
   return (
     <>
       <button
-        className="cursor-pointer px-5 py-2 border-2  hover:border-green hover:bg-green hover:text-white font-medium rounded-md text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
+        className="cursor-pointer px-5 py-2 border-2  hover:border-orange-400 hover:bg-orange-400 hover:text-white font-medium rounded-md text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
         onClick={() => handleUpvote()}
       >
         <FontAwesomeIcon
@@ -79,7 +79,7 @@ export default function UpvoteButton() {
                     </Link>
                     <Link
                       to="/sign-up"
-                      className="cursor-pointer px-5 py-1.5 border-2 border-transparent font-medium rounded-md text-white bg-green text-lg transform ease-in duration-100 hover:bg-opacity-80 "
+                      className="cursor-pointer px-5 py-1.5 border-2 border-transparent font-medium rounded-md text-white bg-orange-400 text-lg transform ease-in duration-100 hover:bg-opacity-80 "
                     >
                       Sign up
                     </Link>

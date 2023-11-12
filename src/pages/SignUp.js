@@ -11,7 +11,7 @@ export default function SignUp() {
   return (
     <>
       <Navbar />
-      <div className="bg-grayish h-screen ">
+      <div className="bg-lightBrown h-screen ">
         <div className="md:w-4/12 w-11/12 mx-auto h-full pt-20 grid grid-cols-12 gap-3">
           <div className="col-span-12">
             <div className="bg-white rounded-lg shadow-2xl p-6">
@@ -34,7 +34,7 @@ export default function SignUp() {
               </div>
               <p className="text-black text-sm opacity-70 pt-4 text-center">
                 Already have an account?{" "}
-                <Link to="/log-in" className="text-green font-semibold">
+                <Link to="/log-in" className="text-orange-400 font-semibold">
                   Log in
                 </Link>
               </p>

@@ -45,7 +45,9 @@ export default function SubmitForm() {
   return (
     <div className="bg-white rounded-lg shadow-2xl p-6">
       <div className="flex flex-col">
-        <h1 className="text-3xl text-center font-semibold mb-8">Submit GPT</h1>
+        <h1 className="text-3xl text-center font-semibold mb-8">
+          Submit your GPT
+        </h1>
 
         <div className="flex flex-col gap-2 mb-3">
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
@@ -137,7 +139,7 @@ export default function SubmitForm() {
         </div>
 
         <button
-          className="cursor-pointer px-5 py-2 border border-transparent font-medium rounded-md text-white bg-green text-lg transform ease-in duration-100"
+          className="cursor-pointer px-5 py-2 border border-transparent font-medium rounded-md text-white bg-orange-400 hover:bg-orange-300 text-lg transform ease-in duration-100"
           onClick={() => handleSubmit()}
         >
           Submit

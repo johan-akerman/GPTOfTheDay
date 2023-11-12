@@ -38,7 +38,7 @@ export default function Gpt() {
   return (
     <>
       <Navbar />
-      <div className="bg-grayish">
+      <div className="bg-lightBrown">
         <div className="md:w-9/12 w-11/12 mx-auto h-full pt-20 md:pb-28 pb-12 gap-3">
           <GPTCard property={property} />
 
@@ -64,7 +64,7 @@ export default function Gpt() {
                 </Link>
                 <Link
                   to="/sign-up"
-                  className="cursor-pointer px-5 py-1.5 border-2 border-transparent font-medium rounded-md text-white bg-green text-lg transform ease-in duration-100 hover:bg-opacity-80 "
+                  className="cursor-pointer px-5 py-1.5 border-2 border-transparent font-medium rounded-md text-white bg-orange-400 text-lg transform ease-in duration-100 hover:bg-opacity-80 "
                 >
                   Sign up
                 </Link>
