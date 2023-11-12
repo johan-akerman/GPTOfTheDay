@@ -12,7 +12,7 @@ export function Footer() {
         </Link>
 
         <p className="font-semibold underline pt-2 text-lg">
-          ratemygpt@gmail.com
+          gptoftheday@gmail.com
         </p>
       </div>
     </div>

@@ -6,8 +6,9 @@ import GPTCard from "../components/GPTCard";
 import gptData from "../data/gpts.json";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getCurrentUser} from "../authentication"
+import { getCurrentUser } from "../authentication";
 import { getGpt, getGptsWithMostUpvotes } from "../firestore";
+import SubmitForm from "../components/SubmitForm";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -60,6 +61,10 @@ export default function Home() {
               </button>
             </div>
           </div>
+        </div>
+
+        <div className="lg:w-4/12 md:w-8/12 w-11/12 mx-auto h-full pt-8 md:pb-28 pb-20">
+          <SubmitForm />
         </div>
 
         <div className="pb-20 md:pt-32 pt-20 text-center bg-darkBrown">
