@@ -17,25 +17,34 @@ export default function SubmitForm() {
     "Miscellaneous",
   ];
 
-  const [gpt, setGpt] = useState("");
+  const [url, setUrl] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [creator, setCreator] = useState("");
   const [category, setCategory] = useState(categories[0]);
   const [email, setEmail] = useState("");
 
   const [missingInfo, setMissingInfo] = useState(false);
 
   function handleSubmit() {
-    if (gpt.length == 0 || category == "-" || email.length == 0) {
+    if (url.length == 0 || category == "-" || email.length == 0) {
       setMissingInfo(true);
     } else {
       let obj = {
-        gpt: gpt,
+        url: url,
+        title: title,
+        description: description,
         category: category,
+        creator: creator,
         email: email,
       };
 
       console.log(obj);
 
-      setGpt("");
+      setUrl("");
+      setTitle("");
+      setDescription("");
+      setCreator("");
       setCategory(categories[0]);
       setEmail("");
       setMissingInfo(false);
@@ -56,10 +65,37 @@ export default function SubmitForm() {
 
           <input
             className="py-2 pl-2 pr-4 rounded-lg  focus:outline-none bg-gray-100 grow border-2"
-            name="url"
             placeholder="GPT URL"
-            value={gpt}
-            onChange={(e) => setGpt(e.target.value)}
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            autoComplete="off"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2 mb-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
+            Title
+          </label>
+
+          <input
+            className="py-2 pl-2 pr-4 rounded-lg  focus:outline-none bg-gray-100 grow border-2"
+            placeholder="Title goes here"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            autoComplete="off"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2 mb-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
+            Description
+          </label>
+
+          <input
+            className="py-2 pl-2 pr-4 rounded-lg  focus:outline-none bg-gray-100 grow border-2"
+            placeholder="Description goes here"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
             autoComplete="off"
           />
         </div>
@@ -111,6 +147,20 @@ export default function SubmitForm() {
               </Transition>
             </div>
           </Listbox>
+        </div>
+
+        <div className="flex flex-col gap-2 mb-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-3">
+            Name of creator
+          </label>
+
+          <input
+            className="py-2 pl-2 pr-4 rounded-lg  focus:outline-none bg-gray-100 grow border-2"
+            placeholder="Name of creator"
+            value={creator}
+            onChange={(e) => setCreator(e.target.value)}
+            autoComplete="off"
+          />
         </div>
 
         <div className="flex flex-col gap-2 mb-3">
