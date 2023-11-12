@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { getCurrentUser, logOut, signInUserGoogle } from "../firebase";
 import MobileMenu from "./MobileMenu";
 
-import logo from "../images/logo.png";
+import logo from "../images/logo_dark.png";
 
 export function Navbar({ user, setUser }) {
   const handleLogin = () => {

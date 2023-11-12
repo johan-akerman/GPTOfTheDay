@@ -26,10 +26,35 @@ export default function SubmitForm() {
 
   const [missingInfo, setMissingInfo] = useState(false);
 
+  function checkValidEntry() {
+    let validURL = url.length > 0 && url.startsWith("https://chat.openai.com");
+    let validTitle = title.length > 0;
+    let validDescription = 0 < description.length < 100;
+    let validCreator = creator.length > 0;
+    let validCategory = category.length > 0;
+    let validEmail = email.length > 0;
+
+    return (
+      validURL &&
+      validTitle &&
+      validDescription &&
+      validCreator &&
+      validCategory &&
+      validEmail
+    );
+  }
+
   function handleSubmit() {
-    if (url.length == 0 || category == "-" || email.length == 0) {
+    if (!checkValidEntry()) {
       setMissingInfo(true);
     } else {
+      const sfTimeZone = "America/Los_Angeles";
+      const sfTime = new Date().toLocaleString("en-US", {
+        timeZone: sfTimeZone,
+      });
+
+      console.log("Current time in San Francisco:", sfTime);
+
       let obj = {
         url: url,
         title: title,
@@ -37,6 +62,7 @@ export default function SubmitForm() {
         category: category,
         creator: creator,
         email: email,
+        submittedAt: sfTime,
       };
 
       console.log(obj);
@@ -58,9 +84,27 @@ export default function SubmitForm() {
           Submit your GPT
         </h1>
 
-        <div className="flex flex-col gap-2 mb-3">
+        <div className="flex flex-col gap-2 mb-5">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
+            GPT Title
+          </label>
+
+          <input
+            className="py-2 pl-2 pr-4 rounded-lg  focus:outline-none bg-gray-100 grow border-2"
+            placeholder="Title goes here"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            autoComplete="off"
+          />
+        </div>
+
+        <div className="flex flex-col gap-2 mb-5">
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
             GPT URL
+          </label>
+
+          <label class="block tracking-wide text-gray-400 text-xs font-bold">
+            Must include https://chat.openai.com
           </label>
 
           <input
@@ -74,21 +118,11 @@ export default function SubmitForm() {
 
         <div className="flex flex-col gap-2 mb-3">
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
-            Title
+            Description
           </label>
 
-          <input
-            className="py-2 pl-2 pr-4 rounded-lg  focus:outline-none bg-gray-100 grow border-2"
-            placeholder="Title goes here"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            autoComplete="off"
-          />
-        </div>
-
-        <div className="flex flex-col gap-2 mb-3">
-          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold">
-            Description
+          <label class="block tracking-wide text-gray-400 text-xs font-bold">
+            Must be less than 100 charachters
           </label>
 
           <input
@@ -151,7 +185,7 @@ export default function SubmitForm() {
 
         <div className="flex flex-col gap-2 mb-3">
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-3">
-            Name of creator
+            Name of GPT creator
           </label>
 
           <input
@@ -180,8 +214,8 @@ export default function SubmitForm() {
 
         <div className="h-6">
           {missingInfo ? (
-            <p className="text-center text-red-400 text-sm">
-              Something is missing! Please fill in all fields above
+            <p className="text-center text-orange-400 text-sm">
+              Something is missing! Please fill in all fields above.
             </p>
           ) : (
             ""
@@ -195,9 +229,6 @@ export default function SubmitForm() {
           Submit
         </button>
       </div>
-      <p className="text-black text-xs opacity-70 pt-4 text-center">
-        We will review your GPT before publishing it to avoid spam.
-      </p>
     </div>
   );
 }
