@@ -6,13 +6,14 @@ import GPTCard from "../components/GPTCard";
 import gptData from "../data/gpts.json";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getCurrentUser, getGpt } from "../firebase";
+import { getCurrentUser} from "../authentication"
+import { getGpt, getGptsWithMostUpvotes } from "../firestore";
 
 export default function Home() {
   const [data, setData] = useState([]);
   const [user, setUser] = useState(getCurrentUser());
-  const gpt = getGpt(0);
-  console.log(gpt);
+  //const gpt = getGpt("H16mtfbLIlocQ3PJgSk4").then(console.log);
+  const topgpts = getGptsWithMostUpvotes(10).then(console.log);
 
   useEffect(() => {
     setUser(getCurrentUser());

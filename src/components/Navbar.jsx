@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import { getCurrentUser, logOut, signInUserGoogle } from "../firebase";
+import { getCurrentUser, logOut, signInUserGoogle } from "../authentication";
 import MobileMenu from "./MobileMenu";
 
 import logo from "../images/logo_dark.png";

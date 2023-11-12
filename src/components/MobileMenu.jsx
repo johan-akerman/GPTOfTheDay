@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-import { getCurrentUser, logOut, signInUserGoogle } from "../firebase";
+import { getCurrentUser, logOut, signInUserGoogle } from "../authentication";
 
 export default function MobileMenu({ user, setUser }) {
   const buttonRef = useRef();
