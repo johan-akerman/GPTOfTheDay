@@ -16,7 +16,7 @@ export function Jumbotron() {
             </p>
 
             <p className="text-darkBrown text-2xl mb-3 ">
-              🏆 Vote on your favourites and crown a winner!
+              🏆 Vote on your favourites and crown a daily winner!
             </p>
 
             <p className="text-darkBrown text-2xl mb-3 ">

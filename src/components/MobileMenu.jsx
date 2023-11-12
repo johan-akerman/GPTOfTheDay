@@ -21,10 +21,10 @@ export default function MobileMenu({ user, setUser }) {
           <>
             <Popover.Button
               ref={buttonRef}
-              className="lg:hidden block text-white group md:py-2 py-1 rounded-md  items-center  text-lg font-semibold hover:text-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+              className="lg:hidden block text-darkGray group md:py-2 py-1 rounded-md  items-center  text-2xl pr-4 font-semibold hover:text-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
             >
               <FontAwesomeIcon
-                className="text-3xl text-white"
+                className="text-4xl text-darkGray mr-6"
                 icon={open ? faTimes : faBars}
               />
             </Popover.Button>
@@ -37,21 +37,13 @@ export default function MobileMenu({ user, setUser }) {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="lg:hidden block absolute -left-24  z-10 w-60  max-w-sm mt-2 transform -translate-x-1/2  sm:px-0 lg:max-w-3xl">
+              <Popover.Panel className="lg:hidden block absolute -left-24  z-10 w-60  max-w-sm mt-2 transform -translate-x-1/2  sm:px-0 lg:max-w-3xl text-xl">
                 <div className="overflow-hidden rounded-lg shadow-2xl">
                   <div className="relative bg-white p-3">
                     <Link
                       onClick={() => buttonRef.current?.click()}
-                      to="/leaderboard"
-                      className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-lg font-semibold text-gray-900"
-                    >
-                      Leaderboard
-                    </Link>
-
-                    <Link
-                      onClick={() => buttonRef.current?.click()}
                       to="/directory"
-                      className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-lg font-semibold text-gray-900"
+                      className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-2xl font-semibold text-gray-900"
                     >
                       Browse all GPTs
                     </Link>
@@ -59,7 +51,7 @@ export default function MobileMenu({ user, setUser }) {
                     <Link
                       onClick={() => buttonRef.current?.click()}
                       to="/submit"
-                      className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-lg font-semibold text-gray-900"
+                      className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-2xl font-semibold text-gray-900"
                     >
                       Submit GPT
                     </Link>
@@ -67,7 +59,7 @@ export default function MobileMenu({ user, setUser }) {
                     {user ? (
                       <button
                         onClick={() => handleLogOut}
-                        className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-lg font-semibold text-gray-900"
+                        className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-2xl font-semibold text-gray-900"
                       >
                         Log out
                       </button>
@@ -76,7 +68,7 @@ export default function MobileMenu({ user, setUser }) {
                         <Link
                           onClick={() => buttonRef.current?.click()}
                           to="/log-in"
-                          className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-lg font-semibold text-gray-900"
+                          className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-2xl font-semibold text-gray-900"
                         >
                           Log in
                         </Link>
@@ -84,7 +76,7 @@ export default function MobileMenu({ user, setUser }) {
                         <Link
                           onClick={() => buttonRef.current?.click()}
                           to="/sign-up"
-                          className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-lg font-semibold text-gray-900"
+                          className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-2xl font-semibold text-gray-900"
                         >
                           Sign up
                         </Link>
