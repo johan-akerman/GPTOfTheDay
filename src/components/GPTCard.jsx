@@ -22,7 +22,7 @@ export default function GPTCard({ property, i }) {
               <p className="text-lg pt-1">Description</p>
 
               <p className="text-sm pb-2">
-                Created by: creator. Posted 13 minutes ago.
+                Created by: creator. Posted 13 minutes ago. X comments.
               </p>
               <span className="cursor-pointer text-xs font-medium px-3 py-1 rounded-lg  border-2 bg-gray-100 text-gray-900">
                 ⏰ Productivity

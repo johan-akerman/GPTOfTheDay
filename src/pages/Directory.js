@@ -62,7 +62,7 @@ export default function Directory() {
           <div className="grid grid-cols-12 gap-4">
             <div className="md:col-span-4 col-span-12">
               <div className="bg-white border rounded-lg p-4">
-                <label class="mt-2 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                {/* <label class="mt-2 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   Search
                 </label>
                 <div class="w-full relative mx-auto  border-gray-300  flex items-center cursor-pointer font-medium me-2 px-3 py-2 rounded-lg  border-2  bg-gray-100 text-gray-900 text-sm">
@@ -73,8 +73,8 @@ export default function Directory() {
                     placeholder="Search for GPTs..."
                     autoComplete="off"
                   />
-                </div>
-                <label class="mt-6 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                </div> */}
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   Sort by
                 </label>
                 <SelectCategory />
