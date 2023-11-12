@@ -23,6 +23,14 @@ export default function Directory() {
     { id: 9, title: "Miscellaneous", icon: "📦", selected: false },
   ]);
 
+  const [currentPage, setCurrentPage] = useState(0);
+  function handleLoadMore(i) {
+    setCurrentPage(i + 1);
+  }
+
+  const [currentSort, setCurrentSort] = useState("");
+  const [currentCategory, setCurrentCategory] = useState("All");
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -62,18 +70,6 @@ export default function Directory() {
           <div className="grid grid-cols-12 gap-4">
             <div className="md:col-span-4 col-span-12">
               <div className="bg-white border rounded-lg p-4">
-                {/* <label class="mt-2 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  Search
-                </label>
-                <div class="w-full relative mx-auto  border-gray-300  flex items-center cursor-pointer font-medium me-2 px-3 py-2 rounded-lg  border-2  bg-gray-100 text-gray-900 text-sm">
-                  <FontAwesomeIcon icon={faSearch} className="" />
-                  <input
-                    class="pl-2 pr-4 rounded-lg  focus:outline-none bg-transparent grow"
-                    name="search"
-                    placeholder="Search for GPTs..."
-                    autoComplete="off"
-                  />
-                </div> */}
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   Sort by
                 </label>

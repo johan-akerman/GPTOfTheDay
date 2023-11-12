@@ -5,7 +5,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function SubmitForm() {
   const categories = [
-    "-",
+    "Miscellaneous",
     "Productivity",
     "DALL-E",
     "Writing",
@@ -14,7 +14,6 @@ export default function SubmitForm() {
     "Education",
     "Lifestyle",
     "Just for fun",
-    "Miscellaneous",
   ];
 
   const [url, setUrl] = useState("");
@@ -52,8 +51,6 @@ export default function SubmitForm() {
       const sfTime = new Date().toLocaleString("en-US", {
         timeZone: sfTimeZone,
       });
-
-      console.log("Current time in San Francisco:", sfTime);
 
       let obj = {
         url: url,
