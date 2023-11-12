@@ -2,11 +2,16 @@ import { Navbar } from "../components/Navbar";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { signInUserGoogle, signInUserGoogleRedirect } from "../authentication";
 
 export default function LogIn() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleClick = () => {
+    signInUserGoogleRedirect();
+  }
 
   return (
     <>
@@ -20,7 +25,9 @@ export default function LogIn() {
                   Welcome back!
                 </h1>
 
-                <button class="flex gap-2 text-center justify-center mt-6 transition duration-150 cursor-pointer text-md font-medium me-2 px-3 py-2 rounded-lg  border-2 bg-gray-100 text-gray-900">
+                <button 
+                  onClick={handleClick}
+                  class="flex gap-2 text-center justify-center mt-6 transition duration-150 cursor-pointer text-md font-medium me-2 px-3 py-2 rounded-lg  border-2 bg-gray-100 text-gray-900">
                   <img
                     class="w-6 h-6"
                     src="https://www.svgrepo.com/show/475656/google-color.svg"

@@ -7,19 +7,11 @@ import gptData from "../data/gpts.json";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getCurrentUser } from "../authentication";
-import { getGpt, getGptsWithMostUpvotes } from "../firestore";
 import SubmitForm from "../components/SubmitForm";
 
 export default function Home() {
   const [data, setData] = useState([]);
   const [user, setUser] = useState(getCurrentUser());
-
-  //const gpt = getGpt("H16mtfbLIlocQ3PJgSk4").then(console.log);
-  const topgpts = getGptsWithMostUpvotes(10).then(console.log);
-  const [currentPage, setCurrentPage] = useState(0);
-  function handleLoadMore(i) {
-    setCurrentPage(i + 1);
-  }
 
   useEffect(() => {
     setUser(getCurrentUser());
@@ -63,7 +55,7 @@ export default function Home() {
 
               <button
                 className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-darkGray hover:bg-opacity-80  text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"
-                onClick={() => handleLoadMore(currentPage)}
+                // onClick={() => handleLoadMore(currentPage)}
               >
                 Load more
               </button>
