@@ -7,13 +7,11 @@ import gptData from "../data/gpts.json";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getCurrentUser} from "../authentication"
-import { getGpt, getGptsWithMostUpvotes } from "../firestore";
+import { getGptsWithFilter } from "../firestore";
 
 export default function Home() {
   const [data, setData] = useState([]);
   const [user, setUser] = useState(getCurrentUser());
-  //const gpt = getGpt("H16mtfbLIlocQ3PJgSk4").then(console.log);
-  const topgpts = getGptsWithMostUpvotes(10).then(console.log);
 
   useEffect(() => {
     setUser(getCurrentUser());
