@@ -21,9 +21,9 @@ export default function GPTCard({ gpt, i }) {
               <p className="text-lg pt-1">{gpt?.description}</p>
 
               <p className="text-sm pb-2">
-                Created by: {gpt?.creator}. Posted {gpt?.submitted_at}.{" "}
+                Created by: {gpt?.creator}. Posted {gpt?.publishedAt}.{" "}
                 {gpt?.upvote_count}{" "}
-                {gpt?.upvote_count == 1 ? " comment" : "comments"}.
+                {gpt?.upvotes.length === 1 ? " comment" : "comments"}.
               </p>
               <span className="cursor-pointer text-xs font-medium px-3 py-1 rounded-lg  border-2 bg-gray-100 text-gray-900">
                 ⏰ Productivity
@@ -53,7 +53,10 @@ export default function GPTCard({ gpt, i }) {
               </Link>
             )}
 
-            <UpvoteButton />
+            <UpvoteButton
+              upvote_count={gpt?.upvote_count}
+              upvotes={gpt?.upvotes}
+            />
           </div>
         </div>
       </div>
@@ -85,7 +88,10 @@ export default function GPTCard({ gpt, i }) {
             Visit
           </Link>
 
-          <UpvoteButton />
+          <UpvoteButton
+            upvote_count={gpt?.upvote_count}
+            upvotes={gpt?.upvotes}
+          />
         </div>
       </div>
     </>

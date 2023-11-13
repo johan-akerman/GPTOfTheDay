@@ -100,3 +100,7 @@ export async function createGptFromRequest(title) {
     const gpt = {...querySnapshot.docs[0].data(), upvotes: [], comments: [], publishedAt: sfTime, upvote_count: 0}
     addDoc(gptsRef, gpt)
 }
+
+export async function upvoteGpt(title) {
+    
+}

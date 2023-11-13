@@ -5,17 +5,18 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { logOut, signInWithGoogle } from "../authentication";
 import { Link } from "react-router-dom";
+import { useAuthState } from "../firebase";
 
-export default function UpvoteButton() {
+export default function UpvoteButton({ upvote_count, upvotes }) {
   let [isOpen, setIsOpen] = useState(false);
-  let [signedIn, setSignedIn] = useState(false);
+  const { user } = useAuthState();
 
   function closeModal() {
     setIsOpen(false);
   }
 
   function handleUpvote() {
-    if (signedIn) {
+    if (user) {
     } else {
       setIsOpen(true);
     }
@@ -31,7 +32,7 @@ export default function UpvoteButton() {
           icon={faArrowUp}
           className="mr-1.5 group-hover:animate-bounce transform ease-in-out"
         />{" "}
-        531
+        {upvote_count}
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>
