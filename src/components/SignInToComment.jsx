@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faBoxOpen } from "@fortawesome/free-solid-svg-icons";
+import { signInWithGoogle } from "../authentication";
 
 export default function SignInToComment() {
   return (
@@ -12,18 +13,17 @@ export default function SignInToComment() {
         the latest GPTs.
       </p>
       <div className="flex gap-3 mx-auto justify-center mt-4">
-        <Link
-          to="/log-in"
-          className="cursor-pointer px-5 py-1.5  font-medium rounded-md text-gray-900 border-2 bg-transparent border-gray-900 text-lg transform ease-in duration-100 hover:bg-gray-900 hover:text-white "
+        <button
+          onClick={() => signInWithGoogle()}
+          className="md:flex hidden gap-2 text-center justify-center transition duration-150 cursor-pointer text-lg  rounded-lg  bg-darkGray text-mediumBrown font-semibold px-6 py-2"
         >
-          Log in
-        </Link>
-        <Link
-          to="/sign-up"
-          className="cursor-pointer px-5 py-1.5 border-2 border-transparent font-medium rounded-md text-white bg-orange-400 text-lg transform ease-in duration-100 hover:bg-opacity-80 "
-        >
-          Sign up
-        </Link>
+          <img
+            className="w-6 h-6"
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            alt="google logo"
+          />
+          <span>Log in with Google</span>
+        </button>
       </div>
     </div>
   );
