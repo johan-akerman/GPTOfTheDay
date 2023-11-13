@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
-import { faLock, faBoxOpen } from "@fortawesome/free-solid-svg-icons";
-
+import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import Comment from "../components/Comment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
 import data from "../data/gpts.json";
 import { useEffect } from "react";
 import GPTCard from "../components/GPTCard";
-import SignInToComment from "../components/SignInToComment";
 import AddComment from "../components/AddComment";
 
 export default function Gpt() {
