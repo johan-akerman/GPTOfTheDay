@@ -9,12 +9,6 @@ export default function InfoBar() {
     seconds: "00",
   });
 
-  function handleSubmit() {
-    if (email.length > 0) {
-      console.log("email");
-      setEmail("");
-    }
-  }
   useEffect(() => {
     const sfTimeZone = "America/Los_Angeles";
 
@@ -39,13 +33,10 @@ export default function InfoBar() {
       });
     };
 
-    // Initial update
     updateRemainingTime();
 
-    // Update every second
     const intervalId = setInterval(updateRemainingTime, 1000);
 
-    // Clean up the interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
 
