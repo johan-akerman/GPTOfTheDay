@@ -22,7 +22,7 @@ export default function GPTCard({ gpt, i }) {
               <p className="text-lg pt-1">{gpt?.description}</p>
 
               <div className="flex md:gap-6 gap-2">
-                <p>Created by: {gpt?.creator}</p>
+                <p>By: {gpt?.creator}</p>
                 <p>Posted {gpt?.publishedAt}</p>
                 <p>
                   {gpt?.comments.length}{" "}
@@ -70,13 +70,13 @@ export default function GPTCard({ gpt, i }) {
         <div className="flex items-center text-left justify-between">
           <div className="flex items-center gap-4">
             <div>
-              <p className="text-lg font-medium text-gray-900 leading-none">
+              <p className="text-2xl font-medium text-gray-900 leading-none">
                 #{i + 1}: {gpt?.title}
               </p>
-              <p className="text-md pt-1 pb-1">{gpt?.description}</p>
+              <p className="text-lg pt-1 pb-1">{gpt?.description}</p>
 
               <div className="flex text-xs mb-2 gap-2">
-                <p>Created by: {gpt?.creator}</p>
+                <p>By: {gpt?.creator}</p>
                 <p>Posted {gpt?.publishedAt}</p>
                 <p>
                   {gpt?.comments.length}{" "}

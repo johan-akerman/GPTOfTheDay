@@ -47,7 +47,7 @@ export function Navbar() {
             <>
               <button
                 onClick={() => signInWithGoogle()}
-                className="md:flex hidden gap-2 text-center justify-center transition duration-150 cursor-pointer text-lg  rounded-lg  bg-darkGray text-mediumBrown font-semibold px-6 py-2"
+                className="md:flex hidden gap-2 text-center justify-center transition duration-150 cursor-pointer text-lg  rounded-lg  bg-darkGray text-mediumBrown font-semibold px-6 py-3"
               >
                 <img
                   className="w-6 h-6"

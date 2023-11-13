@@ -7,7 +7,12 @@ import gptData from "../data/gpts.json";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getCurrentUser } from "../authentication";
-import { getGpt, getGptsWithFilter, getGptsWithMostUpvotes, getMoreGpts } from "../firestore";
+import {
+  getGpt,
+  getGptsWithFilter,
+  getGptsWithMostUpvotes,
+  getMoreGpts,
+} from "../firestore";
 import SubmitForm from "../components/SubmitForm";
 
 export default function Home() {
@@ -25,8 +30,10 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    getGptsWithFilter(null, null, null, "upvote_count").then((res) => setData(res))
-  }, [])
+    getGptsWithFilter(null, null, null, "upvote_count").then((res) =>
+      setData(res)
+    );
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -41,9 +48,8 @@ export default function Home() {
             <h1 className="text-black text-center text-5xl sm:mt-5 font-bold pt-8 ">
               🔥 Top GPTs posted today
             </h1>
-            <p className="pb-8 pt-6 text-lg text-center">
-              Vote on your favourites by clicking the upvote button. You can
-              vote on as many as you want!
+            <p className="pb-14 pt-6 text-2xl text-center">
+              Vote on your favourites by clicking the upvote button.
             </p>
             <div className="w-full flex flex-col gap-3">
               {data.slice(0, 10).map((property, i) => {
@@ -62,7 +68,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="lg:w-4/12 md:w-8/12 w-11/12 mx-auto h-full pt-8 md:pb-28 pb-20">
+        <div className="lg:w-4/12 lg:block hidden w-11/12 mx-auto h-full pt-8 md:pb-28 pb-20">
           <SubmitForm />
         </div>
 
