@@ -233,21 +233,27 @@ export default function SubmitForm() {
             </button>
           </>
         ) : (
-          <div className="text-center">
+          <div className="text-center mx-auto">
             <FontAwesomeIcon
               icon={faCheckCircle}
               className="text-5xl mb-4 opacity-70 text-green"
             />
             <h1 className="text-3xl font-semibold mb-3">Thank you!</h1>
-            <span>You submission was successful.</span>
-            <div className="flex gap-3 mx-auto justify-center mt-4">
-              <button
-                onClick={() => setSuccessfulSubmit(false)}
-                className="md:flex hidden gap-2 text-center justify-center transition duration-150 cursor-pointer text-lg  rounded-lg  bg-darkGray text-mediumBrown font-semibold px-6 py-2"
-              >
-                <span>Submit another GPT</span>
-              </button>
-            </div>
+            <p className="text-lg mb-4">You submission was successful.</p>
+
+            <button
+              onClick={() => setSuccessfulSubmit(false)}
+              className="text-center mb-3 transition duration-150 cursor-pointer text-lg  rounded-lg  bg-darkGray text-mediumBrown font-semibold px-6 py-2"
+            >
+              <span>Submit another GPT</span>
+            </button>
+            <br />
+
+            <p className="mb-2">or</p>
+
+            <Link to="/directory" className="font-semibold underline">
+              Browse all GPTs
+            </Link>
           </div>
         )}
       </div>

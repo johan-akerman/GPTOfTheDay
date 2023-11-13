@@ -44,8 +44,18 @@ export default function InfoBar() {
     <div className="bg-darkGray text-center">
       <div className="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8 flex justify-center gap-4 items-center">
         <p className="ml-3 text-white font-medium">
-          <span className="mr-2">⏰ </span> GPTOTD vote closing in{" "}
-          {`${timeLeft.hours}h:${timeLeft.minutes}m:${timeLeft.seconds}s`}!
+          <span className="mr-2">⏰ </span> GPTOTD voting ends in{"   "}
+          <span className="text-semibold bg-white bg-opacity-20 text-white px-1.5 py-1 rounded-md">
+            {`${timeLeft.hours}h`}
+          </span>
+          :{" "}
+          <span className="text-semibold bg-white bg-opacity-20 text-white px-1.5 py-1 rounded-md">
+            {`${timeLeft.minutes}m`}
+          </span>
+          :{" "}
+          <span className="text-semibold bg-white bg-opacity-20 text-white px-1.5 py-1 rounded-md">
+            {`${timeLeft.seconds}s`}
+          </span>
         </p>
       </div>
     </div>

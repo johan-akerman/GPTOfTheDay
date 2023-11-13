@@ -21,11 +21,15 @@ export default function GPTCard({ gpt, i }) {
               </p>
               <p className="text-lg pt-1">{gpt?.description}</p>
 
-              <p className="text-sm pb-2">
-                Created by: {gpt?.creator}. Posted {gpt?.publishedAt}.{" "}
-                {gpt?.upvote_count}{" "}
-                {gpt?.upvotes.length === 1 ? " comment" : "comments"}.
-              </p>
+              <div className="flex md:gap-6 gap-2">
+                <p>Created by: {gpt?.creator}</p>
+                <p>Posted {gpt?.publishedAt}</p>
+                <p>
+                  {gpt?.comments.length}{" "}
+                  {gpt?.comments.length === 1 ? " comment" : "comments"}
+                </p>
+              </div>
+              <p className="text-sm pb-2"> </p>
               <span className="cursor-pointer text-xs font-medium px-3 py-1 rounded-lg  border-2 bg-gray-100 text-gray-900">
                 ⏰ Productivity
               </span>
@@ -71,9 +75,14 @@ export default function GPTCard({ gpt, i }) {
               </p>
               <p className="text-md pt-1 pb-1">{gpt?.description}</p>
 
-              <p className="text-sm pb-2">
-                Created by: {gpt?.creator}. Posted {gpt.created_at}.
-              </p>
+              <div className="flex text-xs mb-2 gap-2">
+                <p>Created by: {gpt?.creator}</p>
+                <p>Posted {gpt?.publishedAt}</p>
+                <p>
+                  {gpt?.comments.length}{" "}
+                  {gpt?.comments.length === 1 ? " comment" : "comments"}
+                </p>
+              </div>
 
               <span className="cursor-pointer text-xs font-medium px-3 py-1 mt-2 rounded-lg  border-2 bg-gray-100 text-gray-900">
                 ⏰ Productivity

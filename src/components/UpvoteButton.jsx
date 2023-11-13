@@ -25,7 +25,7 @@ export default function UpvoteButton({ upvote_count, upvotes }) {
   return (
     <>
       <button
-        className="cursor-pointer px-5 py-2 border-2  hover:border-orange-400 hover:bg-orange-400 hover:text-white font-medium rounded-md text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
+        className="cursor-pointer px-5 py-2 border-2  border-orange-400 hover:border-orange-400 hover:bg-orange-400 hover:text-white font-medium rounded-md text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
         onClick={() => handleUpvote()}
       >
         <FontAwesomeIcon

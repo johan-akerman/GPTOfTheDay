@@ -10,17 +10,19 @@ export function Jumbotron() {
             <h1 className="text-darkBrown md:text-7xl text-5xl font-bold mb-6">
               Discover, launch and vote on the best GPTs.
             </h1>
-
-            <p className="text-darkBrown md:text-2xl text-xl mb-3 ">
-              🔍 Find the new GPTs that everyone is talking about.
+            <p className="text-darkBrown md:text-2xl text-xl mb-5 ">
+              🔍 Find the new GPTs that everyone is talking about
+            </p>
+            <p className="text-darkBrown md:text-2xl text-xl mb-5 ">
+              🏆 Vote on your favourites and crown a winner
             </p>
 
-            <p className="text-darkBrown md:text-2xl text-xl mb-3 ">
-              🏆 Vote on your favourites and crown a winner.
+            <p className="text-darkBrown md:text-2xl text-xl mb-5 ">
+              💬 Join the community and discuss GPTs
             </p>
 
-            <p className="text-darkBrown md:text-2xl text-xl mb-3 ">
-              💬 Join the community and discuss GPTs.
+            <p className="text-darkBrown md:text-2xl text-xl mb-5 ">
+              🚀 Attract users for your GPTs
             </p>
           </div>
 
