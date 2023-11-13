@@ -20,10 +20,6 @@ export function Jumbotron() {
             </p>
 
             <p className="text-darkBrown md:text-2xl text-xl mb-3 ">
-              🎯 Use smart filters to navigate all the GPTs.
-            </p>
-
-            <p className="text-darkBrown md:text-2xl text-xl mb-3 ">
               💬 Join the community and discuss GPTs.
             </p>
           </div>

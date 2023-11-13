@@ -15,7 +15,7 @@ import AddComment from "../components/AddComment";
 export default function Gpt() {
   const url = window.location.href;
   const id = url.split("/")[url.split("/").length - 1];
-  const [property, setProperty] = useState();
+  const [property, setProperty] = useState(); // to-do uppdatera utifrån id, dvs fetcha GPTn igen... men måste få auto genererade firebase id, inte bara "i"
   const signedIn = false;
 
   useEffect(() => {
@@ -30,7 +30,6 @@ export default function Gpt() {
   if (!property) {
     return (
       <>
-        <Navbar />
         <div className="bg-grayish h-screen">
           <h1 className="text-center text-xl pt-20">Something went wrong!</h1>
         </div>

@@ -3,17 +3,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { getCurrentUser, logOut, signInUserGoogle } from "../authentication";
 import MobileMenu from "./MobileMenu";
+import { useNavigate } from "react-router-dom";
 
 import logo from "../images/logo_dark.png";
+import { useAuthState } from "../firebase";
+import ProfileMenu from "./ProfileMenu";
 
-export function Navbar({ user, setUser }) {
-  const handleLogin = () => {
-    signInUserGoogle().then((user) => setUser(getCurrentUser()));
-  };
+export function Navbar() {
+  const { user } = useAuthState();
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
+    navigate("/");
     logOut();
-    setUser(null);
   };
 
   return (
@@ -37,14 +39,16 @@ export function Navbar({ user, setUser }) {
           >
             Submit GPT
           </Link>
-          <MobileMenu user={user} setUser={setUser} />
+          <MobileMenu user={user} />
           {user ? (
-            <button
-              onClick={() => handleLogOut}
-              className="lg:block hidden cursor-pointer px-5 py-2 border border-transparent font-medium rounded-md text-orange-400 bg-white text-lg transform ease-in duration-100 hover:bg-gray-100 "
-            >
-              Log out
-            </button>
+            // <button
+            //   onClick={() => handleLogOut()}
+            //   className="lg:block hidden cursor-pointer px-5 py-2 border border-transparent font-medium rounded-md text-orange-400 bg-white text-lg transform ease-in duration-100 hover:bg-gray-100 "
+            // >
+            //   Log out
+            // </button>
+
+            <ProfileMenu />
           ) : (
             <>
               {" "}

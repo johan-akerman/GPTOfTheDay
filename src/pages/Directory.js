@@ -8,8 +8,11 @@ import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import SelectCategory from "../components/SelectCategory";
+import { getGpt, getGptsWithMostUpvotes } from "../firestore";
 
 export default function Directory() {
+  const [gpt, setGpt] = useState();
+
   const [categories, setCategories] = useState([
     { id: 0, title: "All", icon: "🌐", selected: true },
     { id: 1, title: "Productivity", icon: "⏰", selected: false },
@@ -33,6 +36,7 @@ export default function Directory() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    getGpt("H16mtfbLIlocQ3PJgSk4").then((res) => setGpt(res));
   }, []);
 
   const [data, setData] = useState([]);
@@ -63,8 +67,6 @@ export default function Directory() {
 
   return (
     <>
-      <Navbar />
-
       <div className="bg-lightBrown">
         <div className="md:w-9/12 w-11/12 mx-auto h-full pt-20 md:pb-28 pb-12">
           <div className="grid grid-cols-12 gap-4">
@@ -97,9 +99,7 @@ export default function Directory() {
             </div>
 
             <div className="md:col-span-8 col-span-12 flex flex-col gap-2">
-              {data.slice(0, 10).map((property, i) => {
-                return <GPTCard property={property} i={i} key={i} />;
-              })}
+              {gpt ? <GPTCard i={0} gpt={gpt} /> : ""}
 
               <button className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-orange-400 text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto">
                 Load more
@@ -108,7 +108,6 @@ export default function Directory() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

@@ -198,6 +198,9 @@ export default function SubmitForm() {
           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-3">
             Your Email
           </label>
+          <label class="block tracking-wide text-gray-400 text-xs font-bold">
+            Will not be publicly visible
+          </label>
 
           <input
             className="py-2 pl-2 pr-4 rounded-lg  focus:outline-none bg-gray-100 grow border-2"

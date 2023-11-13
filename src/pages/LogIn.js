@@ -1,21 +1,27 @@
 import { Navbar } from "../components/Navbar";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { signInUserGoogle, signInUserGoogleRedirect } from "../authentication";
+import { signInUserGoogle, signInWithGoogle } from "../authentication";
+import { useUser } from "../hooks/useUser";
+
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useAuthState } from "../firebase";
 
 export default function LogIn() {
+  const { user } = useAuthState();
+  const navigate = useNavigate();
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    if (user) navigate("/");
+  }, [user]);
 
   const handleClick = () => {
-    signInUserGoogleRedirect();
-  }
+    signInWithGoogle();
+  };
 
   return (
     <>
-      <Navbar />
       <div className="bg-lightBrown h-screen ">
         <div className="md:w-4/12 w-11/12 mx-auto h-full pt-20 grid grid-cols-12 gap-3">
           <div className="col-span-12">
@@ -25,11 +31,12 @@ export default function LogIn() {
                   Welcome back!
                 </h1>
 
-                <button 
-                  onClick={handleClick}
-                  class="flex gap-2 text-center justify-center mt-6 transition duration-150 cursor-pointer text-md font-medium me-2 px-3 py-2 rounded-lg  border-2 bg-gray-100 text-gray-900">
+                <button
+                  onClick={() => handleClick()}
+                  className="flex gap-2 text-center justify-center mt-6 transition duration-150 cursor-pointer text-md font-medium me-2 px-3 py-2 rounded-lg  border-2 bg-gray-100 text-gray-900"
+                >
                   <img
-                    class="w-6 h-6"
+                    className="w-6 h-6"
                     src="https://www.svgrepo.com/show/475656/google-color.svg"
                     alt="google logo"
                   />

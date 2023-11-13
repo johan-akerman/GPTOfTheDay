@@ -10,7 +10,6 @@ export default function SignUp() {
 
   return (
     <>
-      <Navbar />
       <div className="bg-lightBrown h-screen ">
         <div className="md:w-4/12 w-11/12 mx-auto h-full pt-20 grid grid-cols-12 gap-3">
           <div className="col-span-12">
