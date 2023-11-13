@@ -7,37 +7,26 @@ import gptData from "../data/gpts.json";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getCurrentUser } from "../authentication";
-import { getGpt, getGptsWithMostUpvotes } from "../firestore";
+import { getGpt, getGptsWithFilter, getGptsWithMostUpvotes, getMoreGpts } from "../firestore";
 import SubmitForm from "../components/SubmitForm";
 
 export default function Home() {
   const [data, setData] = useState([]);
   const [user, setUser] = useState(getCurrentUser());
-  const [gpt, setGpt] = useState();
-
-  // const topgpts = getGptsWithMostUpvotes(10).then(console.log);
   const [currentPage, setCurrentPage] = useState(0);
+
   function handleLoadMore(i) {
     setCurrentPage(i + 1);
+    getMoreGpts(i + 1).then((res) => setData(res));
   }
 
   useEffect(() => {
     setUser(getCurrentUser());
-    getGpt("H16mtfbLIlocQ3PJgSk4").then((res) => setGpt(res));
   }, []);
-  useEffect(() => {
-    let tmp = gptData;
-    tmp.sort(function (a, b) {
-      // Sort by average rating.
-      if (a.averageRating > b.averageRating) return -1;
-      if (a.averageRating < b.averageRating) return 1;
 
-      // If the votes number is the same between both items, sort alphabetically
-      if (a.reviews.length < b.reviews.length) return 1;
-      if (a.reviews.length > b.reviews.length) return -1;
-    });
-    setData(tmp);
-  }, []);
+  useEffect(() => {
+    getGptsWithFilter(null, null, null, "upvote_count").then((res) => setData(res))
+  }, [])
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -57,11 +46,11 @@ export default function Home() {
               vote on as many as you want!
             </p>
             <div className="w-full flex flex-col gap-3">
-              {/* {data.slice(0, 10).map((property, i) => {
-                return <GPTCard gpt={gpt} i={i} key={i} />;
-              })} */}
+              {data.slice(0, 10).map((property, i) => {
+                return <GPTCard gpt={property} i={i} key={i} />;
+              })}
 
-              {gpt ? <GPTCard i={0} gpt={gpt} /> : ""}
+              {/* {gpt ? <GPTCard i={0} gpt={gpt} /> : ""} */}
 
               <button
                 className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-darkGray hover:bg-opacity-80  text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"
