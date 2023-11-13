@@ -2,6 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { addGptRequest } from "../firestore";
 
 export default function SubmitForm() {
   const categories = [
@@ -62,7 +63,8 @@ export default function SubmitForm() {
         submittedAt: sfTime,
       };
 
-      console.log(obj);
+      addGptRequest(obj);
+      console.log("Added gpt to db:", obj);
 
       setUrl("");
       setTitle("");
