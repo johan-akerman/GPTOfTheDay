@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-import { getCurrentUser, logOut, signInUserGoogle } from "../authentication";
+import { logOut, signInWithGoogle } from "../authentication";
 
 export default function MobileMenu({ user, setUser }) {
   const buttonRef = useRef();
@@ -21,7 +21,7 @@ export default function MobileMenu({ user, setUser }) {
           <>
             <Popover.Button
               ref={buttonRef}
-              className="lg:hidden block text-darkGray group md:py-2 py-1 rounded-md  items-center  text-2xl pr-4 font-semibold hover:text-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+              className="lg:hidden block text-darkGray group md:py-2 py-1 rounded-md  items-center  text-2xl font-semibold hover:text-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
             >
               <FontAwesomeIcon
                 className="text-4xl text-darkGray mr-6"
@@ -65,21 +65,12 @@ export default function MobileMenu({ user, setUser }) {
                       </button>
                     ) : (
                       <>
-                        <Link
-                          onClick={() => buttonRef.current?.click()}
-                          to="/log-in"
+                        <button
+                          onClick={() => signInWithGoogle()}
                           className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-2xl font-semibold text-gray-900"
                         >
                           Log in
-                        </Link>
-
-                        <Link
-                          onClick={() => buttonRef.current?.click()}
-                          to="/sign-up"
-                          className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-2xl font-semibold text-gray-900"
-                        >
-                          Sign up
-                        </Link>
+                        </button>
                       </>
                     )}
                   </div>

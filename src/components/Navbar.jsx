@@ -1,22 +1,23 @@
-import React from "react";
-
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { getCurrentUser, logOut, signInUserGoogle } from "../authentication";
+import { logOut, signInWithGoogle } from "../authentication";
 import MobileMenu from "./MobileMenu";
 import { useNavigate } from "react-router-dom";
-
 import logo from "../images/logo_dark.png";
 import { useAuthState } from "../firebase";
 import ProfileMenu from "./ProfileMenu";
+import { useEffect } from "react";
 
 export function Navbar() {
   const { user } = useAuthState();
   const navigate = useNavigate();
-
-  const handleLogOut = () => {
-    navigate("/");
-    logOut();
-  };
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    if (user) {
+      setLoading(false);
+      navigate("/");
+    }
+  }, [user]);
 
   return (
     <div className="bg-mediumBrown w-full">
@@ -25,7 +26,7 @@ export function Navbar() {
           <img src={logo} className="h-16 mr-4" />
         </Link>
 
-        <div className="flex justify-between items-center gap-4">
+        <div className="flex justify-between items-center md:gap-4 gap-2">
           <Link
             className="lg:block hidden text-lg text-darkBrown font-medium"
             to="/directory"
@@ -34,36 +35,27 @@ export function Navbar() {
           </Link>
 
           <Link
-            className="lg:block hidden text-lg text-darkBrown font-medium mr-10 ml-4"
+            className="lg:block hidden text-lg text-darkBrown font-medium mr-4 ml-4"
             to="/submit"
           >
             Submit GPT
           </Link>
           <MobileMenu user={user} />
           {user ? (
-            // <button
-            //   onClick={() => handleLogOut()}
-            //   className="lg:block hidden cursor-pointer px-5 py-2 border border-transparent font-medium rounded-md text-orange-400 bg-white text-lg transform ease-in duration-100 hover:bg-gray-100 "
-            // >
-            //   Log out
-            // </button>
-
             <ProfileMenu />
           ) : (
             <>
-              {" "}
-              <Link
-                to="/log-in"
-                className="lg:block hidden cursor-pointer px-5 py-1.5  font-medium rounded-md text-darkBrown border-2 bg-transparent border-darkBrown text-lg transform ease-in duration-100 hover:bg-darkBrown hover:text-lightBrown "
+              <button
+                onClick={() => signInWithGoogle()}
+                className="md:flex hidden gap-2 text-center justify-center transition duration-150 cursor-pointer text-lg  rounded-lg  bg-darkGray text-mediumBrown font-semibold px-6 py-2"
               >
-                Log in
-              </Link>
-              <Link
-                to="/sign-up"
-                className="lg:block hidden cursor-pointer px-5 py-1.5 border-2 border-transparent font-medium rounded-md text-mediumBrown bg-darkBrown text-lg transform ease-in duration-100 hover:bg-opacity-80 "
-              >
-                Sign up
-              </Link>
+                <img
+                  className="w-6 h-6"
+                  src="https://www.svgrepo.com/show/475656/google-color.svg"
+                  alt="google logo"
+                />
+                <span>Log in with Google</span>
+              </button>
             </>
           )}
         </div>
