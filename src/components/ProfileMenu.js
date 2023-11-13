@@ -29,7 +29,7 @@ export default function ProfileMenu() {
                 alt=""
               />
             ) : (
-              <div className="h-10 w-10 rounded-full bg-secondary">
+              <div className="h-10 w-10 rounded-full bg-orange-400">
                 <FontAwesomeIcon
                   icon={faUser}
                   className="text-white absolute bottom-3 left-3"
