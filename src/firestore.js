@@ -70,3 +70,16 @@ export async function addGptRequest(gpt) {
     const docRef = await addDoc(collection(db, "gpt_requests"), gpt)
     return docRef
 }
+
+export async function createGptFromRequest(title) {
+    const sfTimeZone = "America/Los_Angeles";
+      const sfTime = new Date().toLocaleString("en-US", {
+        timeZone: sfTimeZone,
+      });
+    const gptReqRef = collection(db, "gpt_requests");
+    const q = query(gptReqRef, where("title", "==", title))
+    const querySnapshot = await getDocs(q);
+    const gpt = {...querySnapshot.docs[0].data(), upvotes: [], comments: [], publishedAt: sfTime, upvote_count: 0}
+    addGptRequest(gpt)
+    
+}
