@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { logOut, signInWithGoogle } from "../authentication";
+import { signInWithGoogle } from "../authentication";
 import MobileMenu from "./MobileMenu";
 import { useNavigate } from "react-router-dom";
 import logo from "../images/logo_dark.png";

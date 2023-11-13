@@ -47,7 +47,7 @@ export default function Gpt() {
           <div className="mt-4 transform ease-in w-full py-4 text-left bg-white p-4 border rounded-lg">
             <h1 className="text-2xl font-semibold py-2">Comments</h1>
 
-            {signedIn ? <AddComment /> : <SignInToComment />}
+            <AddComment />
 
             <div className="grid gap-3">
               {property.reviews.length === 0 ? (
