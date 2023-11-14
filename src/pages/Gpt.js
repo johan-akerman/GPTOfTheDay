@@ -69,7 +69,6 @@ export default function Gpt() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

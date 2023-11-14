@@ -6,8 +6,6 @@ import {
   orderBy,
   query,
   where,
-  setDoc,
-  doc,
   addDoc,
   startAt,
 } from "firebase/firestore";
@@ -20,7 +18,6 @@ const gptsRef = collection(db, "gpts");
 export async function getGpt(id) {
   const q = query(gptsRef, where(documentId(), "==", `${id}`));
   const querySnapshot = await getDocs(q);
-  //   return querySnapshot.empty ? null : querySnapshot.docs[0].data();
   return querySnapshot.empty
     ? null
     : querySnapshot.docs.map((doc) => ({
