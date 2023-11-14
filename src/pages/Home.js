@@ -57,10 +57,6 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="lg:w-4/12 lg:block hidden w-11/12 mx-auto h-full pt-8 md:pb-28 pb-20">
-          <SubmitForm />
-        </div>
-
         <div className="pb-20 md:pt-32 pt-20 text-center bg-darkBrown">
           <h1 className="md:w-2/5 w-11/12 mx-auto text-center text-white  text-4xl font-bold mb-12">
             Ready to explore the best GPTs of all time, not just today's?
