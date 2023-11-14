@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-import { Footer } from "../components/Footer";
-import { Navbar } from "../components/Navbar";
 import GPTCard from "../components/GPTCard";
-import gptData from "../data/gpts.json";
 import { useEffect } from "react";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import SelectCategory from "../components/SelectCategory";
-import { getGpt, getGptsWithMostUpvotes } from "../firestore";
+import { getGpt } from "../firestore";
 
 export default function Directory() {
   const [gpt, setGpt] = useState();
@@ -34,36 +29,12 @@ export default function Directory() {
   const [currentSort, setCurrentSort] = useState("");
   const [currentCategory, setCurrentCategory] = useState("All");
 
+  function handleCategoryUpdate() {}
+
   useEffect(() => {
     window.scrollTo(0, 0);
     getGpt("H16mtfbLIlocQ3PJgSk4").then((res) => setGpt(res));
   }, []);
-
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    let tmp = gptData;
-    tmp.sort(function (a, b) {
-      // Sort by average rating.
-      if (a.averageRating > b.averageRating) return -1;
-      if (a.averageRating < b.averageRating) return 1;
-
-      // If the votes number is the same between both items, sort alphabetically
-      if (a.reviews.length < b.reviews.length) return 1;
-      if (a.reviews.length > b.reviews.length) return -1;
-    });
-    setData(tmp);
-  }, []);
-
-  function handleCategoryUpdate(id) {
-    setCategories(
-      categories.map((item) =>
-        item.id === id
-          ? { ...item, selected: true }
-          : { ...item, selected: false }
-      )
-    );
-  }
 
   return (
     <>

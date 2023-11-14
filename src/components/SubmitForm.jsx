@@ -26,6 +26,7 @@ export default function SubmitForm() {
   const [url, setUrl] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [docRef, setDocRef] = useState("");
   const [creator, setCreator] = useState("");
   const [category, setCategory] = useState(categories[0]);
   const [email, setEmail] = useState("");
@@ -33,7 +34,9 @@ export default function SubmitForm() {
   const [missingInfo, setMissingInfo] = useState(false);
 
   function checkValidEntry() {
-    let validURL = url.length > 0 && url.startsWith("https://chat.openai.com");
+    let validURL =
+      url.length > 0 &&
+      url.toUpperCase().startsWith("https://chat.openai.com".toUpperCase());
     let validTitle = title.length > 0;
     let validDescription = 0 < description.length < 100;
     let validCreator = creator.length > 0;
@@ -69,17 +72,17 @@ export default function SubmitForm() {
         submittedAt: sfTime,
       };
 
-      addGptRequest(obj);
-      console.log("Added gpt to db:", obj);
-
-      setUrl("");
-      setTitle("");
-      setDescription("");
-      setCreator("");
-      setCategory(categories[0]);
-      setEmail("");
-      setMissingInfo(false);
-      setSuccessfulSubmit(true);
+      addGptRequest(obj).then((res) => {
+        setDocRef(res.id);
+        setSuccessfulSubmit(true);
+        setUrl("");
+        setTitle("");
+        setDescription("");
+        setCreator("");
+        setCategory(categories[0]);
+        setEmail("");
+        setMissingInfo(false);
+      });
     }
   }
 
@@ -234,21 +237,23 @@ export default function SubmitForm() {
               className="text-5xl mb-4 opacity-70 text-green"
             />
             <h1 className="text-3xl font-semibold mb-3">Thank you!</h1>
-            <p className="text-lg mb-4">You submission was successful.</p>
+            <p className="text-lg mb-1">
+              You submission was successful. It is available here:
+            </p>
+
+            <Link
+              to={`/gpts/${docRef}`}
+              className="text-lg underline hover:opacity-70"
+            >
+              www.gptoftheday/gpts/{docRef}
+            </Link>
 
             <button
               onClick={() => setSuccessfulSubmit(false)}
-              className="text-center mb-3 transition duration-150 cursor-pointer text-lg  rounded-lg  bg-darkGray text-mediumBrown font-semibold px-6 py-2"
+              className="text-center mt-6 transition duration-150 cursor-pointer text-lg  rounded-lg  bg-darkGray text-mediumBrown font-semibold px-6 py-2"
             >
               <span>Submit another GPT</span>
             </button>
-            <br />
-
-            <p className="mb-2">or</p>
-
-            <Link to="/directory" className="font-semibold underline">
-              Browse all GPTs
-            </Link>
           </div>
         )}
       </div>

@@ -4,7 +4,6 @@ import { Navbar } from "../components/Navbar";
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import Comment from "../components/Comment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import data from "../data/gpts.json";
 import { useEffect } from "react";
 import GPTCard from "../components/GPTCard";
 import AddComment from "../components/AddComment";
@@ -19,10 +18,10 @@ export default function Gpt() {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    let tmp = data.filter((prop) => prop.url === id);
-    setProperty(tmp[0]);
-  }, [data]);
+  // useEffect(() => {
+  //   let tmp = data.filter((prop) => prop.url === id);
+  //   setProperty(tmp[0]);
+  // }, [data]);
 
   if (!property) {
     return (

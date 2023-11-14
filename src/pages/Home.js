@@ -1,18 +1,10 @@
 import React, { useState } from "react";
 import { Jumbotron } from "../components/Jumbotron";
-import { Footer } from "../components/Footer";
-import { Navbar } from "../components/Navbar";
 import GPTCard from "../components/GPTCard";
-import gptData from "../data/gpts.json";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getCurrentUser } from "../authentication";
-import {
-  getGpt,
-  getGptsWithFilter,
-  getGptsWithMostUpvotes,
-  getMoreGpts,
-} from "../firestore";
+import { getGptsWithFilter, getMoreGpts } from "../firestore";
 import SubmitForm from "../components/SubmitForm";
 
 export default function Home() {
@@ -25,18 +17,15 @@ export default function Home() {
     getMoreGpts(i + 1).then((res) => setData(res));
   }
 
-  useEffect(() => {
-    setUser(getCurrentUser());
-  }, []);
+  // is this needed?
+  // useEffect(() => {
+  //   setUser(getCurrentUser());
+  // }, []);
 
   useEffect(() => {
     getGptsWithFilter(null, null, null, "upvote_count").then((res) =>
       setData(res)
     );
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -52,11 +41,9 @@ export default function Home() {
               Vote on your favourites by clicking the upvote button.
             </p>
             <div className="w-full flex flex-col gap-3">
-              {data.slice(0, 10).map((property, i) => {
-                return <GPTCard gpt={property} i={i} key={i} />;
+              {data.slice(0, 3).map((gpt, i) => {
+                return <GPTCard gpt={gpt} i={i} key={i} />;
               })}
-
-              {/* {gpt ? <GPTCard i={0} gpt={gpt} /> : ""} */}
 
               <button
                 className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-darkGray hover:bg-opacity-80  text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"

@@ -1,6 +1,10 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowUpRightFromSquare,
+  faCircle,
+  faCircleDot,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import UpvoteButton from "./UpvoteButton";
@@ -21,8 +25,9 @@ export default function GPTCard({ gpt, i }) {
               </p>
               <p className="text-lg pt-1">{gpt?.description}</p>
 
-              <div className="flex md:gap-6 gap-2">
+              <div className="flex md:gap-4 gap-2 text-sm">
                 <p>By: {gpt?.creator}</p>
+
                 <p>Posted {gpt?.publishedAt}</p>
                 <p>
                   {gpt?.comments.length}{" "}
