@@ -26,13 +26,11 @@ export default function Gpt() {
     });
   }, []);
 
-  console.log(gpt);
-
   if (!gpt) {
     return (
       <>
         <div className="bg-lightBrown h-screen">
-          <h1 className="text-center text-xl pt-20">Loadig...</h1>
+          <h1 className="text-center text-xl pt-20">Loading...</h1>
         </div>
       </>
     );

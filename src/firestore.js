@@ -124,30 +124,9 @@ export async function getMoreGpts(i) {
       }));
 }
 
-export async function addGptRequest(gpt) {
-  const docRef = await addDoc(collection(db, "gpt_requests"), gpt);
-  createGptFromRequest(gpt.title);
+export async function submitGpt(gpt) {
+  const docRef = await addDoc(collection(db, "gpts"), gpt);
   return docRef;
-}
-
-export async function createGptFromRequest(title) {
-  const sfTimeZone = "America/Los_Angeles";
-  const sfTime = new Date().toLocaleString("en-US", {
-    timeZone: sfTimeZone,
-  });
-  const gptReqRef = collection(db, "gpt_requests");
-  const q = query(gptReqRef, where("title", "==", title));
-  const querySnapshot = await getDocs(q);
-  const gpt = {
-    ...querySnapshot.docs[0].data(),
-    upvotes: [],
-    comments: [],
-    publishedAt: sfTime,
-    upvote_count: 0,
-  };
-  const docRef = await addDoc(gptsRef, gpt);
-  console.log(docRef.id);
-  return docRef.id;
 }
 
 export async function upvoteGpt(title) {}

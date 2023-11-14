@@ -5,7 +5,7 @@ import {
   faCheckCircle,
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
-import { addGptRequest } from "../firestore";
+import { addGptRequest, submitGpt } from "../firestore";
 import { Link } from "react-router-dom";
 
 export default function SubmitForm() {
@@ -69,10 +69,13 @@ export default function SubmitForm() {
         category: category,
         creator: creator,
         email: email,
+        upvotes: [],
+        comments: [],
+        upvote_count: 0,
         submittedAt: sfTime,
       };
 
-      addGptRequest(obj).then((res) => {
+      submitGpt(obj).then((res) => {
         setDocRef(res.id);
         setSuccessfulSubmit(true);
         setUrl("");
