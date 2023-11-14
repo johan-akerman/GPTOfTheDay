@@ -28,6 +28,8 @@ export default function Home() {
     );
   }, []);
 
+  console.log(data);
+
   return (
     <>
       <Jumbotron />
@@ -41,8 +43,8 @@ export default function Home() {
               Vote on your favourites by clicking the upvote button.
             </p>
             <div className="w-full flex flex-col gap-3">
-              {data.slice(0, 3).map((gpt, i) => {
-                return <GPTCard gpt={gpt} i={i} key={i} />;
+              {data?.slice(0, 3).map((gpt, i) => {
+                return <GPTCard gpt={gpt} i={i} key={gpt.id} />;
               })}
 
               <button

@@ -20,50 +20,14 @@ const gptsRef = collection(db, "gpts");
 export async function getGpt(id) {
   const q = query(gptsRef, where(documentId(), "==", `${id}`));
   const querySnapshot = await getDocs(q);
-  return querySnapshot.empty ? null : querySnapshot.docs[0].data();
+  //   return querySnapshot.empty ? null : querySnapshot.docs[0].data();
+  return querySnapshot.empty
+    ? null
+    : querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }));
 }
-
-// export async function getGptsWithMostUpvotes(lim) {
-//     const q = query(gptsRef, orderBy("upvote_count", "desc"), limit(lim))
-//     const querySnapshot = await getDocs(q);
-//     return querySnapshot.empty ? null : querySnapshot.docs.map(doc => doc.data())
-// }
-
-// export async function getGptsWithMostUpvotesToday(lim) {
-//     const sfTimeZone = "America/Los_Angeles";
-//     const sfTime = new Date().toLocaleString("en-US", {
-//         timeZone: sfTimeZone,
-//     });
-//     const firstSecondOfToday = sfTime.setHours(0,0,0,0).getTime();
-
-//     const q = query(gptsRef, where("submitted_at", ">=", firstSecondOfToday), orderBy("upvote_count"), limit(lim))
-//     const querySnapshot = await getDocs(q);
-//     return querySnapshot.empty ? null : querySnapshot.docs.map(doc => doc.data())
-// }
-
-// export async function getGptsWithLeastUpvotes(lim) {
-//     const q = query(gptsRef, orderBy("upvote_count", "asc"), limit(lim))
-//     const querySnapshot = await getDocs(q);
-//     return querySnapshot.empty ? null : querySnapshot.docs.map(doc => doc.data())
-// }
-
-// export async function getGptsWithCategory(category) {
-//     const q = query(gptsRef, where("category", "==", category), limit(10))
-//     const querySnapshot = await getDocs(q);
-//     return querySnapshot.empty ? null : querySnapshot.docs.map(doc => doc.data())
-// }
-
-// export async function getGptsNewest(lim) {
-//     const q = query(gptsRef, orderBy("submitted_at", "desc"), limit(lim))
-//     const querySnapshot = await getDocs(q);
-//     return querySnapshot.empty ? null : querySnapshot.docs.map(doc => doc.data())
-// }
-
-// export async function getGptsOldest(lim) {
-//     const q = query(gptsRef, orderBy("submitted_at", "asc"), limit(lim))
-//     const querySnapshot = await getDocs(q);
-//     return querySnapshot.empty ? null : querySnapshot.docs.map(doc => doc.data())
-// }
 
 export async function getGptsWithFilter(
   where_property,
@@ -92,9 +56,13 @@ export async function getGptsWithFilter(
       limit(lim)
     );
     const querySnapshot = await getDocs(q);
+
     return querySnapshot.empty
       ? null
-      : querySnapshot.docs.map((doc) => doc.data());
+      : querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }));
   }
   const q = query(
     gptsRef,
@@ -105,7 +73,10 @@ export async function getGptsWithFilter(
   const querySnapshot = await getDocs(q);
   return querySnapshot.empty
     ? null
-    : querySnapshot.docs.map((doc) => doc.data());
+    : querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }));
 }
 
 export async function getMoreGpts(i) {
@@ -125,7 +96,10 @@ export async function getMoreGpts(i) {
     const querySnapshot = await getDocs(q);
     return querySnapshot.empty
       ? null
-      : querySnapshot.docs.map((doc) => doc.data());
+      : querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }));
   }
   const q = query(
     gptsRef,
@@ -144,7 +118,10 @@ export async function getMoreGpts(i) {
   const querySnapshot = await getDocs(q);
   return querySnapshot.empty
     ? null
-    : querySnapshot.docs.map((doc) => doc.data());
+    : querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }));
 }
 
 export async function addGptRequest(gpt) {

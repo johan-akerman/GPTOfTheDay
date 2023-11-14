@@ -1,18 +1,13 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowUpRightFromSquare,
-  faCircle,
-  faCircleDot,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import UpvoteButton from "./UpvoteButton";
 
 export default function GPTCard({ gpt, i }) {
-  console.log(gpt);
   const url = window.location.href;
   const gpt_page = url.split("/")[url.split("/").length - 2] == "gpts";
+  console.log(gpt_page);
 
   return (
     <>
@@ -21,17 +16,19 @@ export default function GPTCard({ gpt, i }) {
           <div className="flex items-center gap-4">
             <div>
               <p className="text-xl font-medium text-gray-900 leading-none">
-                {gpt_page ? `${gpt?.title}` : `#${i + 1}: ${gpt?.title}`}
+                {gpt_page
+                  ? `${gpt?.data?.title}`
+                  : `#${i + 1}: ${gpt?.data?.title}`}
               </p>
-              <p className="text-lg pt-1">{gpt?.description}</p>
+              <p className="text-lg pt-1">{gpt?.data?.description}</p>
 
               <div className="flex md:gap-4 gap-2 text-sm">
-                <p>By: {gpt?.creator}</p>
+                <p>By: {gpt?.data?.creator}</p>
 
-                <p>Posted {gpt?.publishedAt}</p>
+                <p>Posted {gpt?.data?.publishedAt}</p>
                 <p>
-                  {gpt?.comments.length}{" "}
-                  {gpt?.comments.length === 1 ? " comment" : "comments"}
+                  {gpt?.data?.comments.length}{" "}
+                  {gpt?.data?.comments.length === 1 ? " comment" : "comments"}
                 </p>
               </div>
               <p className="text-sm pb-2"> </p>
@@ -45,7 +42,7 @@ export default function GPTCard({ gpt, i }) {
             {gpt_page ? (
               <a
                 className="cursor-pointer px-5 py-2 border-2  hover:border-orange-400 font-medium rounded-md  text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
-                href={gpt?.url}
+                href={gpt?.data?.url}
                 target="blank"
               >
                 Chat with GPT
@@ -56,7 +53,7 @@ export default function GPTCard({ gpt, i }) {
               </a>
             ) : (
               <Link
-                to={`/gpts/${i}`}
+                to={`/gpts/${gpt?.id}`}
                 className="cursor-pointer px-5 py-2 border-2  hover:border-orange-400 font-medium rounded-md text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
               >
                 Visit
@@ -64,8 +61,8 @@ export default function GPTCard({ gpt, i }) {
             )}
 
             <UpvoteButton
-              upvote_count={gpt?.upvote_count}
-              upvotes={gpt?.upvotes}
+              upvote_count={gpt?.data?.upvote_count}
+              upvotes={gpt?.data?.upvotes}
             />
           </div>
         </div>
@@ -76,16 +73,18 @@ export default function GPTCard({ gpt, i }) {
           <div className="flex items-center gap-4">
             <div>
               <p className="text-2xl font-medium text-gray-900 leading-none">
-                #{i + 1}: {gpt?.title}
+                {gpt_page
+                  ? `${gpt?.data?.title}`
+                  : `#${i + 1}: ${gpt?.data?.title}`}
               </p>
-              <p className="text-lg pt-1 pb-1">{gpt?.description}</p>
+              <p className="text-lg pt-1 pb-1">{gpt?.data?.description}</p>
 
               <div className="flex text-xs mb-2 gap-2">
-                <p>By: {gpt?.creator}</p>
-                <p>Posted {gpt?.publishedAt}</p>
+                <p>By: {gpt?.data?.creator}</p>
+                <p>Posted {gpt?.data?.publishedAt}</p>
                 <p>
-                  {gpt?.comments.length}{" "}
-                  {gpt?.comments.length === 1 ? " comment" : "comments"}
+                  {gpt?.data?.comments.length}{" "}
+                  {gpt?.data?.comments.length === 1 ? " comment" : "comments"}
                 </p>
               </div>
 
@@ -97,15 +96,15 @@ export default function GPTCard({ gpt, i }) {
         </div>
         <div className="flex gap-4 mt-6">
           <Link
-            to={`/gpts/${i}`}
+            to={`/gpts/${gpt?.id}`}
             className="cursor-pointer px-3 py-1.5 border-2  hover:border-orange-400 font-medium rounded-md text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
           >
             Visit
           </Link>
 
           <UpvoteButton
-            upvote_count={gpt?.upvote_count}
-            upvotes={gpt?.upvotes}
+            upvote_count={gpt?.data?.upvote_count}
+            upvotes={gpt?.data?.upvotes}
           />
         </div>
       </div>

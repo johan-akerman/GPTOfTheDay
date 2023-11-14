@@ -7,27 +7,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect } from "react";
 import GPTCard from "../components/GPTCard";
 import AddComment from "../components/AddComment";
+import { getGpt } from "../firestore";
 
 export default function Gpt() {
   const url = window.location.href;
   const id = url.split("/")[url.split("/").length - 1];
-  const [property, setProperty] = useState(); // to-do uppdatera utifrån id, dvs fetcha GPTn igen... men måste få auto genererade firebase id, inte bara "i"
+  const [gpt, setGpt] = useState();
   const signedIn = false;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // getGpt(id).then((res) => setGpt(res));
+    // console.log(gpt);
+    getGpt(id).then((res) => {
+      console.log(res[0]);
+      setGpt(res[0]);
+    });
   }, []);
 
-  // useEffect(() => {
-  //   let tmp = data.filter((prop) => prop.url === id);
-  //   setProperty(tmp[0]);
-  // }, [data]);
+  console.log(gpt);
 
-  if (!property) {
+  if (!gpt) {
     return (
       <>
-        <div className="bg-grayish h-screen">
-          <h1 className="text-center text-xl pt-20">Something went wrong!</h1>
+        <div className="bg-lightBrown h-screen">
+          <h1 className="text-center text-xl pt-20">Loadig...</h1>
         </div>
       </>
     );
@@ -35,10 +40,9 @@ export default function Gpt() {
 
   return (
     <>
-      <Navbar />
       <div className="bg-lightBrown">
         <div className="md:w-9/12 w-11/12 mx-auto h-full pt-20 md:pb-28 pb-12 gap-3">
-          <GPTCard property={property} />
+          <GPTCard gpt={gpt} />
 
           <div className="mt-4 transform ease-in w-full py-4 text-left bg-white p-4 border rounded-lg">
             <h1 className="text-2xl font-semibold py-2">Comments</h1>
@@ -46,20 +50,22 @@ export default function Gpt() {
             <AddComment />
 
             <div className="grid gap-3">
-              {property.reviews.length === 0 ? (
-                <div className="h-96 text-center px-5 pt-32 w-96 mx-auto">
+              {gpt?.data?.comments?.length === 0 ? (
+                <div className=" text-center px-5 pt-8 pb-8 w-96 mx-auto">
                   <FontAwesomeIcon
                     icon={faBoxOpen}
-                    className="text-7xl mb-3 text-gray-300"
+                    className="text-4xl mb-3 text-mediumBrown"
                   />
-                  <h1 className="text-center text-black text-3xl font-bold pb-2">
+                  <h1 className="text-center text-darkBrown text-xl pb-2">
                     No comments yet...
                   </h1>
                 </div>
               ) : (
-                property.reviews.map((review) => {
-                  return <Comment review={review} />;
-                })
+                <>
+                  {gpt?.data?.comments?.map((c) => {
+                    return <Comment review={c} />;
+                  })}
+                </>
               )}
             </div>
           </div>
