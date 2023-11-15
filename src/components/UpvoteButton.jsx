@@ -1,40 +1,98 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faLock } from "@fortawesome/free-solid-svg-icons";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { logOut, signInWithGoogle } from "../authentication";
-import { Link } from "react-router-dom";
+import { signInWithGoogle } from "../authentication";
 import { useAuthState } from "../firebase";
+import {
+  downvote,
+  toggleUpvoteGpt,
+  upvote,
+  userHasUpvoted,
+} from "../firestore";
 
-export default function UpvoteButton({ upvote_count, upvotes }) {
-  let [isOpen, setIsOpen] = useState(false);
+export default function UpvoteButton({ g }) {
+  const [gpt, setGpt] = useState(g);
+  const [count, setCount] = useState(g.data.upvote_count);
   const { user } = useAuthState();
+  let [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    console.log("on load gpt's upvotes: ", g.data.upvotes);
+  }, [g]);
 
   function closeModal() {
     setIsOpen(false);
   }
 
-  function handleUpvote() {
-    if (user) {
-    } else {
-      setIsOpen(true);
-    }
-  }
+  const handleUpvote = async (input) => {
+    try {
+      if (user) {
+        let tmp = gpt;
+        let tmpUpvotes = input.data.upvotes;
+        console.log("inputs upvotes: ", tmpUpvotes);
+        const hasUserUpvoted = await userHasUpvoted(tmpUpvotes, user.uid);
 
-  return (
+        console.log(
+          hasUserUpvoted
+            ? "User has upvoted this before"
+            : "User has not upvoted this before"
+        );
+
+        if (hasUserUpvoted) {
+          console.log("tmp gpt before sending into downvote: ", tmpUpvotes);
+          downvote(input, tmpUpvotes, user.uid)
+            .then((result) => {
+              console.log(result);
+              tmp.data.upvotes = result;
+              tmp.data.upvote_count = result.length;
+              return tmp;
+            })
+            .then((tmp) => {
+              setGpt(tmp);
+              setCount(tmp.data.upvote_count);
+            });
+        } else {
+          console.log("tmp gpt before sending into upvote: ", tmpUpvotes);
+          upvote(input, tmpUpvotes, user.uid)
+            .then((result) => {
+              console.log(result);
+              tmp.data.upvotes = result;
+              tmp.data.upvote_count = result.length;
+              return tmp;
+            })
+            .then((tmp) => {
+              setGpt(tmp);
+              setCount(tmp.data.upvote_count);
+            });
+        }
+      } else {
+        setIsOpen(true);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  return gpt ? (
     <>
+      {/* {console.log(gpt.data)} */}
+      {/* <h1>Local upvotes: {localUpvotes?.length}</h1> */}
       <button
-        className="cursor-pointer px-5 py-2 border-2  border-orange-400 hover:border-orange-400 hover:bg-orange-400 hover:text-white font-medium rounded-md text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
-        onClick={() => handleUpvote()}
+        className={`cursor-pointer px-5 py-2 border-2  border-orange-400 hover:border-orange-400 hover:bg-orange-400 hover:text-white font-medium rounded-md text-lg transform ease-in duration-100 group ${
+          userHasUpvoted(gpt.data.upvotes, user.uid)
+            ? "bg-orange-400 text-white"
+            : " text-gray-900 bg-gray-100"
+        }`}
+        onClick={() => handleUpvote(gpt)}
       >
         <FontAwesomeIcon
           icon={faArrowUp}
           className="mr-1.5 group-hover:animate-bounce transform ease-in-out"
         />{" "}
-        {upvote_count}
+        {count}
       </button>
-
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
@@ -92,5 +150,7 @@ export default function UpvoteButton({ upvote_count, upvotes }) {
         </Dialog>
       </Transition>
     </>
+  ) : (
+    <div></div>
   );
 }

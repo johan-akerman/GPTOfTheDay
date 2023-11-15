@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { getCurrentUser } from "../authentication";
 import { getGptsWithFilter, getMoreGpts } from "../firestore";
 import SubmitForm from "../components/SubmitForm";
+import { analyticsInitalize, analyticsSendPage } from "../ganalytics";
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -23,12 +24,12 @@ export default function Home() {
   // }, []);
 
   useEffect(() => {
+    analyticsInitalize(true);
+    analyticsSendPage(document.location.pathname);
     getGptsWithFilter(null, null, null, "upvote_count").then((res) =>
       setData(res)
     );
   }, []);
-
-  console.log(data);
 
   return (
     <>
@@ -43,7 +44,7 @@ export default function Home() {
               Vote on your favourites by clicking the upvote button.
             </p>
             <div className="w-full flex flex-col gap-3">
-              {data?.slice(0, 3).map((gpt, i) => {
+              {data?.slice(0, 1).map((gpt, i) => {
                 return <GPTCard gpt={gpt} i={i} key={gpt.id} />;
               })}
 

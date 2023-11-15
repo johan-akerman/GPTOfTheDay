@@ -8,6 +8,21 @@ export default function GPTCard({ gpt, i }) {
   const url = window.location.href;
   const gpt_page = url.split("/")[url.split("/").length - 2] == "gpts";
   console.log(gpt_page);
+  const category_info = [
+    { id: 0, title: "All", icon: "🌐", selected: true },
+    { id: 1, title: "Productivity", icon: "⏰", selected: false },
+    { id: 2, title: "DALL-E", icon: "🎨", selected: false },
+    { id: 3, title: "Writing", icon: "✏️", selected: false },
+    { id: 4, title: "Programming", icon: "💻", selected: false },
+    { id: 5, title: "Data Analysis", icon: "📊", selected: false },
+    { id: 6, title: "Education", icon: "📚", selected: false },
+    { id: 7, title: "Lifestyle", icon: "🌴", selected: false },
+    { id: 8, title: "Just for Fun", icon: "😄", selected: false },
+    { id: 9, title: "Miscellaneous", icon: "📦", selected: false },
+  ];
+  const gpt_category_index = category_info.findIndex(
+    (c) => c.title === gpt?.data?.category
+  );
 
   return (
     <>
@@ -25,7 +40,7 @@ export default function GPTCard({ gpt, i }) {
               <div className="flex md:gap-4 gap-2 text-sm">
                 <p>By: {gpt?.data?.creator}</p>
 
-                <p>Posted {gpt?.data?.publishedAt}</p>
+                <p>Posted {gpt?.data?.submittedAt}</p>
                 <p>
                   {gpt?.data?.comments.length}{" "}
                   {gpt?.data?.comments.length === 1 ? " comment" : "comments"}
@@ -33,7 +48,9 @@ export default function GPTCard({ gpt, i }) {
               </div>
               <p className="text-sm pb-2"> </p>
               <span className="cursor-pointer text-xs font-medium px-3 py-1 rounded-lg  border-2 bg-gray-100 text-gray-900">
-                ⏰ Productivity
+                {category_info[gpt_category_index].icon +
+                  " " +
+                  category_info[gpt_category_index].title}
               </span>
             </div>
           </div>
@@ -60,10 +77,7 @@ export default function GPTCard({ gpt, i }) {
               </Link>
             )}
 
-            <UpvoteButton
-              upvote_count={gpt?.data?.upvote_count}
-              upvotes={gpt?.data?.upvotes}
-            />
+            <UpvoteButton g={gpt} />
           </div>
         </div>
       </div>
@@ -89,7 +103,9 @@ export default function GPTCard({ gpt, i }) {
               </div>
 
               <span className="cursor-pointer text-xs font-medium px-3 py-1 mt-2 rounded-lg  border-2 bg-gray-100 text-gray-900">
-                ⏰ Productivity
+                {category_info[gpt_category_index].icon +
+                  " " +
+                  category_info[gpt_category_index].title}
               </span>
             </div>
           </div>
@@ -102,10 +118,7 @@ export default function GPTCard({ gpt, i }) {
             Visit
           </Link>
 
-          <UpvoteButton
-            upvote_count={gpt?.data?.upvote_count}
-            upvotes={gpt?.data?.upvotes}
-          />
+          <UpvoteButton g={gpt} />
         </div>
       </div>
     </>

@@ -8,18 +8,17 @@ import { useEffect } from "react";
 import GPTCard from "../components/GPTCard";
 import AddComment from "../components/AddComment";
 import { getGpt } from "../firestore";
+import { getCurrentUser } from "../authentication";
 
 export default function Gpt() {
   const url = window.location.href;
   const id = url.split("/")[url.split("/").length - 1];
+  const [user, setUser] = useState(getCurrentUser());
   const [gpt, setGpt] = useState();
-  const signedIn = false;
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    // getGpt(id).then((res) => setGpt(res));
-    // console.log(gpt);
     getGpt(id).then((res) => {
       console.log(res[0]);
       setGpt(res[0]);
@@ -45,7 +44,7 @@ export default function Gpt() {
           <div className="mt-4 transform ease-in w-full py-4 text-left bg-white p-4 border rounded-lg">
             <h1 className="text-2xl font-semibold py-2">Comments</h1>
 
-            <AddComment />
+            <AddComment user={user} gpt={gpt} />
 
             <div className="grid gap-3">
               {gpt?.data?.comments?.length === 0 ? (

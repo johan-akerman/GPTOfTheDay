@@ -1,17 +1,21 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const people = [
-  { name: "Most upvotes" },
-  { name: "Least upvotes" },
-  { name: "Newest first" },
-  { name: "Oldest first" },
+  { name: "Most upvotes", value: "upvote_count", order: "desc" },
+  { name: "Least upvotes", value: "upvote_count", order: "asc" },
+  { name: "Newest first", value: "submittedAt", order: "desc" },
+  { name: "Oldest first", value: "submittedAt", order: "asc" },
 ];
 
-export default function SelectCategory() {
+export default function SelectSort({ setCurrentSort }) {
   const [selected, setSelected] = useState(people[0]);
+
+  useEffect(() => {
+    setCurrentSort(selected);
+  }, [selected]);
 
   return (
     <div className="w-40">

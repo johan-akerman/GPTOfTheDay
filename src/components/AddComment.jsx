@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { logOut, signInWithGoogle } from "../authentication";
+import { addComment } from "../firestore";
 
-export default function AddComment() {
+export default function AddComment({ user, gpt }) {
   const [comment, setComment] = useState("");
-  let signedIn = true;
 
   function handleSubmit() {
     if (comment.length > 0) {
@@ -22,7 +21,7 @@ export default function AddComment() {
         autoComplete="off"
       />
 
-      {signedIn ? (
+      {user ? (
         <button
           className="cursor-pointer px-5 py-2 border border-transparent font-medium rounded-md text-white bg-orange-400 hover:bg-orange-300 text-lg transform ease-in duration-100"
           onClick={() => handleSubmit()}
@@ -32,7 +31,7 @@ export default function AddComment() {
       ) : (
         <button
           className="cursor-pointer px-5 py-2 border border-transparent font-medium rounded-md text-white bg-orange-400 hover:bg-orange-300 text-lg transform ease-in duration-100"
-          onClick={() => signInWithGoogle()}
+          onClick={() => addComment(gpt?.id)}
         >
           Sign in to comment
         </button>

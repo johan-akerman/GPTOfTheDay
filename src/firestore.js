@@ -8,6 +8,8 @@ import {
   where,
   addDoc,
   startAt,
+  updateDoc,
+  doc,
 } from "firebase/firestore";
 import { db } from "./firebase";
 
@@ -126,4 +128,113 @@ export async function submitGpt(gpt) {
   return docRef;
 }
 
-export async function upvoteGpt(title) {}
+export async function toggleUpvoteGpt(gpt, uid) {
+  const sfTime = new Date().toLocaleString("en-US", {
+    timeZone: "America/Los_Angeles",
+  });
+
+  const docRef = await doc(db, "gpts", gpt.id);
+
+  let hasUserUpvoted = userHasUpvoted(gpt.data.upvotes, uid);
+  console.log(hasUserUpvoted);
+  console.log(gpt.data.upvotes);
+
+  if (hasUserUpvoted) {
+    console.log(gpt.data.upvotes);
+    const remove_index = gpt.data.upvotes.findIndex((obj) => obj.uid === uid);
+
+    console.log(gpt.data.upvotes);
+    const new_upvotes = gpt.data.upvotes.splice(remove_index, 1);
+    console.log(new_upvotes);
+
+    updateDoc(docRef, {
+      upvote_count: new_upvotes.length,
+      upvotes: new_upvotes,
+    });
+
+    console.log("Downvoted ", new_upvotes);
+
+    return new_upvotes;
+  } else {
+    const new_upvotes = [
+      ...gpt.data.upvotes,
+      {
+        submittedAt: sfTime,
+        uid: uid,
+      },
+    ];
+    updateDoc(docRef, {
+      upvote_count: new_upvotes.length,
+      upvotes: new_upvotes,
+    });
+    console.log("Upvoted ", gpt.data.title);
+
+    return new_upvotes;
+  }
+}
+
+export async function upvote(gpt, previousUpvotes, uid) {
+  const sfTime = new Date().toLocaleString("en-US", {
+    timeZone: "America/Los_Angeles",
+  });
+
+  console.log("Starting upvote...");
+
+  let new_upvotes = [
+    ...previousUpvotes,
+    {
+      submittedAt: sfTime,
+      uid: uid,
+    },
+  ];
+
+  console.log("upvotes after: ", new_upvotes);
+
+  const docRef = await doc(db, "gpts", gpt.id);
+
+  return updateDoc(docRef, {
+    upvote_count: new_upvotes.length,
+    upvotes: new_upvotes,
+  })
+    .then(console.log("Voted on: ", gpt.id))
+    .then(() => {
+      return new_upvotes;
+    });
+}
+
+export async function downvote(gpt, previousUpvotes, uid) {
+  console.log("Starting downvote...");
+
+  const remove_index = previousUpvotes.findIndex((obj) => obj.uid === uid);
+  console.log("index to remove: ", remove_index);
+
+  let new_upvotes = previousUpvotes.filter(
+    (element, index) => index !== remove_index
+  );
+  console.log("upvotes after: ", new_upvotes);
+
+  const docRef = await doc(db, "gpts", gpt.id);
+
+  return updateDoc(docRef, {
+    upvote_count: new_upvotes.length,
+    upvotes: new_upvotes,
+  })
+    .then(console.log("Unvoted on: ", gpt.id))
+    .then(() => {
+      return new_upvotes;
+    });
+}
+
+export function userHasUpvoted(upvotes, uid) {
+  let hasUpvoted = false;
+
+  upvotes.forEach((vote) => {
+    if (vote.uid == uid) {
+      hasUpvoted = true;
+    }
+  });
+
+  return hasUpvoted;
+}
+
+export async function addComment(gid, uid) {}

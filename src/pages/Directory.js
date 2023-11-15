@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import GPTCard from "../components/GPTCard";
 import { useEffect } from "react";
-
-import SelectCategory from "../components/SelectCategory";
-import { getGpt } from "../firestore";
-
+import SelectSort from "../components/SelectSort";
+import { getGpt, getGptsWithFilter } from "../firestore";
+import { analyticsSendPage } from "../ganalytics";
 export default function Directory() {
-  const [gpt, setGpt] = useState();
+  const [gpts, setGpts] = useState();
 
   const [categories, setCategories] = useState([
     { id: 0, title: "All", icon: "🌐", selected: true },
@@ -22,18 +21,62 @@ export default function Directory() {
   ]);
 
   const [currentPage, setCurrentPage] = useState(0);
-  function handleLoadMore(i) {
-    setCurrentPage(i + 1);
+  function handleLoadMore() {
+    setCurrentPage((old) => old + 1);
   }
 
-  const [currentSort, setCurrentSort] = useState("");
+  const [currentSort, setCurrentSort] = useState({
+    name: "Most upvotes",
+    value: "upvote_count",
+    order: "desc",
+  });
   const [currentCategory, setCurrentCategory] = useState("All");
 
-  function handleCategoryUpdate() {}
+  function handleCategoryUpdate(id) {
+    let updatedCategories = [...categories];
+    const oldCategoryIndex = updatedCategories.findIndex(
+      (c) => c.selected === true
+    );
+    updatedCategories[oldCategoryIndex].selected = false;
+    updatedCategories[id].selected = true;
+    setCurrentCategory((old) => categories[id].title);
+  }
+
+  useEffect(() => {
+    console.log(
+      "Current category: ",
+      currentCategory,
+      " | Current order: ",
+      currentSort.value,
+      " ",
+      currentSort.order
+    );
+
+    if (currentCategory === "All") {
+      getGptsWithFilter(
+        null,
+        null,
+        null,
+        currentSort.value,
+        currentSort.order,
+        3
+      ).then((res) => setGpts(res));
+    } else {
+      getGptsWithFilter(
+        "category",
+        "==",
+        currentCategory,
+        currentSort.value,
+        currentSort.order,
+        3
+      ).then((res) => setGpts(res));
+    }
+  }, [currentCategory, currentSort]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    getGpt("H16mtfbLIlocQ3PJgSk4").then((res) => setGpt(res));
+    analyticsSendPage(document.location.pathname);
+    // getGpt("H16mtfbLIlocQ3PJgSk4").then((res) => setGpt(res));
   }, []);
 
   return (
@@ -46,7 +89,7 @@ export default function Directory() {
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   Sort by
                 </label>
-                <SelectCategory />
+                <SelectSort setCurrentSort={setCurrentSort} />
                 <label class="mt-6 block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   Categories
                 </label>
@@ -70,9 +113,12 @@ export default function Directory() {
             </div>
 
             <div className="md:col-span-8 col-span-12 flex flex-col gap-2">
-              {gpt ? <GPTCard i={0} gpt={gpt} /> : ""}
+              {gpts ? gpts.map((gpt) => <GPTCard i={0} gpt={gpt} />) : ""}
 
-              <button className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-orange-400 text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto">
+              <button
+                onClick={() => handleLoadMore()}
+                className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-orange-400 text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"
+              >
                 Load more
               </button>
             </div>
