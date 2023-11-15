@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import GPTCard from "../components/GPTCard";
 import { useEffect } from "react";
 import SelectSort from "../components/SelectSort";
-import { getGpt, getGptsWithFilter } from "../firestore";
+import { getGpt, getGptsWithFilter, getMoreGpts } from "../firestore";
 import { analyticsSendPage } from "../ganalytics";
 export default function Directory() {
   const [gpts, setGpts] = useState();
@@ -42,6 +42,15 @@ export default function Directory() {
     setCurrentCategory((old) => categories[id].title);
   }
 
+  // Retrives more gpts and appends them to current gpts
+  useEffect(() => {
+    if (currentPage) {
+      console.log(currentPage);
+      getMoreGpts(currentPage).then((res) => setGpts((old) => old.concat(res)));
+    }
+  }, [currentPage]);
+
+  // Retrieves the gpts for the current filters
   useEffect(() => {
     console.log(
       "Current category: ",
@@ -69,7 +78,10 @@ export default function Directory() {
         currentSort.value,
         currentSort.order,
         3
-      ).then((res) => setGpts(res));
+      ).then((res) => {
+        console.log(res);
+        setGpts(res);
+      });
     }
   }, [currentCategory, currentSort]);
 
@@ -113,14 +125,23 @@ export default function Directory() {
             </div>
 
             <div className="md:col-span-8 col-span-12 flex flex-col gap-2">
-              {gpts ? gpts.map((gpt) => <GPTCard i={0} gpt={gpt} />) : ""}
+              {console.log(gpts)}
+              {gpts ? (
+                gpts.map((gpt, i) => <GPTCard i={i} gpt={gpt} />)
+              ) : (
+                <p>Loading...</p>
+              )}
 
-              <button
-                onClick={() => handleLoadMore()}
-                className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-orange-400 text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"
-              >
-                Load more
-              </button>
+              {gpts?.length % 3 == 0 ? (
+                <button
+                  onClick={() => handleLoadMore()}
+                  className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-orange-400 text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"
+                >
+                  Load more
+                </button>
+              ) : (
+                <div></div>
+              )}
             </div>
           </div>
         </div>

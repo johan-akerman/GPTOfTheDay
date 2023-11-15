@@ -9,6 +9,7 @@ import GPTCard from "../components/GPTCard";
 import AddComment from "../components/AddComment";
 import { getGpt } from "../firestore";
 import { getCurrentUser } from "../authentication";
+import { analyticsSendPage } from "../ganalytics";
 
 export default function Gpt() {
   const url = window.location.href;
@@ -18,6 +19,7 @@ export default function Gpt() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    analyticsSendPage(document.location.pathname);
     window.scrollTo(0, 0);
     getGpt(id).then((res) => {
       console.log(res[0]);

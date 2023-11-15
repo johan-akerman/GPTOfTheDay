@@ -4,18 +4,25 @@ import GPTCard from "../components/GPTCard";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getCurrentUser } from "../authentication";
-import { getGptsWithFilter, getMoreGpts } from "../firestore";
+import { getGptsWithFilter, getMoreGpts, getUpvotes } from "../firestore";
 import SubmitForm from "../components/SubmitForm";
 import { analyticsInitalize, analyticsSendPage } from "../ganalytics";
 
 export default function Home() {
-  const [data, setData] = useState([]);
+  const [dataHottest, setDataHottest] = useState([]);
+  const [dataMostRecent, setDataMostRecent] = useState([]);
   const [user, setUser] = useState(getCurrentUser());
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPageHottest, setCurrentPageHottest] = useState({});
+  const [currentPageRecent, setCurrentPageRecent] = useState({});
 
-  function handleLoadMore(i) {
-    setCurrentPage(i + 1);
-    getMoreGpts(i + 1).then((res) => setData(res));
+  function handleLoadMoreHottest(i) {
+    setCurrentPageHottest(i + 1);
+    getMoreGpts(i + 1).then((res) => setDataHottest(res));
+  }
+
+  function handleLoadMoreRecent(i) {
+    setCurrentPageHottest(i + 1);
+    getMoreGpts(i + 1).then((res) => setDataMostRecent(res));
   }
 
   // is this needed?
@@ -27,8 +34,13 @@ export default function Home() {
     analyticsInitalize(true);
     analyticsSendPage(document.location.pathname);
     getGptsWithFilter(null, null, null, "upvote_count").then((res) =>
-      setData(res)
+      setDataHottest(res)
     );
+
+    getGptsWithFilter(null, null, null, "submittedAt").then((res) =>
+      setDataMostRecent(res)
+    );
+    getUpvotes({ id: "test" });
   }, []);
 
   return (
@@ -44,16 +56,45 @@ export default function Home() {
               Vote on your favourites by clicking the upvote button.
             </p>
             <div className="w-full flex flex-col gap-3">
-              {data?.slice(0, 1).map((gpt, i) => {
+              {dataHottest?.slice(0, 1).map((gpt, i) => {
                 return <GPTCard gpt={gpt} i={i} key={gpt.id} />;
               })}
 
-              <button
-                className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-darkGray hover:bg-opacity-80  text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"
-                onClick={() => handleLoadMore(currentPage)}
-              >
-                Load more
-              </button>
+              {dataHottest?.length % 10 == 0 ? (
+                <button
+                  className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-darkGray hover:bg-opacity-80  text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"
+                  onClick={() => handleLoadMoreHottest(currentPageHottest)}
+                >
+                  Load more
+                </button>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+
+          <div>
+            <h1 className="text-black text-center text-5xl sm:mt-5 font-bold pt-8 ">
+              🔔 Most recent GPTs
+            </h1>
+            <p className="pb-14 pt-6 text-2xl text-center">
+              Vote on your favourites by clicking the upvote button.
+            </p>
+            <div className="w-full flex flex-col gap-3">
+              {dataMostRecent?.slice(0, 1).map((gpt, i) => {
+                return <GPTCard gpt={gpt} i={i} key={gpt.id} />;
+              })}
+
+              {dataMostRecent?.length % 10 == 0 ? (
+                <button
+                  className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-darkGray hover:bg-opacity-80  text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"
+                  onClick={() => handleLoadMoreRecent(currentPageRecent)}
+                >
+                  Load more
+                </button>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

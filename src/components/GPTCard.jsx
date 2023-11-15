@@ -27,15 +27,17 @@ export default function GPTCard({ gpt, i }) {
   return (
     <>
       <div className="md:block hidden transform ease-in w-full bg-white bg-opacity-50 hover:bg-opacity-100 rounded-md border py-3 px-4 text-left">
-        <div className="flex items-center text-left justify-between">
-          <div className="flex items-center gap-4">
-            <div>
-              <p className="text-xl font-medium text-gray-900 leading-none">
+        <div className="flex items-center text-left justify-between ">
+          <div className="flex items-center gap-4 w-4/6 ">
+            <div className="w-full">
+              <p className="text-xl font-medium text-gray-900 leading-none truncate">
                 {gpt_page
                   ? `${gpt?.data?.title}`
                   : `#${i + 1}: ${gpt?.data?.title}`}
               </p>
-              <p className="text-lg pt-1">{gpt?.data?.description}</p>
+              <p className="text-lg pt-1 w-full truncate">
+                {gpt?.data?.description}
+              </p>
 
               <div className="flex md:gap-4 gap-2 text-sm">
                 <p>By: {gpt?.data?.creator}</p>
@@ -55,7 +57,7 @@ export default function GPTCard({ gpt, i }) {
             </div>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 ">
             {gpt_page ? (
               <a
                 className="cursor-pointer px-5 py-2 border-2  hover:border-orange-400 font-medium rounded-md  text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"

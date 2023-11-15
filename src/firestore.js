@@ -7,13 +7,17 @@ import {
   query,
   where,
   addDoc,
-  startAt,
+  startAfter,
   updateDoc,
   doc,
+  getCountFromServer,
 } from "firebase/firestore";
 import { db } from "./firebase";
 
 let latestFilter = {};
+let latestDoc = {};
+let latestDocHottest = {};
+let latestDocRecent = {};
 
 const gptsRef = collection(db, "gpts");
 
@@ -36,6 +40,7 @@ export async function getGptsWithFilter(
   order_order = "desc",
   lim = 10
 ) {
+  console.log("latestFilter: ", latestFilter);
   latestFilter = {
     where_property: where_property,
     where_operator: where_operator,
@@ -55,6 +60,9 @@ export async function getGptsWithFilter(
       limit(lim)
     );
     const querySnapshot = await getDocs(q);
+    console.log(querySnapshot);
+    latestDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
+    console.log("Latest doc: ", latestDoc);
 
     return querySnapshot.empty
       ? null
@@ -70,6 +78,11 @@ export async function getGptsWithFilter(
     limit(lim)
   );
   const querySnapshot = await getDocs(q);
+  console.log(querySnapshot);
+
+  latestDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
+  console.log("Latest doc: ", latestDoc);
+
   return querySnapshot.empty
     ? null
     : querySnapshot.docs.map((doc) => ({
@@ -78,7 +91,7 @@ export async function getGptsWithFilter(
       }));
 }
 
-export async function getMoreGpts(i) {
+export async function getMoreGpts(i, filter = latestFilter) {
   if (
     latestFilter.where_property === null ||
     latestFilter.where_operator === null ||
@@ -90,9 +103,12 @@ export async function getMoreGpts(i) {
         latestFilter.order_value || latestFilter.where_property,
         latestFilter.order_order
       ),
+      startAfter(latestDoc),
       limit(latestFilter.lim)
     );
     const querySnapshot = await getDocs(q);
+    latestDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
+
     return querySnapshot.empty
       ? null
       : querySnapshot.docs.map((doc) => ({
@@ -100,6 +116,7 @@ export async function getMoreGpts(i) {
           data: doc.data(),
         }));
   }
+  console.log("Started at :", latestFilter.lim * i);
   const q = query(
     gptsRef,
     where(
@@ -111,10 +128,11 @@ export async function getMoreGpts(i) {
       latestFilter.order_value || latestFilter.where_property,
       latestFilter.order_order
     ),
-    startAt(latestFilter.lim * i),
+    startAfter(latestDoc),
     limit(latestFilter.lim)
   );
   const querySnapshot = await getDocs(q);
+  latestDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
   return querySnapshot.empty
     ? null
     : querySnapshot.docs.map((doc) => ({
@@ -122,6 +140,26 @@ export async function getMoreGpts(i) {
         data: doc.data(),
       }));
 }
+
+export async function getMoreHottest() {
+  const q = query(
+    gptsRef,
+    orderBy("upvote", latestFilter.order_order),
+    startAfter(latestDoc),
+    limit(latestFilter.lim)
+  );
+  const querySnapshot = await getDocs(q);
+  latestDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
+
+  return querySnapshot.empty
+    ? null
+    : querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }));
+}
+
+export async function getMoreRecent() {}
 
 export async function submitGpt(gpt) {
   const docRef = await addDoc(collection(db, "gpts"), gpt);
@@ -235,6 +273,54 @@ export function userHasUpvoted(upvotes, uid) {
   });
 
   return hasUpvoted;
+}
+
+export async function getUpvotes(gpt) {
+  const upvotesRef = collection(db, "upvotes");
+  const q = query(upvotesRef, where("gptid", "==", gpt.id));
+  const querySnapshot = await getCountFromServer(q);
+  console.log("upvotes", querySnapshot.data());
+  return querySnapshot.data().count;
+}
+
+export async function getUpvotesWithUserId(gpt, uid) {
+  const upvotesRef = collection(db, "upvotes");
+  const q = query(
+    upvotesRef,
+    where("gptid", "==", gpt.id),
+    where("uid", "==", uid)
+  );
+  const querySnapshot = await getCountFromServer(q);
+  console.log("upvotes", querySnapshot.data());
+  return querySnapshot.data().count;
+}
+
+// Time är starttiden. Så om du vill ha senaste 24h skickar du in tiden för starten på senaste dagen.
+export async function getUpvotesWithTime(gpt, time, lim) {
+  const upvotesRef = collection(db, "upvotes");
+  const q = query(
+    upvotesRef,
+    where("gptid", "==", gpt.id),
+    where("time", ">=", time),
+    limit(lim)
+  );
+  const querySnapshot = await getCountFromServer(q);
+  console.log("upvotes", querySnapshot.data());
+  return querySnapshot.data().count;
+}
+
+export async function addUpvote(gpt, uid) {
+  const upvotesRef = collection(db, "upvotes");
+
+  const sfTime = new Date().toLocaleString("en-US", {
+    timeZone: "America/Los_Angeles",
+  });
+  const docRef = await addDoc(upvotesRef, {
+    gptid: gpt.id,
+    uid: uid,
+    time: sfTime,
+  });
+  return docRef;
 }
 
 export async function addComment(gid, uid) {}

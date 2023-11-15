@@ -5,6 +5,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { signInWithGoogle } from "../authentication";
 import { useAuthState } from "../firebase";
+import { getGpt } from "../firestore";
 import {
   downvote,
   toggleUpvoteGpt,
@@ -29,44 +30,53 @@ export default function UpvoteButton({ g }) {
   const handleUpvote = async (input) => {
     try {
       if (user) {
-        let tmp = gpt;
-        let tmpUpvotes = input.data.upvotes;
-        console.log("inputs upvotes: ", tmpUpvotes);
-        const hasUserUpvoted = await userHasUpvoted(tmpUpvotes, user.uid);
+        getGpt(input.id).then((res) => {
+          console.log(input.id);
+          console.log(res);
+          console.log(gpt);
 
-        console.log(
-          hasUserUpvoted
-            ? "User has upvoted this before"
-            : "User has not upvoted this before"
-        );
+          let tmp = res[0];
+          console.log(tmp);
 
-        if (hasUserUpvoted) {
-          console.log("tmp gpt before sending into downvote: ", tmpUpvotes);
-          downvote(input, tmpUpvotes, user.uid)
-            .then((result) => {
-              console.log(result);
-              tmp.data.upvotes = result;
-              tmp.data.upvote_count = result.length;
-              return tmp;
-            })
-            .then((tmp) => {
-              setGpt(tmp);
-              setCount(tmp.data.upvote_count);
-            });
-        } else {
-          console.log("tmp gpt before sending into upvote: ", tmpUpvotes);
-          upvote(input, tmpUpvotes, user.uid)
-            .then((result) => {
-              console.log(result);
-              tmp.data.upvotes = result;
-              tmp.data.upvote_count = result.length;
-              return tmp;
-            })
-            .then((tmp) => {
-              setGpt(tmp);
-              setCount(tmp.data.upvote_count);
-            });
-        }
+          let tmpUpvotes = input.data.upvotes;
+          console.log("inputs upvotes: ", tmpUpvotes);
+          // const hasUserUpvoted = await userHasUpvoted(tmpUpvotes, user.uid);
+          const hasUserUpvoted = userHasUpvoted(tmpUpvotes, user.uid);
+
+          console.log(
+            hasUserUpvoted
+              ? "User has upvoted this before"
+              : "User has not upvoted this before"
+          );
+
+          if (hasUserUpvoted) {
+            console.log("tmp gpt before sending into downvote: ", tmpUpvotes);
+            downvote(input, tmpUpvotes, user.uid)
+              .then((result) => {
+                console.log(result);
+                tmp.data.upvotes = result;
+                tmp.data.upvote_count = result.length;
+                return tmp;
+              })
+              .then((tmp) => {
+                setGpt(tmp);
+                setCount(tmp.data.upvote_count);
+              });
+          } else {
+            console.log("tmp gpt before sending into upvote: ", tmpUpvotes);
+            upvote(input, tmpUpvotes, user.uid)
+              .then((result) => {
+                console.log(result);
+                tmp.data.upvotes = result;
+                tmp.data.upvote_count = result.length;
+                return tmp;
+              })
+              .then((tmp) => {
+                setGpt(tmp);
+                setCount(tmp.data.upvote_count);
+              });
+          }
+        });
       } else {
         setIsOpen(true);
       }
@@ -81,7 +91,7 @@ export default function UpvoteButton({ g }) {
       {/* <h1>Local upvotes: {localUpvotes?.length}</h1> */}
       <button
         className={`cursor-pointer px-5 py-2 border-2  border-orange-400 hover:border-orange-400 hover:bg-orange-400 hover:text-white font-medium rounded-md text-lg transform ease-in duration-100 group ${
-          userHasUpvoted(gpt.data.upvotes, user.uid)
+          userHasUpvoted(gpt.data.upvotes, user?.uid)
             ? "bg-orange-400 text-white"
             : " text-gray-900 bg-gray-100"
         }`}
