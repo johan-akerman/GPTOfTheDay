@@ -4,60 +4,42 @@ import GPTCard from "../components/GPTCard";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getCurrentUser } from "../authentication";
-import {
-  getGptsWithFilter,
-  getMoreGpts,
-  getUpvotes,
-  getUpvotesWithTime,
-} from "../firestore";
+import { getHottest, getMostRecent } from "../firestore";
 import SubmitForm from "../components/SubmitForm";
 import { analyticsInitalize, analyticsSendPage } from "../ganalytics";
+import { Timestamp } from "firebase/firestore";
 
 export default function Home() {
   const [dataHottest, setDataHottest] = useState([]);
   const [dataMostRecent, setDataMostRecent] = useState([]);
   const [user, setUser] = useState(getCurrentUser());
-  const [currentPageHottest, setCurrentPageHottest] = useState({});
-  const [currentPageRecent, setCurrentPageRecent] = useState({});
+  const [currentPageHottest, setCurrentPageHottest] = useState(0);
+  const [currentPageRecent, setCurrentPageRecent] = useState(0);
 
-  function handleLoadMoreHottest(i) {
-    setCurrentPageHottest(i + 1);
-    getMoreGpts(i + 1).then((res) => setDataHottest(res));
+  function handleLoadMoreHottest() {
+    setCurrentPageHottest((old) => old + 1);
+  }
+  useEffect(() => {
+    getHottest(5, true).then((res) => setDataHottest((old) => old.concat(res)));
+  }, [currentPageHottest]);
+
+  function handleLoadMoreRecent() {
+    setCurrentPageRecent((old) => old + 1);
   }
 
-  function handleLoadMoreRecent(i) {
-    setCurrentPageHottest(i + 1);
-    getMoreGpts(i + 1).then((res) => setDataMostRecent(res));
-  }
-
-  // is this needed?
-  // useEffect(() => {
-  //   setUser(getCurrentUser());
-  // }, []);
+  useEffect(() => {
+    getMostRecent(5, true).then((res) =>
+      setDataMostRecent((old) => old.concat(res))
+    );
+  }, [currentPageRecent]);
 
   useEffect(() => {
     analyticsInitalize(true);
     analyticsSendPage(document.location.pathname);
-    getGptsWithFilter(null, null, null, "upvote_count").then((res) =>
-      setDataHottest(res)
-    );
 
-    getGptsWithFilter(null, null, null, "submittedAt").then((res) =>
-      setDataMostRecent(res)
-    );
+    getHottest(5).then((res) => setDataHottest(res));
 
-    // getUpvotesWithTime();
-
-    var sfTimeStartofDay = new Date(
-      new Date().toLocaleString("en-US", {
-        timeZone: "America/Los_Angeles",
-      })
-    ).setHours(0, 0, 0, 0);
-    getGptsWithFilter("submittedAt", ">=", sfTimeStartofDay).then((res) =>
-      console.log(res)
-    );
-
-    getUpvotes({ id: "test" });
+    getMostRecent(5).then((res) => setDataMostRecent(res));
   }, []);
 
   return (
@@ -73,14 +55,14 @@ export default function Home() {
               Vote on your favourites by clicking the upvote button.
             </p>
             <div className="w-full flex flex-col gap-3">
-              {dataHottest?.slice(0, 1).map((gpt, i) => {
+              {dataHottest?.map((gpt, i) => {
                 return <GPTCard gpt={gpt} i={i} key={gpt.id} />;
               })}
 
-              {dataHottest?.length % 10 == 0 ? (
+              {dataHottest?.length % 5 == 0 ? (
                 <button
                   className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-darkGray hover:bg-opacity-80  text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"
-                  onClick={() => handleLoadMoreHottest(currentPageHottest)}
+                  onClick={() => handleLoadMoreHottest()}
                 >
                   Load more
                 </button>
@@ -98,14 +80,14 @@ export default function Home() {
               Vote on your favourites by clicking the upvote button.
             </p>
             <div className="w-full flex flex-col gap-3">
-              {dataMostRecent?.slice(0, 1).map((gpt, i) => {
+              {dataMostRecent?.map((gpt, i) => {
                 return <GPTCard gpt={gpt} i={i} key={gpt.id} />;
               })}
 
-              {dataMostRecent?.length % 10 == 0 ? (
+              {dataMostRecent?.length % 5 == 0 ? (
                 <button
                   className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-darkGray hover:bg-opacity-80  text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"
-                  onClick={() => handleLoadMoreRecent(currentPageRecent)}
+                  onClick={() => handleLoadMoreRecent()}
                 >
                   Load more
                 </button>

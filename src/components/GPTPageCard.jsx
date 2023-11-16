@@ -4,7 +4,7 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import UpvoteButton from "./UpvoteButton";
 
-export default function GPTCard({ gpt, i }) {
+export default function GPTPageCard({ gpt, i }) {
   const url = window.location.href;
   const gpt_page = url.split("/")[url.split("/").length - 2] == "gpts";
   const category_info = [
@@ -54,46 +54,57 @@ export default function GPTCard({ gpt, i }) {
 
   return (
     <>
-      <Link to={`/gpts/${gpt?.id}`}>
-        <div className="md:block hidden hover:border-darkBrown transform ease-in w-full bg-white bg-opacity-50 hover:bg-opacity-100 rounded-md border py-3 px-4 text-left">
-          <div className="flex items-center text-left justify-between ">
-            <div className="flex items-center gap-4 w-4/6 ">
-              <div className="w-full">
-                <p className="text-xl font-medium text-gray-900 leading-none truncate">
-                  {gpt?.data?.title}
-                </p>
-                <p className="text-lg pt-1 w-full truncate">
-                  {gpt?.data?.description}
-                </p>
+      <div className="md:block hidden transform ease-in w-full bg-white rounded-md border py-3 px-4 text-left">
+        <div className="flex items-center text-left justify-between ">
+          <div className="flex items-center gap-4 w-4/6 ">
+            <div className="w-full">
+              <p className="text-xl font-medium text-gray-900 leading-none truncate">
+                {gpt_page
+                  ? `${gpt?.data?.title}`
+                  : `#${i + 1}: ${gpt?.data?.title}`}
+              </p>
+              <p className="text-lg pt-1 w-full truncate">
+                {gpt?.data?.description}
+              </p>
 
-                <div className="flex gap-2 text-sm">
-                  <p>
-                    Posted {getNiceDataString(gpt?.data?.submittedAt)} by{" "}
-                    {gpt?.data?.creator}.
-                  </p>
-                  <p>
-                    {gpt?.data?.comments.length}{" "}
-                    {gpt?.data?.comments.length === 1 ? " comment" : "comments"}
-                    .
-                  </p>
-                </div>
-                <p className="text-sm pb-2"> </p>
-                <span className="cursor-pointer text-xs font-medium px-3 py-1 rounded-lg  border-2 bg-gray-100 text-gray-900">
-                  {category_info[gpt_category_index].icon +
-                    " " +
-                    category_info[gpt_category_index].title}
-                </span>
+              <div className="flex gap-2 text-sm">
+                <p>
+                  Posted {getNiceDataString(gpt?.data?.submittedAt)} by{" "}
+                  {gpt?.data?.creator}.
+                </p>
+                <p>
+                  {gpt?.data?.comments.length}{" "}
+                  {gpt?.data?.comments.length === 1 ? " comment" : "comments"}.
+                </p>
               </div>
-            </div>
-
-            <div className="flex gap-4 ">
-              <UpvoteButton g={gpt} />
+              <p className="text-sm pb-2"> </p>
+              <span className="cursor-pointer text-xs font-medium px-3 py-1 rounded-lg  border-2 bg-gray-100 text-gray-900">
+                {category_info[gpt_category_index].icon +
+                  " " +
+                  category_info[gpt_category_index].title}
+              </span>
             </div>
           </div>
-        </div>
-      </Link>
 
-      <div className="md:hidden block transform ease-in w-full bg-white bg-opacity-50 hover:bg-opacity-100 rounded-md border p-4 text-left">
+          <div className="flex gap-4 ">
+            <a
+              className="cursor-pointer px-5 py-2 border-2  hover:border-orange-400 font-medium rounded-md  text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
+              href={gpt?.data?.url}
+              target="blank"
+            >
+              Chat with GPT
+              <FontAwesomeIcon
+                icon={faArrowUpRightFromSquare}
+                className="ml-2"
+              />
+            </a>
+
+            <UpvoteButton g={gpt} />
+          </div>
+        </div>
+      </div>
+
+      <div className="md:hidden block transform ease-in w-full bg-white rounded-md border p-4 text-left">
         <div className="flex items-center text-left justify-between">
           <div className="flex items-center gap-4">
             <div>
@@ -124,12 +135,14 @@ export default function GPTCard({ gpt, i }) {
           </div>
         </div>
         <div className="flex gap-4 mt-6">
-          <Link
-            to={`/gpts/${gpt?.id}`}
-            className="cursor-pointer px-3 py-1.5 border-2  hover:border-orange-400 font-medium rounded-md text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
+          <a
+            className="cursor-pointer px-5 py-2 border-2  hover:border-orange-400 font-medium rounded-md  text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
+            href={gpt?.data?.url}
+            target="blank"
           >
-            Visit
-          </Link>
+            Chat with GPT
+            <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="ml-2" />
+          </a>
 
           <UpvoteButton g={gpt} />
         </div>

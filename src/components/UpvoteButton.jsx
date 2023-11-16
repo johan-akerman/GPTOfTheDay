@@ -15,12 +15,12 @@ import {
 
 export default function UpvoteButton({ g }) {
   const [gpt, setGpt] = useState(g);
-  const [count, setCount] = useState(g.data.upvote_count);
+  const [count, setCount] = useState();
   const { user } = useAuthState();
   let [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    console.log("on load gpt's upvotes: ", g.data.upvotes);
+    setCount(g.data.upvote_count);
   }, [g]);
 
   function closeModal() {
@@ -33,29 +33,15 @@ export default function UpvoteButton({ g }) {
     try {
       if (user) {
         getGpt(input.id).then((res) => {
-          console.log(input.id);
-          console.log(res);
-          console.log(gpt);
-
           let tmp = res[0];
-          console.log(tmp);
 
           let tmpUpvotes = input.data.upvotes;
-          console.log("inputs upvotes: ", tmpUpvotes);
           // const hasUserUpvoted = await userHasUpvoted(tmpUpvotes, user.uid);
           const hasUserUpvoted = userHasUpvoted(tmpUpvotes, user.uid);
 
-          console.log(
-            hasUserUpvoted
-              ? "User has upvoted this before"
-              : "User has not upvoted this before"
-          );
-
           if (hasUserUpvoted) {
-            console.log("tmp gpt before sending into downvote: ", tmpUpvotes);
             downvote(input, tmpUpvotes, user.uid)
               .then((result) => {
-                console.log(result);
                 tmp.data.upvotes = result;
                 tmp.data.upvote_count = result.length;
                 return tmp;
@@ -65,10 +51,8 @@ export default function UpvoteButton({ g }) {
                 setCount(tmp.data.upvote_count);
               });
           } else {
-            console.log("tmp gpt before sending into upvote: ", tmpUpvotes);
             upvote(input, tmpUpvotes, user.uid)
               .then((result) => {
-                console.log(result);
                 tmp.data.upvotes = result;
                 tmp.data.upvote_count = result.length;
                 return tmp;
@@ -89,13 +73,11 @@ export default function UpvoteButton({ g }) {
 
   return gpt ? (
     <>
-      {/* {console.log(gpt.data)} */}
-      {/* <h1>Local upvotes: {localUpvotes?.length}</h1> */}
       <button
-        className={`cursor-pointer px-5 py-2 border-2  border-orange-400 hover:border-orange-400 hover:bg-orange-400 bg-transparent hover:text-white font-medium rounded-md text-lg transform ease-in duration-100 group ${
+        className={` cursor-pointer px-5 py-2 border-2  border-orange-400 hover:border-orange-400 hover:bg-orange-400 hover:text-white font-medium rounded-md text-lg transform ease-in duration-100 group ${
           userHasUpvoted(gpt.data.upvotes, user?.uid)
             ? "bg-orange-400 text-white"
-            : " text-orange-400 bg-gray-100"
+            : "text-orange-400 bg-transparent"
         }`}
         onClick={(e) => handleUpvote(e, gpt)}
       >

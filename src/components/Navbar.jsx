@@ -2,22 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { signInWithGoogle } from "../authentication";
 import MobileMenu from "./MobileMenu";
-import { useNavigate } from "react-router-dom";
+
 import logo from "../images/logo_dark.png";
 import { useAuthState } from "../firebase";
 import ProfileMenu from "./ProfileMenu";
-import { useEffect } from "react";
 
 export function Navbar() {
   const { user } = useAuthState();
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    if (user) {
-      setLoading(false);
-      navigate("/");
-    }
-  }, [user]);
 
   return (
     <div className="bg-mediumBrown w-full">

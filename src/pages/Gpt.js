@@ -5,7 +5,7 @@ import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import Comment from "../components/Comment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect } from "react";
-import GPTCard from "../components/GPTCard";
+import GPTPageCard from "../components/GPTPageCard";
 import AddComment from "../components/AddComment";
 import { getGpt } from "../firestore";
 import { getCurrentUser } from "../authentication";
@@ -17,15 +17,20 @@ export default function Gpt() {
   const [user, setUser] = useState(getCurrentUser());
   const [gpt, setGpt] = useState();
   const [loading, setLoading] = useState(true);
+  const [currentComments, setCurrentComments] = useState();
 
   useEffect(() => {
     analyticsSendPage(document.location.pathname);
     window.scrollTo(0, 0);
     getGpt(id).then((res) => {
-      console.log(res[0]);
       setGpt(res[0]);
+      setCurrentComments(res[0].data.comments);
     });
   }, []);
+
+  function handleAddComment(newComments) {
+    setCurrentComments(newComments);
+  }
 
   if (!gpt) {
     return (
@@ -41,12 +46,16 @@ export default function Gpt() {
     <>
       <div className="bg-lightBrown">
         <div className="md:w-9/12 w-11/12 mx-auto h-full pt-20 md:pb-28 pb-12 gap-3">
-          <GPTCard gpt={gpt} />
+          <GPTPageCard gpt={gpt} />
 
           <div className="mt-4 transform ease-in w-full py-4 text-left bg-white p-4 border rounded-lg">
             <h1 className="text-2xl font-semibold py-2">Comments</h1>
 
-            <AddComment user={user} gpt={gpt} />
+            <AddComment
+              user={user}
+              gpt={gpt}
+              handleAddComment={handleAddComment}
+            />
 
             <div className="grid gap-3">
               {gpt?.data?.comments?.length === 0 ? (
@@ -61,8 +70,8 @@ export default function Gpt() {
                 </div>
               ) : (
                 <>
-                  {gpt?.data?.comments?.map((c) => {
-                    return <Comment review={c} />;
+                  {currentComments?.map((c, i) => {
+                    return <Comment review={c} key={i} />;
                   })}
                 </>
               )}

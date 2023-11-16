@@ -45,22 +45,12 @@ export default function Directory() {
   // Retrives more gpts and appends them to current gpts
   useEffect(() => {
     if (currentPage) {
-      console.log(currentPage);
       getMoreGpts(currentPage).then((res) => setGpts((old) => old.concat(res)));
     }
   }, [currentPage]);
 
   // Retrieves the gpts for the current filters
   useEffect(() => {
-    console.log(
-      "Current category: ",
-      currentCategory,
-      " | Current order: ",
-      currentSort.value,
-      " ",
-      currentSort.order
-    );
-
     if (currentCategory === "All") {
       getGptsWithFilter(
         null,
@@ -68,7 +58,7 @@ export default function Directory() {
         null,
         currentSort.value,
         currentSort.order,
-        3
+        5
       ).then((res) => setGpts(res));
     } else {
       getGptsWithFilter(
@@ -77,9 +67,8 @@ export default function Directory() {
         currentCategory,
         currentSort.value,
         currentSort.order,
-        3
+        5
       ).then((res) => {
-        console.log(res);
         setGpts(res);
       });
     }
@@ -125,11 +114,10 @@ export default function Directory() {
             </div>
 
             <div className="md:col-span-8 col-span-12 flex flex-col gap-2">
-              {console.log(gpts)}
               {gpts ? (
                 gpts.map((gpt, i) => <GPTCard i={i} gpt={gpt} />)
               ) : (
-                <p>Loading...</p>
+                <p>No results found...</p>
               )}
 
               {gpts?.length % 3 == 0 ? (
