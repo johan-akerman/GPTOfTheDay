@@ -54,7 +54,7 @@ export default function Home({ user }) {
                 return <GPTCard gpt={gpt} i={i} key={gpt.id} />;
               })}
 
-              {dataHottest?.length % 5 == 0 ? (
+              {dataHottest?.length % 5 === 0 ? (
                 <button
                   className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-darkGray hover:bg-opacity-80  text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"
                   onClick={() => handleLoadMoreHottest()}
@@ -79,7 +79,7 @@ export default function Home({ user }) {
                 return <GPTCard gpt={gpt} i={i} key={gpt.id} />;
               })}
 
-              {dataMostRecent?.length % 5 == 0 ? (
+              {dataMostRecent?.length % 5 === 0 ? (
                 <button
                   className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-darkGray hover:bg-opacity-80  text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"
                   onClick={() => handleLoadMoreRecent()}

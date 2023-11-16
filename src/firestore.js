@@ -62,9 +62,8 @@ export async function getHottest(lim, getMore = false) {
 
   latestDocHottest = querySnapshot.docs[querySnapshot.docs.length - 1];
 
-  return querySnapshot.empty
-    ? null
-    : querySnapshot.docs.map((doc) => ({
+
+  return querySnapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
       }));
@@ -86,9 +85,7 @@ export async function getMostRecent(lim, getMore = false) {
 
   latestDocRecent = querySnapshot.docs[querySnapshot.docs.length - 1];
 
-  return querySnapshot.empty
-    ? null
-    : querySnapshot.docs.map((doc) => ({
+  return querySnapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
       }));
@@ -140,9 +137,7 @@ export async function getGptsWithFilter(
 
   latestDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
 
-  return querySnapshot.empty
-    ? null
-    : querySnapshot.docs.map((doc) => ({
+  return querySnapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
       }));
@@ -189,9 +184,7 @@ export async function getMoreGpts(i, filter = latestFilter) {
   );
   const querySnapshot = await getDocs(q);
   latestDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
-  return querySnapshot.empty
-    ? null
-    : querySnapshot.docs.map((doc) => ({
+  return querySnapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
       }));
@@ -218,7 +211,7 @@ export async function getMoreHottest() {
 export async function submitGpt(gpt) {
   const docRef = await addDoc(collection(db, "gpts"), gpt);
   try {
-    const newComments = await runTransaction(db, async (transaction) => {
+    await runTransaction(db, async (transaction) => {
       const sfDoc = await transaction.get(docRef);
       if (!sfDoc.exists()) {
         throw "Document does not exist!";
