@@ -99,7 +99,7 @@ export default function UpvoteButton({ g }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white px-6 py-10 align-middle shadow-xl transition-all text-center">
+                <Dialog.Panel className="w-full max-w-md transform rounded-2xl bg-white px-6 py-10 align-middle shadow-xl transition-all text-center">
                   <FontAwesomeIcon
                     icon={faLock}
                     className="text-5xl mb-4 opacity-10"
@@ -114,7 +114,7 @@ export default function UpvoteButton({ g }) {
                   <div className="flex gap-3 mx-auto justify-center">
                     <button
                       onClick={() => signInWithGoogle()}
-                      className="md:flex hidden gap-2 text-center justify-center transition duration-150 cursor-pointer text-lg  rounded-lg  bg-darkGray text-mediumBrown font-semibold px-6 py-2"
+                      className="flex gap-2 text-center justify-center transition duration-150 cursor-pointer text-lg  rounded-lg  bg-darkGray text-mediumBrown font-semibold px-6 py-2"
                     >
                       <img
                         className="w-6 h-6"

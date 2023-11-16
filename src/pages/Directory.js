@@ -15,7 +15,7 @@ export default function Directory() {
     { id: 5, title: "Data Analysis", icon: "📊", selected: false },
     { id: 6, title: "Education", icon: "📚", selected: false },
     { id: 7, title: "Lifestyle", icon: "🌴", selected: false },
-    { id: 8, title: "Just for Fun", icon: "😄", selected: false },
+    { id: 8, title: "Just for fun", icon: "😄", selected: false },
     { id: 9, title: "Miscellaneous", icon: "📦", selected: false },
   ]);
 
