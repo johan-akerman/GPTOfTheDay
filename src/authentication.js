@@ -13,7 +13,6 @@ const googleProvider = new GoogleAuthProvider();
 export function signInWithGoogle() {
   signInWithRedirect(auth, googleProvider)
     .then((result) => {
-      console.log(result.user);
       auth.currentUser = result.user;
     })
     .catch((error) => {
@@ -24,7 +23,6 @@ export function signInWithGoogle() {
 export function logOut() {
   signOut(auth)
     .then(() => {
-      console.log("successful logout");
       document.location.reload();
     })
     .catch((error) => {

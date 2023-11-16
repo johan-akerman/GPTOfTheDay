@@ -225,7 +225,6 @@ export async function submitGpt(gpt) {
       }
       transaction.set(docRef);
     });
-    console.log("Submit successfully committed!");
   } catch (e) {
     console.log("Submit failed: ", e);
   }
@@ -271,7 +270,6 @@ export async function toggleUpvoteGpt(gpt, uid, hasUserUpvoted) {
       });
       return newUpvotes;
     });
-    console.log("Upvote successfully committed!");
     return newUpvotes;
   } catch (e) {
     console.log("Upvote failed: ", e);
@@ -318,7 +316,6 @@ export async function addComment(user, gpt, comment) {
       transaction.update(docRef, { comments: newComments });
       return newComments;
     });
-    console.log("Comment successfully committed!");
     return newComments;
   } catch (e) {
     console.log("Comment failed: ", e);

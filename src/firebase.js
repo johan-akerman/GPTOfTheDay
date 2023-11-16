@@ -6,7 +6,6 @@ import { getAnalytics } from "firebase/analytics";
 import { useState, useEffect, createContext, useContext } from "react";
 
 // Initialize Firebase
-console.log(process.env.REACT_APP_APIKEY);
 
 let firebaseConfig = {
   apiKey: process.env.REACT_APP_APIKEY,
