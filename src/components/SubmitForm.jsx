@@ -57,10 +57,11 @@ export default function SubmitForm() {
     if (!checkValidEntry()) {
       setMissingInfo(true);
     } else {
-      const sfTimeZone = "America/Los_Angeles";
-      const sfTime = new Date().toLocaleString("en-US", {
-        timeZone: sfTimeZone,
-      });
+      const sfTime = new Date(
+        new Date().toLocaleString("en-US", {
+          timeZone: "America/Los_Angeles",
+        })
+      );
 
       let obj = {
         url: url,

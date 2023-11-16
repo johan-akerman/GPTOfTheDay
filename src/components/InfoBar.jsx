@@ -10,16 +10,16 @@ export default function InfoBar() {
   });
 
   useEffect(() => {
-    const sfTimeZone = "America/Los_Angeles";
-
     const updateRemainingTime = () => {
-      const sfTime = new Date().toLocaleString("en-US", {
-        timeZone: sfTimeZone,
-      });
+      const sfTime = new Date(
+        new Date().toLocaleString("en-US", {
+          timeZone: "America/Los_Angeles",
+        })
+      );
       const midnight = new Date();
       midnight.setHours(24, 0, 0, 0);
 
-      const millisecondsUntilMidnight = midnight - new Date(sfTime);
+      const millisecondsUntilMidnight = midnight - sfTime;
       const totalSecondsLeft = Math.floor(millisecondsUntilMidnight / 1000);
 
       const hours = Math.floor(totalSecondsLeft / 3600);

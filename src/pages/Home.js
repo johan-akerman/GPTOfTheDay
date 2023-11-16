@@ -33,13 +33,16 @@ export default function Home() {
   useEffect(() => {
     analyticsInitalize(true);
     analyticsSendPage(document.location.pathname);
-    getGptsWithFilter(null, null, null, "upvote_count").then((res) =>
-      setDataHottest(res)
-    );
 
     getGptsWithFilter(null, null, null, "submittedAt").then((res) =>
       setDataMostRecent(res)
     );
+    var sfTimeStartofDay = new Date(new Date().toLocaleString("en-US", {
+      timeZone: "America/Los_Angeles",
+    })).setHours(0,0,0,0);
+    getGptsWithFilter("submittedAt", ">=", sfTimeStartofDay).then(
+        (res) => console.log(res)
+      );
     getUpvotes({ id: "test" });
   }, []);
 

@@ -167,9 +167,11 @@ export async function submitGpt(gpt) {
 }
 
 export async function toggleUpvoteGpt(gpt, uid) {
-  const sfTime = new Date().toLocaleString("en-US", {
-    timeZone: "America/Los_Angeles",
-  });
+  const sfTime = new Date(
+        new Date().toLocaleString("en-US", {
+          timeZone: "America/Los_Angeles",
+        })
+      );
 
   const docRef = await doc(db, "gpts", gpt.id);
 
@@ -212,9 +214,11 @@ export async function toggleUpvoteGpt(gpt, uid) {
 }
 
 export async function upvote(gpt, previousUpvotes, uid) {
-  const sfTime = new Date().toLocaleString("en-US", {
-    timeZone: "America/Los_Angeles",
-  });
+  const sfTime = new Date(
+        new Date().toLocaleString("en-US", {
+          timeZone: "America/Los_Angeles",
+        })
+      );
 
   console.log("Starting upvote...");
 
@@ -296,13 +300,12 @@ export async function getUpvotesWithUserId(gpt, uid) {
 }
 
 // Time är starttiden. Så om du vill ha senaste 24h skickar du in tiden för starten på senaste dagen.
-export async function getUpvotesWithTime(gpt, time, lim) {
+export async function getUpvotesWithTime(gpt, time) {
   const upvotesRef = collection(db, "upvotes");
   const q = query(
     upvotesRef,
     where("gptid", "==", gpt.id),
-    where("time", ">=", time),
-    limit(lim)
+    where("time", ">=", time)
   );
   const querySnapshot = await getCountFromServer(q);
   console.log("upvotes", querySnapshot.data());
@@ -312,9 +315,11 @@ export async function getUpvotesWithTime(gpt, time, lim) {
 export async function addUpvote(gpt, uid) {
   const upvotesRef = collection(db, "upvotes");
 
-  const sfTime = new Date().toLocaleString("en-US", {
-    timeZone: "America/Los_Angeles",
-  });
+  const sfTime = new Date(
+        new Date().toLocaleString("en-US", {
+          timeZone: "America/Los_Angeles",
+        })
+      );
   const docRef = await addDoc(upvotesRef, {
     gptid: gpt.id,
     uid: uid,
