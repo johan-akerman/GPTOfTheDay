@@ -90,13 +90,13 @@ export default function SubmitForm() {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-2xl p-6">
+    <div className="bg-white rounded-lg shadow-2xl py-6 px-6">
       <div className="flex flex-col">
         {!successfulSubmit ? (
           <>
             {" "}
             <h1 className="text-4xl text-center font-semibold mb-8">
-              Submit your GPT for free!
+              Share your GPTs for FREE
             </h1>
             <div className="grid grid-cols-12 gap-3">
               <div className="md:col-span-6 col-span-12 flex flex-col gap-2 mb-3">

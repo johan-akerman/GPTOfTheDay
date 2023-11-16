@@ -27,7 +27,9 @@ export default function UpvoteButton({ g }) {
     setIsOpen(false);
   }
 
-  const handleUpvote = async (input) => {
+  const handleUpvote = async (e, input) => {
+    e.preventDefault();
+    e.stopPropagation();
     try {
       if (user) {
         getGpt(input.id).then((res) => {
@@ -90,12 +92,12 @@ export default function UpvoteButton({ g }) {
       {/* {console.log(gpt.data)} */}
       {/* <h1>Local upvotes: {localUpvotes?.length}</h1> */}
       <button
-        className={`cursor-pointer px-5 py-2 border-2  border-orange-400 hover:border-orange-400 hover:bg-orange-400 hover:text-white font-medium rounded-md text-lg transform ease-in duration-100 group ${
+        className={`cursor-pointer px-5 py-2 border-2  border-orange-400 hover:border-orange-400 hover:bg-orange-400 bg-transparent hover:text-white font-medium rounded-md text-lg transform ease-in duration-100 group ${
           userHasUpvoted(gpt.data.upvotes, user?.uid)
             ? "bg-orange-400 text-white"
-            : " text-gray-900 bg-gray-100"
+            : " text-orange-400 bg-gray-100"
         }`}
-        onClick={() => handleUpvote(gpt)}
+        onClick={(e) => handleUpvote(e, gpt)}
       >
         <FontAwesomeIcon
           icon={faArrowUp}

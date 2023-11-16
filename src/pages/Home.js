@@ -4,7 +4,12 @@ import GPTCard from "../components/GPTCard";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getCurrentUser } from "../authentication";
-import { getGptsWithFilter, getMoreGpts, getUpvotes } from "../firestore";
+import {
+  getGptsWithFilter,
+  getMoreGpts,
+  getUpvotes,
+  getUpvotesWithTime,
+} from "../firestore";
 import SubmitForm from "../components/SubmitForm";
 import { analyticsInitalize, analyticsSendPage } from "../ganalytics";
 
@@ -40,6 +45,9 @@ export default function Home() {
     getGptsWithFilter(null, null, null, "submittedAt").then((res) =>
       setDataMostRecent(res)
     );
+
+    // getUpvotesWithTime();
+
     getUpvotes({ id: "test" });
   }, []);
 
@@ -47,7 +55,7 @@ export default function Home() {
     <>
       <Jumbotron />
       <div className="bg-lightBrown">
-        <div className="md:w-9/12 w-11/12 mx-auto h-full pt-8 md:pb-28 pb-12">
+        <div className="md:w-7/12 w-11/12 mx-auto h-full pt-8 md:pb-28 pb-12">
           <div>
             <h1 className="text-black text-center text-5xl sm:mt-5 font-bold pt-8 ">
               🔥 Top GPTs posted today
@@ -100,8 +108,8 @@ export default function Home() {
         </div>
 
         <div className="pb-20 md:pt-32 pt-20 text-center bg-darkBrown">
-          <h1 className="md:w-2/5 w-11/12 mx-auto text-center text-white  text-4xl font-bold mb-12">
-            Ready to explore the best GPTs of all time, not just today's?
+          <h1 className="md:w-2/5 w-11/12 mx-auto text-center text-white text-5xl font-bold mb-12">
+            Ready to explore the best GPTs of all time?
           </h1>
 
           <Link

@@ -21,7 +21,7 @@ export function Navbar() {
 
   return (
     <div className="bg-mediumBrown w-full">
-      <div className="py-6 md:w-9/12 w-11/12 mx-auto flex justify-between ">
+      <div className="py-6 md:w-10/12 w-11/12 mx-auto flex justify-between ">
         <Link className="text-4xl text-white font-medium capitalize" to="/">
           <img src={logo} className="h-16 mr-4" />
         </Link>
