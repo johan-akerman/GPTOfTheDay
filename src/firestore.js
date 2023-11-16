@@ -137,7 +137,7 @@ export async function getGptsWithFilter(
 
   latestDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
 
-  return querySnapshot.docs.map((doc) => ({
+  return querySnapshot.empty ? null : querySnapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
       }));
@@ -185,24 +185,6 @@ export async function getMoreGpts(i, filter = latestFilter) {
   const querySnapshot = await getDocs(q);
   latestDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
   return querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        data: doc.data(),
-      }));
-}
-
-export async function getMoreHottest() {
-  const q = query(
-    gptsRef,
-    orderBy("upvote", latestFilter.order_order),
-    startAfter(latestDoc),
-    limit(latestFilter.lim)
-  );
-  const querySnapshot = await getDocs(q);
-  latestDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
-
-  return querySnapshot.empty
-    ? null
-    : querySnapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
       }));

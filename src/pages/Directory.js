@@ -15,7 +15,7 @@ export default function Directory() {
     { id: 5, title: "Data Analysis", icon: "📊", selected: false },
     { id: 6, title: "Education", icon: "📚", selected: false },
     { id: 7, title: "Lifestyle", icon: "🌴", selected: false },
-    { id: 8, title: "Just for Fun", icon: "😄", selected: false },
+    { id: 8, title: "Just for fun", icon: "😄", selected: false },
     { id: 9, title: "Miscellaneous", icon: "📦", selected: false },
   ]);
 
@@ -117,7 +117,7 @@ export default function Directory() {
                 <p>No results found...</p>
               )}
 
-              {gpts?.length % 3 == 0 ? (
+              {gpts?.length % 5 === 0 ? (
                 <button
                   onClick={() => handleLoadMore()}
                   className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-orange-400 text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"
