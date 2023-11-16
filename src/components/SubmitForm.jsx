@@ -57,17 +57,17 @@ export default function SubmitForm() {
     if (!checkValidEntry()) {
       setMissingInfo(true);
     } else {
-      const sfTime = new Date(
-        new Date().toLocaleString("en-US", {
-          timeZone: "America/Los_Angeles",
-        })
-      );
+      const sfTimeString = new Date().toLocaleString("en-US", {
+        timeZone: "America/Los_Angeles",
+      });
 
-      let mostRecentMidnight = new Date(
-        new Date().toLocaleString("en-US", {
-          timeZone: "America/Los_Angeles",
-        })
-      );
+      const sfTime = new Date(sfTimeString);
+
+      let tmp = new Date().toLocaleString("en-US", {
+        timeZone: "America/Los_Angeles",
+      });
+
+      const mostRecentMidnight = new Date(tmp);
 
       mostRecentMidnight.setHours(0, 0, 0, 0);
 

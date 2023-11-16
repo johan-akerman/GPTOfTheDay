@@ -11,12 +11,13 @@ export default function InfoBar() {
 
   useEffect(() => {
     const updateRemainingTime = () => {
-      const sfTime = new Date(
-        new Date().toLocaleString("en-US", {
-          timeZone: "America/Los_Angeles",
-        })
-      );
-      const midnight = new Date();
+      const sfTimeString = new Date().toLocaleString("en-US", {
+        timeZone: "America/Los_Angeles",
+      });
+
+      const sfTime = new Date(sfTimeString);
+
+      const midnight = new Date(sfTimeString);
       midnight.setHours(24, 0, 0, 0);
 
       const millisecondsUntilMidnight = midnight - sfTime;

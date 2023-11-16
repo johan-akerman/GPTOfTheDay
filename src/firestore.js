@@ -62,11 +62,10 @@ export async function getHottest(lim, getMore = false) {
 
   latestDocHottest = querySnapshot.docs[querySnapshot.docs.length - 1];
 
-
   return querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        data: doc.data(),
-      }));
+    id: doc.id,
+    data: doc.data(),
+  }));
 }
 
 export async function getMostRecent(lim, getMore = false) {
@@ -86,9 +85,9 @@ export async function getMostRecent(lim, getMore = false) {
   latestDocRecent = querySnapshot.docs[querySnapshot.docs.length - 1];
 
   return querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        data: doc.data(),
-      }));
+    id: doc.id,
+    data: doc.data(),
+  }));
 }
 
 export async function getGptsWithFilter(
@@ -137,7 +136,9 @@ export async function getGptsWithFilter(
 
   latestDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
 
-  return querySnapshot.empty ? null : querySnapshot.docs.map((doc) => ({
+  return querySnapshot.empty
+    ? null
+    : querySnapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
       }));
@@ -185,9 +186,9 @@ export async function getMoreGpts(i, filter = latestFilter) {
   const querySnapshot = await getDocs(q);
   latestDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
   return querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        data: doc.data(),
-      }));
+    id: doc.id,
+    data: doc.data(),
+  }));
 }
 
 export async function submitGpt(gpt) {
@@ -207,11 +208,11 @@ export async function submitGpt(gpt) {
 }
 
 export async function toggleUpvoteGpt(gpt, uid, hasUserUpvoted) {
-  const sfTime = new Date(
-    new Date().toLocaleString("en-US", {
-      timeZone: "America/Los_Angeles",
-    })
-  );
+  const sfTimeString = new Date().toLocaleString("en-US", {
+    timeZone: "America/Los_Angeles",
+  });
+
+  const sfTime = new Date(sfTimeString);
 
   const docRef = await doc(db, "gpts", gpt.id);
 
