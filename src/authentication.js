@@ -25,6 +25,7 @@ export function logOut() {
   signOut(auth)
     .then(() => {
       console.log("successful logout");
+      document.location.reload();
     })
     .catch((error) => {
       console.log(error);

@@ -4,6 +4,7 @@ import { signInWithGoogle } from "../authentication";
 
 export default function AddComment({ user, gpt, handleAddComment }) {
   const [comment, setComment] = useState("");
+  console.log(user);
 
   function handleSubmit() {
     if (comment.length > 0) {

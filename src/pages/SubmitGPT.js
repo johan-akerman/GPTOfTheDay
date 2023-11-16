@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import SubmitForm from "../components/SubmitForm";
 import { analyticsSendPage } from "../ganalytics";
 
-export default function SubmitGPT() {
+export default function SubmitGPT({ user }) {
   useEffect(() => {
     analyticsSendPage(document.location.pathname);
     window.scrollTo(0, 0);

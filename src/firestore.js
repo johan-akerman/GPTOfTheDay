@@ -8,9 +8,7 @@ import {
   where,
   addDoc,
   startAfter,
-  updateDoc,
   doc,
-  getCountFromServer,
   runTransaction,
   Timestamp,
 } from "firebase/firestore";
@@ -217,8 +215,6 @@ export async function getMoreHottest() {
       }));
 }
 
-export async function getMoreRecent() {}
-
 export async function submitGpt(gpt) {
   const docRef = await addDoc(collection(db, "gpts"), gpt);
   try {
@@ -236,7 +232,7 @@ export async function submitGpt(gpt) {
   return docRef;
 }
 
-export async function toggleUpvoteGpt(gpt, uid) {
+export async function toggleUpvoteGpt(gpt, uid, hasUserUpvoted) {
   const sfTime = new Date(
     new Date().toLocaleString("en-US", {
       timeZone: "America/Los_Angeles",
@@ -245,66 +241,41 @@ export async function toggleUpvoteGpt(gpt, uid) {
 
   const docRef = await doc(db, "gpts", gpt.id);
 
-  let hasUserUpvoted = userHasUpvoted(gpt.data.upvotes, uid);
-  let new_upvotes = [];
+  try {
+    const newUpvotes = await runTransaction(db, async (transaction) => {
+      const sfDoc = await transaction.get(docRef);
+      if (!sfDoc.exists()) {
+        throw "Document does not exist!";
+      }
 
-  if (hasUserUpvoted) {
-    const remove_index = gpt.data.upvotes.findIndex((obj) => obj.uid === uid);
+      let oldUpvotes = sfDoc.data().upvotes;
+      let newUpvotes = [];
 
-    new_upvotes = gpt.data.upvotes.splice(remove_index, 1);
-  } else {
-    // new_upvotes = previousUpvotes.filter(
-    //   (element, index) => index !== remove_index
-    // );
+      if (hasUserUpvoted) {
+        const remove_index = oldUpvotes.findIndex((obj) => obj.uid === uid);
+        newUpvotes = oldUpvotes.filter(
+          (element, index) => index !== remove_index
+        );
+      } else {
+        newUpvotes = [
+          ...oldUpvotes,
+          {
+            submittedAt: sfTime,
+            uid: uid,
+          },
+        ];
+      }
+      transaction.update(docRef, {
+        upvote_count: newUpvotes.length,
+        upvotes: newUpvotes,
+      });
+      return newUpvotes;
+    });
+    console.log("Upvote successfully committed!");
+    return newUpvotes;
+  } catch (e) {
+    console.log("Upvote failed: ", e);
   }
-
-  updateDoc(docRef, {
-    upvote_count: new_upvotes.length,
-    upvotes: new_upvotes,
-  });
-  return new_upvotes;
-}
-
-export async function upvote(gpt, previousUpvotes, uid) {
-  const sfTime = new Date(
-    new Date().toLocaleString("en-US", {
-      timeZone: "America/Los_Angeles",
-    })
-  );
-
-  let new_upvotes = [
-    ...previousUpvotes,
-    {
-      submittedAt: sfTime,
-      uid: uid,
-    },
-  ];
-
-  const docRef = await doc(db, "gpts", gpt.id);
-
-  return updateDoc(docRef, {
-    upvote_count: new_upvotes.length,
-    upvotes: new_upvotes,
-  }).then(() => {
-    return new_upvotes;
-  });
-}
-
-export async function downvote(gpt, previousUpvotes, uid) {
-  const remove_index = previousUpvotes.findIndex((obj) => obj.uid === uid);
-
-  let new_upvotes = previousUpvotes.filter(
-    (element, index) => index !== remove_index
-  );
-
-  const docRef = await doc(db, "gpts", gpt.id);
-
-  return updateDoc(docRef, {
-    upvote_count: new_upvotes.length,
-    upvotes: new_upvotes,
-  }).then(() => {
-    return new_upvotes;
-  });
 }
 
 export function userHasUpvoted(upvotes, uid) {
@@ -317,52 +288,6 @@ export function userHasUpvoted(upvotes, uid) {
   });
 
   return hasUpvoted;
-}
-
-export async function getUpvotes(gpt) {
-  const upvotesRef = collection(db, "upvotes");
-  const q = query(upvotesRef, where("gptid", "==", gpt.id));
-  const querySnapshot = await getCountFromServer(q);
-  return querySnapshot.data().count;
-}
-
-export async function getUpvotesWithUserId(gpt, uid) {
-  const upvotesRef = collection(db, "upvotes");
-  const q = query(
-    upvotesRef,
-    where("gptid", "==", gpt.id),
-    where("uid", "==", uid)
-  );
-  const querySnapshot = await getCountFromServer(q);
-  return querySnapshot.data().count;
-}
-
-// Time är starttiden. Så om du vill ha senaste 24h skickar du in tiden för starten på senaste dagen.
-export async function getUpvotesWithTime(gpt, time) {
-  const upvotesRef = collection(db, "upvotes");
-  const q = query(
-    upvotesRef,
-    where("gptid", "==", gpt.id),
-    where("time", ">=", time)
-  );
-  const querySnapshot = await getCountFromServer(q);
-  return querySnapshot.data().count;
-}
-
-export async function addUpvote(gpt, uid) {
-  const upvotesRef = collection(db, "upvotes");
-
-  const sfTime = new Date(
-    new Date().toLocaleString("en-US", {
-      timeZone: "America/Los_Angeles",
-    })
-  );
-  const docRef = await addDoc(upvotesRef, {
-    gptid: gpt.id,
-    uid: uid,
-    time: sfTime,
-  });
-  return docRef;
 }
 
 export async function addComment(user, gpt, comment) {

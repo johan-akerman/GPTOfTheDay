@@ -13,10 +13,6 @@ export const db = getFirestore(app);
 // Initialize Authentication
 export const auth = getAuth(app);
 
-export function logout() {
-  return signOut(auth);
-}
-
 export const AuthContext = createContext();
 
 export const AuthContextProvider = (props) => {

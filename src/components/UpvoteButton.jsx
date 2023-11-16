@@ -36,32 +36,19 @@ export default function UpvoteButton({ g }) {
           let tmp = res[0];
 
           let tmpUpvotes = input.data.upvotes;
-          // const hasUserUpvoted = await userHasUpvoted(tmpUpvotes, user.uid);
+
           const hasUserUpvoted = userHasUpvoted(tmpUpvotes, user.uid);
 
-          if (hasUserUpvoted) {
-            downvote(input, tmpUpvotes, user.uid)
-              .then((result) => {
-                tmp.data.upvotes = result;
-                tmp.data.upvote_count = result.length;
-                return tmp;
-              })
-              .then((tmp) => {
-                setGpt(tmp);
-                setCount(tmp.data.upvote_count);
-              });
-          } else {
-            upvote(input, tmpUpvotes, user.uid)
-              .then((result) => {
-                tmp.data.upvotes = result;
-                tmp.data.upvote_count = result.length;
-                return tmp;
-              })
-              .then((tmp) => {
-                setGpt(tmp);
-                setCount(tmp.data.upvote_count);
-              });
-          }
+          toggleUpvoteGpt(input, user.uid, hasUserUpvoted)
+            .then((result) => {
+              tmp.data.upvotes = result;
+              tmp.data.upvote_count = result.length;
+              return tmp;
+            })
+            .then((tmp) => {
+              setGpt(tmp);
+              setCount(tmp.data.upvote_count);
+            });
         });
       } else {
         setIsOpen(true);

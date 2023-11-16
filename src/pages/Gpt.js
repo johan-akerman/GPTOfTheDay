@@ -11,10 +11,9 @@ import { getGpt } from "../firestore";
 import { getCurrentUser } from "../authentication";
 import { analyticsSendPage } from "../ganalytics";
 
-export default function Gpt() {
+export default function Gpt({ user }) {
   const url = window.location.href;
   const id = url.split("/")[url.split("/").length - 1];
-  const [user, setUser] = useState(getCurrentUser());
   const [gpt, setGpt] = useState();
   const [loading, setLoading] = useState(true);
   const [currentComments, setCurrentComments] = useState();

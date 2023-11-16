@@ -18,10 +18,10 @@ function App() {
         <InfoBar />
         <Navbar />
         <Routes>
-          <Route exact path="/" Component={Home} />
-          <Route exact path="/directory" Component={Directory} />
-          <Route exact path="/submit" Component={SubmitGPT} />
-          <Route exact path="/gpts/:gpt" Component={Gpt} />
+          <Route exact path="/" element={<Home user={user} />} />
+          <Route exact path="/directory" element={<Directory user={user} />} />
+          <Route exact path="/submit" element={<SubmitGPT user={user} />} />
+          <Route exact path="/gpts/:gpt" element={<Gpt user={user} />} />
         </Routes>
         <Footer />
       </Router>

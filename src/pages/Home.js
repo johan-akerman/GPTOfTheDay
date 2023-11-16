@@ -9,10 +9,9 @@ import SubmitForm from "../components/SubmitForm";
 import { analyticsInitalize, analyticsSendPage } from "../ganalytics";
 import { Timestamp } from "firebase/firestore";
 
-export default function Home() {
+export default function Home({ user }) {
   const [dataHottest, setDataHottest] = useState([]);
   const [dataMostRecent, setDataMostRecent] = useState([]);
-  const [user, setUser] = useState(getCurrentUser());
   const [currentPageHottest, setCurrentPageHottest] = useState(0);
   const [currentPageRecent, setCurrentPageRecent] = useState(0);
 
