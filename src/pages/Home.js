@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { getCurrentUser } from "../authentication";
 import { getHottest, getMostRecent } from "../firestore";
 import SubmitForm from "../components/SubmitForm";
-import { analyticsInitalize, analyticsSendPage } from "../ganalytics";
 import { Timestamp } from "firebase/firestore";
 
 export default function Home({ user }) {
@@ -33,9 +32,6 @@ export default function Home({ user }) {
   }, [currentPageRecent]);
 
   useEffect(() => {
-    analyticsInitalize(true);
-    analyticsSendPage(document.location.pathname);
-
     getHottest(5).then((res) => setDataHottest(res));
 
     getMostRecent(5).then((res) => setDataMostRecent(res));

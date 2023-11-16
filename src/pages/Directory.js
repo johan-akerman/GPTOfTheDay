@@ -3,7 +3,6 @@ import GPTCard from "../components/GPTCard";
 import { useEffect } from "react";
 import SelectSort from "../components/SelectSort";
 import { getGpt, getGptsWithFilter, getMoreGpts } from "../firestore";
-import { analyticsSendPage } from "../ganalytics";
 export default function Directory() {
   const [gpts, setGpts] = useState();
 
@@ -76,8 +75,6 @@ export default function Directory() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    analyticsSendPage(document.location.pathname);
-    // getGpt("H16mtfbLIlocQ3PJgSk4").then((res) => setGpt(res));
   }, []);
 
   return (
