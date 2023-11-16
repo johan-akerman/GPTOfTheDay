@@ -48,6 +48,15 @@ export default function Home() {
 
     // getUpvotesWithTime();
 
+    var sfTimeStartofDay = new Date(
+      new Date().toLocaleString("en-US", {
+        timeZone: "America/Los_Angeles",
+      })
+    ).setHours(0, 0, 0, 0);
+    getGptsWithFilter("submittedAt", ">=", sfTimeStartofDay).then((res) =>
+      console.log(res)
+    );
+
     getUpvotes({ id: "test" });
   }, []);
 
