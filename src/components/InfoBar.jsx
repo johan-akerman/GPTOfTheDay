@@ -16,7 +16,10 @@ export default function InfoBar() {
 
       const midnight = getSfNextMidnight();
 
-      const millisecondsUntilMidnight = sfTime - midnight;
+      console.log(sfTime);
+      console.log(midnight);
+
+      const millisecondsUntilMidnight = midnight - sfTime;
       const totalSecondsLeft = Math.floor(millisecondsUntilMidnight / 1000);
 
       const hours = Math.floor(totalSecondsLeft / 3600);
