@@ -7,6 +7,7 @@ import { getCurrentUser } from "../authentication";
 import { getHottest, getMostRecent } from "../firestore";
 import SubmitForm from "../components/SubmitForm";
 import { Timestamp } from "firebase/firestore";
+import { getSfTime } from "../utils/times";
 
 export default function Home({ user }) {
   const [dataHottest, setDataHottest] = useState([]);
@@ -33,7 +34,7 @@ export default function Home({ user }) {
 
   useEffect(() => {
     getHottest(5).then((res) => setDataHottest(res));
-
+    console.log(getSfTime(new Date()));
     getMostRecent(5).then((res) => setDataMostRecent(res));
   }, []);
 
