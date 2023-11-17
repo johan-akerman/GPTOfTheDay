@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore";
+
 export const getSfTime = () => {
   const localDate = new Date();
   // SFTIME är UTC-08
@@ -38,4 +40,13 @@ export const getSfNextMidnight = () => {
   nextMidnightInSf.setDate(nextMidnightInSf.getDate() + 1);
 
   return nextMidnightInSf;
+};
+
+export const getSfMostRecentMidnightTimestamp = () => {
+  const mostRecentMidnightTimestamp = Timestamp.fromDate(
+    getSfMostRecentMidnight()
+  );
+  mostRecentMidnightTimestamp.seconds =
+    mostRecentMidnightTimestamp.seconds + getSfTimeOffsetSeconds();
+  return mostRecentMidnightTimestamp;
 };

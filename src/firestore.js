@@ -13,7 +13,10 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import { db } from "./firebase";
-import { getSfMostRecentMidnight, getSfTimeOffsetSeconds } from "./utils/times";
+import {
+  getSfMostRecentMidnightTimestamp,
+  getSfTimeOffsetSeconds,
+} from "./utils/times";
 
 let latestFilter = {};
 let latestDoc = {};
@@ -34,10 +37,7 @@ export async function getGpt(id) {
 }
 
 export async function getHottest(lim, getMore = false) {
-  const mostRecentMidnight = getSfMostRecentMidnight();
-  const mostRecentMidnightTimestamp = Timestamp.fromDate(mostRecentMidnight);
-  mostRecentMidnightTimestamp.seconds =
-    mostRecentMidnightTimestamp.seconds - getSfTimeOffsetSeconds();
+  const mostRecentMidnightTimestamp = getSfMostRecentMidnightTimestamp();
 
   let q = "";
   if (getMore) {
