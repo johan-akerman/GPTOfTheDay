@@ -8,10 +8,15 @@ export const getSfTime = (localDate) => {
 
   const sfTimeInSeconds = localDate.getTime() / 1000 - deltaSecondsComparedToSF;
 
-  //   const sfTimeString = new Date().toLocaleString("en-US", {
-  //     timeZone: "America/Los_Angeles",
-  //   });
+  let sfTime = new Date(sfTimeInSeconds * 1000);
+  console.log("Sf time in current timezone: ", sfTime);
+  return sfTime; // SF tid uttryckt i vår lokala tidszon. Dvs, kl 09 i sverige --> 00 i sf fast utryckt i svensk tid.
+};
 
-  const sfTime = new Date(sfTimeInSeconds * 1000);
-  return sfTime;
+export const getSfMostRecentMidnight = (localDate) => {
+  let getSfMostRecentMidnightSf = new Date(
+    getSfTime(localDate).setHours(0, 0, 0, 0)
+  );
+  console.log("Most recent midnight in SF: ", getSfMostRecentMidnightSf);
+  return getSfMostRecentMidnightSf;
 };
