@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { getSfNextMidnight, getSfTime } from "../utils/times";
 
 export default function InfoBar() {
   const [email, setEmail] = useState("");
@@ -11,16 +12,11 @@ export default function InfoBar() {
 
   useEffect(() => {
     const updateRemainingTime = () => {
-      const sfTimeString = new Date().toLocaleString("en-US", {
-        timeZone: "America/Los_Angeles",
-      });
+      const sfTime = getSfTime();
 
-      const sfTime = new Date(sfTimeString);
+      const midnight = getSfNextMidnight();
 
-      const midnight = new Date(sfTimeString);
-      midnight.setHours(24, 0, 0, 0);
-
-      const millisecondsUntilMidnight = midnight - sfTime;
+      const millisecondsUntilMidnight = sfTime - midnight;
       const totalSecondsLeft = Math.floor(millisecondsUntilMidnight / 1000);
 
       const hours = Math.floor(totalSecondsLeft / 3600);

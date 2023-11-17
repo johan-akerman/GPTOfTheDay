@@ -7,6 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { addGptRequest, submitGpt } from "../firestore";
 import { Link } from "react-router-dom";
+import { getSfMostRecentMidnight, getSfTime } from "../utils/times";
 
 export default function SubmitForm() {
   const categories = [
@@ -57,19 +58,9 @@ export default function SubmitForm() {
     if (!checkValidEntry()) {
       setMissingInfo(true);
     } else {
-      const sfTimeString = new Date().toLocaleString("en-US", {
-        timeZone: "America/Los_Angeles",
-      });
+      const sfTime = getSfTime();
 
-      const sfTime = new Date(sfTimeString);
-
-      let tmp = new Date().toLocaleString("en-US", {
-        timeZone: "America/Los_Angeles",
-      });
-
-      const mostRecentMidnight = new Date(tmp);
-
-      mostRecentMidnight.setHours(0, 0, 0, 0);
+      const mostRecentMidnight = getSfMostRecentMidnight();
 
       let obj = {
         url: url,
