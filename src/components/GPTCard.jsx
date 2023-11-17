@@ -94,9 +94,7 @@ export default function GPTCard({ gpt, i }) {
           <div className="flex items-center gap-4">
             <div>
               <p className="text-2xl font-medium text-gray-900 leading-none">
-                {gpt_page
-                  ? `${gpt?.data?.title}`
-                  : `#${i + 1}: ${gpt?.data?.title}`}
+                {gpt?.data?.title}`
               </p>
               <p className="text-lg pt-1 pb-1">{gpt?.data?.description}</p>
 
