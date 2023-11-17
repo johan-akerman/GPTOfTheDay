@@ -26,11 +26,7 @@ export default function GPTCard({ gpt, i }) {
   function getNiceDataString(date) {
     const dateFromFb = new Date(date.seconds * 1000);
 
-    const currentSfTime = new Date(
-      new Date().toLocaleString("en-US", {
-        timeZone: "America/Los_Angeles",
-      })
-    );
+    const currentSfTime = new Date();
 
     const milliSecondsPerMinute = 60 * 1000;
     const milliSecondsPerHour = milliSecondsPerMinute * 60;

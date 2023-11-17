@@ -26,7 +26,7 @@ export default function Gpt({ user }) {
   }, []);
 
   function handleAddComment(newComments) {
-    setCurrentComments(newComments);
+    setCurrentComments(newComments.reverse());
   }
 
   if (!gpt) {

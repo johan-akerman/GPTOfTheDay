@@ -33,7 +33,6 @@ export default function Home({ user }) {
 
   useEffect(() => {
     getHottest(5).then((res) => setDataHottest(res));
-
     getMostRecent(5).then((res) => setDataMostRecent(res));
   }, []);
 
