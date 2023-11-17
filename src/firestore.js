@@ -13,7 +13,7 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import { db } from "./firebase";
-import { getSfMostRecentMidnight } from "./utils/times";
+import { getSfMostRecentMidnight, getSfTimeOffsetSeconds } from "./utils/times";
 
 let latestFilter = {};
 let latestDoc = {};
@@ -36,6 +36,9 @@ export async function getGpt(id) {
 export async function getHottest(lim, getMore = false) {
   const mostRecentMidnight = getSfMostRecentMidnight();
   const mostRecentMidnightTimestamp = Timestamp.fromDate(mostRecentMidnight);
+  mostRecentMidnightTimestamp.seconds =
+    mostRecentMidnightTimestamp.seconds - getSfTimeOffsetSeconds();
+
   let q = "";
   if (getMore) {
     q = query(
@@ -204,12 +207,6 @@ export async function submitGpt(gpt) {
 }
 
 export async function toggleUpvoteGpt(gpt, uid, hasUserUpvoted) {
-  const sfTimeString = new Date().toLocaleString("en-US", {
-    timeZone: "America/Los_Angeles",
-  });
-
-  const sfTime = new Date(sfTimeString);
-
   const docRef = await doc(db, "gpts", gpt.id);
 
   try {
@@ -231,7 +228,7 @@ export async function toggleUpvoteGpt(gpt, uid, hasUserUpvoted) {
         newUpvotes = [
           ...oldUpvotes,
           {
-            submittedAt: sfTime,
+            submittedAt: new Date(),
             uid: uid,
           },
         ];
@@ -280,7 +277,7 @@ export async function addComment(user, gpt, comment) {
       const newComments = [
         ...oldComments,
         {
-          submittedAt: sfTime,
+          submittedAt: new Date(),
           userName: user.displayName.split(" ")[0],
           text: comment,
         },

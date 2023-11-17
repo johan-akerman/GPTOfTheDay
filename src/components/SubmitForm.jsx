@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { addGptRequest, submitGpt } from "../firestore";
 import { Link } from "react-router-dom";
-import { getSfMostRecentMidnight, getSfTime } from "../utils/times";
+import { getSfMostRecentMidnight } from "../utils/times";
 
 export default function SubmitForm() {
   const categories = [
@@ -58,8 +58,6 @@ export default function SubmitForm() {
     if (!checkValidEntry()) {
       setMissingInfo(true);
     } else {
-      const sfTime = getSfTime();
-
       const mostRecentMidnight = getSfMostRecentMidnight();
 
       let obj = {
@@ -72,7 +70,7 @@ export default function SubmitForm() {
         upvotes: [],
         comments: [],
         upvote_count: 0,
-        submittedAt: sfTime,
+        submittedAt: new Date(),
         mostRecentMidnight: mostRecentMidnight,
       };
 
