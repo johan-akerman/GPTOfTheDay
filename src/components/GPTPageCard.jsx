@@ -103,17 +103,19 @@ export default function GPTPageCard({ gpt, i }) {
                 {gpt?.data?.title}
               </p>
 
-              <div className="flex text-md mb-2 gap-2">
+              <div className="flex text-md  gap-2">
                 <p>
                   Posted {getNiceDataString(gpt?.data?.submittedAt)} by{" "}
                   {gpt?.data?.creator}.
                 </p>
-                <p>
-                  {gpt?.data?.comments.length}{" "}
-                  {gpt?.data?.comments.length === 1 ? " comment" : "comments"}
-                </p>
               </div>
 
+              <div className="flex text-md mb-2 gap-2">
+                <p>
+                  {gpt?.data?.comments.length}{" "}
+                  {gpt?.data?.comments.length === 1 ? " comment" : "comments"}.
+                </p>
+              </div>
               <span className="cursor-pointer text-xs font-medium px-3 py-1 mt-2 rounded-lg  border-2 bg-gray-100 text-gray-900">
                 {category_info[gpt_category_index].icon +
                   " " +
