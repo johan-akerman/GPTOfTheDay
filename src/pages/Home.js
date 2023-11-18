@@ -53,7 +53,26 @@ export default function Home({ user }) {
                 return <GPTCard gpt={gpt} i={i} key={gpt.id} />;
               })}
 
-              {dataHottest?.length % 5 === 0 ? (
+              {dataHottest?.length == 0 ? (
+                <div className="w-full bg-white bg-opacity-50 border-orange-300 border-2 border-dashed rounded-md  py-8 px-4 text-center">
+                  <h1 className="text-3xl font-semibold">
+                    No GPTs submitted today! 🤖
+                  </h1>
+                  <p className="text-xl pb-8 pt-2">
+                    Get out ahead and post your GPT now.
+                  </p>
+                  <Link
+                    to="/submit"
+                    className="px-6 py-2 border border-transparent font-medium rounded-md text-white bg-orange-400 text-xl hover:bg-orange-300"
+                  >
+                    Submit GPT
+                  </Link>
+                </div>
+              ) : (
+                ""
+              )}
+
+              {dataHottest?.length % 5 === 0 && dataHottest?.length !== 0 ? (
                 <button
                   className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-darkGray hover:bg-opacity-80  text-lg transform ease-in duration-100 group w-40 mt-6 mx-auto"
                   onClick={() => handleLoadMoreHottest()}
@@ -94,14 +113,14 @@ export default function Home({ user }) {
 
         <div className="pb-20 md:pt-32 pt-20 text-center bg-darkBrown">
           <h1 className="md:w-2/5 w-11/12 mx-auto text-center text-white text-5xl font-bold mb-12">
-            Ready to explore the best GPTs of all time?
+            Showcase your GPTs for FREE and get more users!
           </h1>
 
           <Link
-            to="/directory"
+            to="/submit"
             className="mt-6 px-6 py-3 border border-transparent font-medium rounded-md text-white bg-orange-400 text-2xl hover:bg-orange-300"
           >
-            Browse all GPTs
+            Submit GPT
           </Link>
         </div>
       </div>
