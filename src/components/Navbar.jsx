@@ -19,14 +19,14 @@ export function Navbar() {
 
         <div className="flex justify-between items-center md:gap-4 gap-2">
           <Link
-            className="lg:block hidden text-lg text-darkBrown font-medium"
+            className="lg:block hidden text-xl text-darkBrown font-semibold"
             to="/directory"
           >
             Browse all GPTs
           </Link>
 
           <Link
-            className="lg:block hidden text-lg text-darkBrown font-medium mr-4 ml-4"
+            className="lg:block hidden text-xl text-darkBrown font-semibold mr-4 ml-4"
             to="/submit"
           >
             Submit GPT

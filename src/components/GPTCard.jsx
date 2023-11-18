@@ -55,7 +55,7 @@ export default function GPTCard({ gpt, i }) {
           <div className="flex items-center text-left justify-between ">
             <div className="flex items-center gap-4 w-4/6 ">
               <div className="w-full">
-                <p className="text-xl font-medium text-gray-900 leading-none truncate">
+                <p className="text-xl font-semibold text-gray-900 leading-none truncate">
                   {gpt?.data?.title}
                 </p>
                 <p className="text-lg pt-1 w-full truncate">
@@ -93,7 +93,7 @@ export default function GPTCard({ gpt, i }) {
         <div className="flex items-center text-left justify-between">
           <div className="flex items-center gap-4">
             <div>
-              <p className="text-2xl font-medium text-gray-900 leading-none">
+              <p className="text-2xl font-semibold text-gray-900 leading-none">
                 {gpt?.data?.title}
               </p>
               <p className="text-lg pt-1 pb-1">{gpt?.data?.description}</p>

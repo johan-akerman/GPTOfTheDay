@@ -40,7 +40,7 @@ export default function InfoBar() {
   return (
     <div className="bg-darkGray text-center">
       <div className="max-w-7xl mx-auto py-3 px-2 sm:px-3 lg:px-8 flex justify-center md:gap-4 gap-2 items-center">
-        <p className="text-white font-medium md:text-md text-sm">
+        <p className="text-white font-medium md:text-lg text-sm">
           <span className="mr-2">⏰ </span> GPTOTD voting ends in{"   "}
           <span className="text-semibold bg-white bg-opacity-20 text-white md:px-1.5 px-1 py-1 rounded-md ">
             {`${timeLeft.hours}h`}

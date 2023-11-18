@@ -61,7 +61,7 @@ export default function UpvoteButton({ g }) {
   return gpt ? (
     <>
       <button
-        className={` cursor-pointer px-5 py-2 border-2  border-orange-400 hover:border-orange-400 hover:bg-orange-400 hover:text-white font-medium rounded-md text-lg transform ease-in duration-100 group ${
+        className={` font-semibold cursor-pointer px-3 py-2 border-2 border-orange-400 hover:border-orange-400 hover:bg-orange-400 hover:text-white rounded-md text-lg transform ease-in duration-100 group ${
           userHasUpvoted(gpt.data.upvotes, user?.uid)
             ? "bg-orange-400 text-white"
             : "text-orange-400 bg-transparent"

@@ -4,6 +4,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Bricolage Grotesque", "sans-serif"],
+      },
       colors: {
         darkYellow: "#D6F6DD",
         lightYellow: "#FCF8DF",

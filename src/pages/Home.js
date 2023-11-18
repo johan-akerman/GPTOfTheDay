@@ -46,7 +46,7 @@ export default function Home({ user }) {
               🔥 Top GPTs posted today
             </h1>
             <p className="pb-14 pt-6 text-2xl text-center">
-              Vote on your favourites by clicking the upvote button.
+              Upvote your favourites.
             </p>
             <div className="w-full flex flex-col gap-3">
               {dataHottest?.map((gpt, i) => {
@@ -90,7 +90,7 @@ export default function Home({ user }) {
               🔔 Most recent GPTs
             </h1>
             <p className="pb-14 pt-6 text-2xl text-center">
-              Vote on your favourites by clicking the upvote button.
+              Upvote your favourites.
             </p>
             <div className="w-full flex flex-col gap-3">
               {dataMostRecent?.map((gpt, i) => {

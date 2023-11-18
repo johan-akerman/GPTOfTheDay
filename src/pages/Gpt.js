@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Footer } from "../components/Footer";
-import { Navbar } from "../components/Navbar";
+
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import Comment from "../components/Comment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,7 +7,6 @@ import { useEffect } from "react";
 import GPTPageCard from "../components/GPTPageCard";
 import AddComment from "../components/AddComment";
 import { getGpt } from "../firestore";
-import { getCurrentUser } from "../authentication";
 
 export default function Gpt({ user }) {
   const url = window.location.href;
