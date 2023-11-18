@@ -140,7 +140,7 @@ export default function GPTPageCard({ gpt, i }) {
 
       <div className="mt-4  w-full py-4 text-left bg-white p-4 border rounded-lg">
         <h1 className="text-2xl font-semibold py-2">Description</h1>
-        <p className="text-lg pt-1 w-full truncate">{gpt?.data?.description}</p>
+        <p className="text-lg pt-1 w-full">{gpt?.data?.description}</p>
       </div>
     </>
   );
