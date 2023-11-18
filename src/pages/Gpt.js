@@ -54,7 +54,7 @@ export default function Gpt({ user }) {
 
             <div className="grid gap-3">
               {gpt?.data?.comments?.length === 0 ? (
-                <div className=" text-center px-5 pt-8 pb-8 w-96 mx-auto">
+                <div className=" text-center px-5 pt-8 pb-8 mx-auto">
                   <FontAwesomeIcon
                     icon={faBoxOpen}
                     className="text-4xl mb-3 text-mediumBrown"

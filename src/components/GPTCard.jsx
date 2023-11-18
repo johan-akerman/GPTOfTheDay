@@ -98,7 +98,7 @@ export default function GPTCard({ gpt, i }) {
               </p>
               <p className="text-lg pt-1 pb-1">{gpt?.data?.description}</p>
 
-              <div className="flex text-xs mb-2 gap-2">
+              <div className="flex text-sm mb-2 gap-2">
                 <p>
                   Posted {getNiceDataString(gpt?.data?.submittedAt)} by{" "}
                   {gpt?.data?.creator}.

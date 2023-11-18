@@ -11,7 +11,7 @@ export function Jumbotron() {
               Discover the best new GPTs, every day
             </h1>
 
-            <p className="text-darkBrown text-2xl mb-5 ">
+            <p className="text-darkBrown text-2xl mb-5">
               🔍 <span className="underline font-semibold">Find</span> the new
               GPTs that everyone is talking about.
             </p>

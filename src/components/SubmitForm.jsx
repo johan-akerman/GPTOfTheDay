@@ -97,7 +97,7 @@ export default function SubmitForm() {
             </h1>
             <div className="grid grid-cols-12 gap-3">
               <div className="md:col-span-6 col-span-12 flex flex-col gap-2 mb-3">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold">
+                <label className="block uppercase tracking-wide text-gray-700 text-sm font-bold">
                   GPT Title
                 </label>
 
@@ -111,7 +111,7 @@ export default function SubmitForm() {
               </div>
 
               <div className="md:col-span-6 col-span-12 flex flex-col gap-2 mb-2">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold">
+                <label className="block uppercase tracking-wide text-gray-700 text-sm font-bold">
                   Category
                 </label>
 
@@ -161,7 +161,7 @@ export default function SubmitForm() {
             </div>
             <div className="grid grid-cols-12 gap-3 md:mb-2 mb-0">
               <div className="md:col-span-6 col-span-12 flex flex-col gap-2 ">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mt-3">
+                <label className="block uppercase tracking-wide text-gray-700 text-sm font-bold mt-3">
                   Creator name
                 </label>
 
@@ -174,7 +174,7 @@ export default function SubmitForm() {
                 />
               </div>
               <div className="md:col-span-6 col-span-12 flex flex-col gap-2">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold md:mt-3 mt-1">
+                <label className="block uppercase tracking-wide text-gray-700 text-sm font-bold md:mt-3 mt-1">
                   Email
                 </label>
 
@@ -189,7 +189,7 @@ export default function SubmitForm() {
               </div>
             </div>
             <div className="flex flex-col gap-2 mb-5 mt-3">
-              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold">
+              <label className="block uppercase tracking-wide text-gray-700 text-sm font-bold">
                 GPT URL (Must include https://chat.openai.com)
               </label>
 
@@ -202,7 +202,7 @@ export default function SubmitForm() {
               />
             </div>
             <div className="flex flex-col gap-2 mb-3 mt-1">
-              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold">
+              <label className="block uppercase tracking-wide text-gray-700 text-sm font-bold">
                 Description ({"<"} 100 characters)
               </label>
 
