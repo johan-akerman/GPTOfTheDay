@@ -7,6 +7,7 @@ import { getCurrentUser } from "../authentication";
 import { getHottest, getMostRecent } from "../firestore";
 import SubmitForm from "../components/SubmitForm";
 import { Timestamp } from "firebase/firestore";
+import Carousel from "../components/Carousel";
 
 export default function Home({ user }) {
   const [dataHottest, setDataHottest] = useState([]);

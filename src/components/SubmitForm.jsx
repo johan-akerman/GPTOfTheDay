@@ -92,7 +92,7 @@ export default function SubmitForm() {
         {!successfulSubmit ? (
           <>
             {" "}
-            <h1 className="text-4xl text-center font-semibold mb-8">
+            <h1 className="text-3xl text-center font-semibold mb-8">
               Share your GPTs for FREE
             </h1>
             <div className="grid grid-cols-12 gap-3">

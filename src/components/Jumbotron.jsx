@@ -1,6 +1,7 @@
 import React from "react";
 import SubmitForm from "./SubmitForm";
 import { Link } from "react-router-dom";
+import Carousel from "./Carousel";
 export function Jumbotron() {
   return (
     <>
@@ -30,6 +31,8 @@ export function Jumbotron() {
             <SubmitForm />
           </div>
         </div>
+
+        <Carousel />
       </main>
     </>
   );

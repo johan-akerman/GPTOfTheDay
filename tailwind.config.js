@@ -19,6 +19,15 @@ module.exports = {
         mediumBrown: "#E8D1BF",
         darkBrown: "#222222",
       },
+      keyframes: {
+        wiggle: {
+          "0%": { tranform: "-translateX(50%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+      },
+      animation: {
+        wiggle: "wiggle 1s linear infinite",
+      },
     },
   },
   plugins: [],
