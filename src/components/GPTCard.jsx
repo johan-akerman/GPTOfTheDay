@@ -96,13 +96,18 @@ export default function GPTCard({ gpt, i }) {
               <p className="text-2xl font-semibold text-gray-900 leading-none">
                 {gpt?.data?.title}
               </p>
-              <p className="text-lg pt-1 pb-1">{gpt?.data?.description}</p>
+              <p className="text-lg pt-1 pb-1 truncate">
+                {gpt?.data?.description}
+              </p>
 
               <div className="flex text-sm mb-2 gap-2">
                 <p>
                   Posted {getNiceDataString(gpt?.data?.submittedAt)} by{" "}
                   {gpt?.data?.creator}.
                 </p>
+              </div>
+
+              <div className="flex text-sm mb-4 gap-2">
                 <p>
                   {gpt?.data?.comments.length}{" "}
                   {gpt?.data?.comments.length === 1 ? " comment" : "comments"}
