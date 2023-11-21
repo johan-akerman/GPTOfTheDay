@@ -10,3 +10,16 @@ export var CATEGORY_INFO = [
     { id: 8, title: "Just for fun", icon: "😄", selected: false },
     { id: 9, title: "Miscellaneous", icon: "📦", selected: false },
   ];
+
+  export const CATEGORY_TITLES = [
+    "Select...",
+    "Miscellaneous",
+    "Productivity",
+    "DALL-E",
+    "Writing",
+    "Programming",
+    "Data Analysis",
+    "Education",
+    "Lifestyle",
+    "Just for fun",
+  ];
