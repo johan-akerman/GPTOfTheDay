@@ -8,20 +8,10 @@ import {
 import { addGptRequest, submitGpt } from "../firestore";
 import { Link } from "react-router-dom";
 import { getSfMostRecentMidnightTimestamp } from "../utils/times";
+import { CATEGORY_TITLES } from "../utils/categories";
 
 export default function SubmitForm() {
-  const categories = [
-    "Select...",
-    "Miscellaneous",
-    "Productivity",
-    "DALL-E",
-    "Writing",
-    "Programming",
-    "Data Analysis",
-    "Education",
-    "Lifestyle",
-    "Just for fun",
-  ];
+  const categories = CATEGORY_TITLES;
 
   const [successfulSubmit, setSuccessfulSubmit] = useState(false);
   const [url, setUrl] = useState("");

@@ -4,21 +4,11 @@ import { useEffect } from "react";
 import SelectSort from "../components/SelectSort";
 import { getGpt, getGptsWithFilter, getMoreGpts } from "../firestore";
 import { analyticsLogChangedCategory, analyticsLogSelectedLoadMore } from "../ganalytics";
+import { CATEGORY_INFO } from "../utils/categories";
 export default function Directory() {
   const [gpts, setGpts] = useState();
 
-  const [categories, setCategories] = useState([
-    { id: 0, title: "All", icon: "🌐", selected: true },
-    { id: 1, title: "Productivity", icon: "⏰", selected: false },
-    { id: 2, title: "DALL-E", icon: "🎨", selected: false },
-    { id: 3, title: "Writing", icon: "✏️", selected: false },
-    { id: 4, title: "Programming", icon: "💻", selected: false },
-    { id: 5, title: "Data Analysis", icon: "📊", selected: false },
-    { id: 6, title: "Education", icon: "📚", selected: false },
-    { id: 7, title: "Lifestyle", icon: "🌴", selected: false },
-    { id: 8, title: "Just for fun", icon: "😄", selected: false },
-    { id: 9, title: "Miscellaneous", icon: "📦", selected: false },
-  ]);
+  const [categories, setCategories] = useState(CATEGORY_INFO);
 
   const [currentPage, setCurrentPage] = useState(0);
   function handleLoadMore() {
