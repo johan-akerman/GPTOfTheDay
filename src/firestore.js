@@ -10,12 +10,10 @@ import {
   startAfter,
   doc,
   runTransaction,
-  Timestamp,
 } from "firebase/firestore";
 import { db } from "./firebase";
 import {
   getSfMostRecentMidnightTimestamp,
-  getSfTimeOffsetSeconds,
 } from "./utils/times";
 
 let latestFilter = {};

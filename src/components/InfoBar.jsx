@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { getSfNextMidnight, getSfTime } from "../utils/times";
 
 export default function InfoBar() {
-  const [email, setEmail] = useState("");
   const [timeLeft, setTimeLeft] = useState({
     hours: "00",
     minutes: "00",

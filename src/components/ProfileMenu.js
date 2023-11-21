@@ -1,8 +1,6 @@
 import { Fragment } from "react";
-import { getAuth, signOut } from "@firebase/auth";
 import { Menu, Transition } from "@headlessui/react";
 import { logOut } from "../authentication";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useAuthState } from "../firebase";

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import GPTCard from "../components/GPTCard";
 import { useEffect } from "react";
 import SelectSort from "../components/SelectSort";
-import { getGpt, getGptsWithFilter, getMoreGpts } from "../firestore";
+import { getGptsWithFilter, getMoreGpts } from "../firestore";
 import { analyticsLogChangedCategory, analyticsLogSelectedLoadMore } from "../ganalytics";
 import { CATEGORY_INFO } from "../utils/categories";
 export default function Directory() {

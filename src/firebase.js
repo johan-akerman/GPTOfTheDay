@@ -1,11 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 // import { firebaseConfig } from "./firebaseconfig";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { useState, useEffect, createContext, useContext } from "react";
-
-// Initialize Firebase
 
 let firebaseConfig = {
   apiKey: process.env.REACT_APP_APIKEY,
@@ -17,6 +15,7 @@ let firebaseConfig = {
   measurementId: process.env.REACT_APP_MEASUREMENTID,
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 export const firebaseConfig_dev = {};

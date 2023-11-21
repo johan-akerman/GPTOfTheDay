@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import Comment from "../components/Comment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,7 +11,6 @@ export default function Gpt({ user }) {
   const url = window.location.href;
   const id = url.split("/")[url.split("/").length - 1];
   const [gpt, setGpt] = useState();
-  const [loading, setLoading] = useState(true);
   const [currentComments, setCurrentComments] = useState();
 
   useEffect(() => {

@@ -1,11 +1,11 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
-import { addGptRequest, submitGpt } from "../firestore";
+import { submitGpt } from "../firestore";
 import { Link } from "react-router-dom";
 import { getSfMostRecentMidnightTimestamp } from "../utils/times";
 import { CATEGORY_TITLES } from "../utils/categories";
@@ -21,7 +21,6 @@ export default function SubmitForm() {
   const [creator, setCreator] = useState("");
   const [category, setCategory] = useState(categories[0]);
   const [email, setEmail] = useState("");
-
   const [missingInfo, setMissingInfo] = useState(false);
 
   function checkValidEntry() {

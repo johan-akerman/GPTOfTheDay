@@ -6,12 +6,7 @@ import { Fragment, useState } from "react";
 import { signInWithGoogle } from "../authentication";
 import { useAuthState } from "../firebase";
 import { getGpt } from "../firestore";
-import {
-  downvote,
-  toggleUpvoteGpt,
-  upvote,
-  userHasUpvoted,
-} from "../firestore";
+import { toggleUpvoteGpt, userHasUpvoted } from "../firestore";
 
 export default function UpvoteButton({ g }) {
   const [gpt, setGpt] = useState(g);
