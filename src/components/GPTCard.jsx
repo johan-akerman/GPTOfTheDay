@@ -1,14 +1,10 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import UpvoteButton from "./UpvoteButton";
 import { getNiceDataString } from "../utils/strings";
 import { CATEGORY_INFO } from "../utils/categories";
 
 export default function GPTCard({ gpt, i }) {
-  const url = window.location.href;
-  const gpt_page = url.split("/")[url.split("/").length - 2] == "gpts";
   const category_info = CATEGORY_INFO;
   const gpt_category_index = category_info.findIndex(
     (c) => c.title === gpt?.data?.category

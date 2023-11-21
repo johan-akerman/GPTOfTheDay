@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 import { getHottest, getMostRecent } from "../firestore";
 import { analyticsLogSelectedLoadMore } from "../ganalytics";
 
-
-export default function Home({ user }) {
+export default function Home() {
   const [dataHottest, setDataHottest] = useState([]);
   const [dataMostRecent, setDataMostRecent] = useState([]);
   const [currentPageHottest, setCurrentPageHottest] = useState(0);
