@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Footer } from "../components/Footer";
-import { Navbar } from "../components/Navbar";
+
 import { faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import Comment from "../components/Comment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,7 +7,6 @@ import { useEffect } from "react";
 import GPTPageCard from "../components/GPTPageCard";
 import AddComment from "../components/AddComment";
 import { getGpt } from "../firestore";
-import { getCurrentUser } from "../authentication";
 
 export default function Gpt({ user }) {
   const url = window.location.href;
@@ -26,7 +24,7 @@ export default function Gpt({ user }) {
   }, []);
 
   function handleAddComment(newComments) {
-    setCurrentComments(newComments);
+    setCurrentComments(newComments.reverse());
   }
 
   if (!gpt) {
@@ -56,7 +54,7 @@ export default function Gpt({ user }) {
 
             <div className="grid gap-3">
               {gpt?.data?.comments?.length === 0 ? (
-                <div className=" text-center px-5 pt-8 pb-8 w-96 mx-auto">
+                <div className=" text-center px-5 pt-8 pb-8 mx-auto">
                   <FontAwesomeIcon
                     icon={faBoxOpen}
                     className="text-4xl mb-3 text-mediumBrown"

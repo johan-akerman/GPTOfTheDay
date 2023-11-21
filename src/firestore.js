@@ -13,6 +13,10 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import { db } from "./firebase";
+import {
+  getSfMostRecentMidnightTimestamp,
+  getSfTimeOffsetSeconds,
+} from "./utils/times";
 
 let latestFilter = {};
 let latestDoc = {};
@@ -33,18 +37,13 @@ export async function getGpt(id) {
 }
 
 export async function getHottest(lim, getMore = false) {
-  let mostRecentMidnight = new Date(
-    new Date().toLocaleString("en-US", {
-      timeZone: "America/Los_Angeles",
-    })
-  );
-  mostRecentMidnight.setHours(0, 0, 0, 0);
-  const startOfDay = Timestamp.fromDate(mostRecentMidnight);
+  const mostRecentMidnightTimestamp = getSfMostRecentMidnightTimestamp();
+
   let q = "";
   if (getMore) {
     q = query(
       gptsRef,
-      where("mostRecentMidnight", "==", startOfDay),
+      where("mostRecentMidnight", "==", mostRecentMidnightTimestamp),
       orderBy("upvote_count", "desc"),
       startAfter(latestDocHottest),
       limit(lim)
@@ -52,7 +51,7 @@ export async function getHottest(lim, getMore = false) {
   } else {
     q = query(
       gptsRef,
-      where("mostRecentMidnight", "==", startOfDay),
+      where("mostRecentMidnight", "==", mostRecentMidnightTimestamp),
       orderBy("upvote_count", "desc"),
       limit(lim)
     );
@@ -208,12 +207,6 @@ export async function submitGpt(gpt) {
 }
 
 export async function toggleUpvoteGpt(gpt, uid, hasUserUpvoted) {
-  const sfTimeString = new Date().toLocaleString("en-US", {
-    timeZone: "America/Los_Angeles",
-  });
-
-  const sfTime = new Date(sfTimeString);
-
   const docRef = await doc(db, "gpts", gpt.id);
 
   try {
@@ -235,7 +228,7 @@ export async function toggleUpvoteGpt(gpt, uid, hasUserUpvoted) {
         newUpvotes = [
           ...oldUpvotes,
           {
-            submittedAt: sfTime,
+            submittedAt: new Date(),
             uid: uid,
           },
         ];
@@ -284,7 +277,7 @@ export async function addComment(user, gpt, comment) {
       const newComments = [
         ...oldComments,
         {
-          submittedAt: sfTime,
+          submittedAt: new Date(),
           userName: user.displayName.split(" ")[0],
           text: comment,
         },

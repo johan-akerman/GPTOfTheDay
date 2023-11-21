@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { getSfNextMidnight, getSfTime } from "../utils/times";
 
 export default function InfoBar() {
   const [email, setEmail] = useState("");
@@ -11,14 +12,9 @@ export default function InfoBar() {
 
   useEffect(() => {
     const updateRemainingTime = () => {
-      const sfTimeString = new Date().toLocaleString("en-US", {
-        timeZone: "America/Los_Angeles",
-      });
+      const sfTime = getSfTime();
 
-      const sfTime = new Date(sfTimeString);
-
-      const midnight = new Date(sfTimeString);
-      midnight.setHours(24, 0, 0, 0);
+      const midnight = getSfNextMidnight();
 
       const millisecondsUntilMidnight = midnight - sfTime;
       const totalSecondsLeft = Math.floor(millisecondsUntilMidnight / 1000);
@@ -43,18 +39,18 @@ export default function InfoBar() {
 
   return (
     <div className="bg-darkGray text-center">
-      <div className="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8 flex justify-center gap-4 items-center">
-        <p className="ml-3 text-white font-medium">
+      <div className="max-w-7xl mx-auto py-3 px-2 sm:px-3 lg:px-8 flex justify-center md:gap-4 gap-2 items-center">
+        <p className="text-white font-medium md:text-lg text-sm">
           <span className="mr-2">⏰ </span> GPTOTD voting ends in{"   "}
-          <span className="text-semibold bg-white bg-opacity-20 text-white px-1.5 py-1 rounded-md">
+          <span className="text-semibold bg-white bg-opacity-20 text-white md:px-1.5 px-1 py-1 rounded-md ">
             {`${timeLeft.hours}h`}
           </span>
           :{" "}
-          <span className="text-semibold bg-white bg-opacity-20 text-white px-1.5 py-1 rounded-md">
+          <span className="text-semibold bg-white bg-opacity-20 text-white md:px-1.5 px-1 py-1 rounded-md">
             {`${timeLeft.minutes}m`}
           </span>
           :{" "}
-          <span className="text-semibold bg-white bg-opacity-20 text-white px-1.5 py-1 rounded-md">
+          <span className="text-semibold bg-white bg-opacity-20 text-white md:px-1.5 px-1 py-1 rounded-md">
             {`${timeLeft.seconds}s`}
           </span>
         </p>

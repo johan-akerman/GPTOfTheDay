@@ -4,6 +4,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Bricolage Grotesque", "sans-serif"],
+      },
       colors: {
         darkYellow: "#D6F6DD",
         lightYellow: "#FCF8DF",
@@ -15,6 +18,15 @@ module.exports = {
         lightBrown: "#FAF1E6",
         mediumBrown: "#E8D1BF",
         darkBrown: "#222222",
+      },
+      keyframes: {
+        wiggle: {
+          "0%": { tranform: "-translateX(50%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+      },
+      animation: {
+        wiggle: "wiggle 1s linear infinite",
       },
     },
   },

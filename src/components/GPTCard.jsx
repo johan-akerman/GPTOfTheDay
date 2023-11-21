@@ -26,11 +26,7 @@ export default function GPTCard({ gpt, i }) {
   function getNiceDataString(date) {
     const dateFromFb = new Date(date.seconds * 1000);
 
-    const currentSfTime = new Date(
-      new Date().toLocaleString("en-US", {
-        timeZone: "America/Los_Angeles",
-      })
-    );
+    const currentSfTime = new Date();
 
     const milliSecondsPerMinute = 60 * 1000;
     const milliSecondsPerHour = milliSecondsPerMinute * 60;
@@ -59,7 +55,7 @@ export default function GPTCard({ gpt, i }) {
           <div className="flex items-center text-left justify-between ">
             <div className="flex items-center gap-4 w-4/6 ">
               <div className="w-full">
-                <p className="text-xl font-medium text-gray-900 leading-none truncate">
+                <p className="text-xl font-semibold text-gray-900 leading-none truncate">
                   {gpt?.data?.title}
                 </p>
                 <p className="text-lg pt-1 w-full truncate">
@@ -97,18 +93,21 @@ export default function GPTCard({ gpt, i }) {
         <div className="flex items-center text-left justify-between">
           <div className="flex items-center gap-4">
             <div>
-              <p className="text-2xl font-medium text-gray-900 leading-none">
-                {gpt_page
-                  ? `${gpt?.data?.title}`
-                  : `#${i + 1}: ${gpt?.data?.title}`}
+              <p className="text-2xl font-semibold text-gray-900 leading-none">
+                {gpt?.data?.title}
               </p>
-              <p className="text-lg pt-1 pb-1">{gpt?.data?.description}</p>
+              <p className="text-lg pt-1 pb-1 truncate">
+                {gpt?.data?.description}
+              </p>
 
-              <div className="flex text-xs mb-2 gap-2">
+              <div className="flex text-sm mb-2 gap-2">
                 <p>
                   Posted {getNiceDataString(gpt?.data?.submittedAt)} by{" "}
                   {gpt?.data?.creator}.
                 </p>
+              </div>
+
+              <div className="flex text-sm mb-4 gap-2">
                 <p>
                   {gpt?.data?.comments.length}{" "}
                   {gpt?.data?.comments.length === 1 ? " comment" : "comments"}
