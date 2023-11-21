@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import UpvoteButton from "./UpvoteButton";
+import { getNiceDataString } from "../utils/strings";
 
 export default function GPTCard({ gpt, i }) {
   const url = window.location.href;
@@ -22,31 +23,6 @@ export default function GPTCard({ gpt, i }) {
   const gpt_category_index = category_info.findIndex(
     (c) => c.title === gpt?.data?.category
   );
-
-  function getNiceDataString(date) {
-    const dateFromFb = new Date(date.seconds * 1000);
-
-    const currentSfTime = new Date();
-
-    const milliSecondsPerMinute = 60 * 1000;
-    const milliSecondsPerHour = milliSecondsPerMinute * 60;
-    const milliSecondsPerDay = milliSecondsPerHour * 24;
-
-    const elapsed = currentSfTime - dateFromFb;
-
-    if (elapsed < milliSecondsPerMinute) {
-      return "< 1 minute ago";
-    } else if (elapsed < milliSecondsPerHour) {
-      const minutes = Math.round(elapsed / milliSecondsPerMinute);
-      return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
-    } else if (elapsed < milliSecondsPerDay) {
-      const hours = Math.round(elapsed / milliSecondsPerHour);
-      return `${hours} hour${hours > 1 ? "s" : ""} ago`;
-    } else {
-      const days = Math.round(elapsed / milliSecondsPerDay);
-      return `${days} day${days > 1 ? "s" : ""} ago`;
-    }
-  }
 
   return (
     <>

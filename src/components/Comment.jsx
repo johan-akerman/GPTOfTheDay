@@ -1,33 +1,9 @@
 import React from "react";
+import { getNiceDataString } from "../utils/strings";
 
 export default function Comment({ review }) {
-  function getNiceDataString(date) {
-    if (date === "Just now") {
-      return "Just now";
-    } else {
-      const dateFromFb = new Date(date.seconds * 1000);
-
-      const currentSfTime = new Date();
-
-      const milliSecondsPerMinute = 60 * 1000;
-      const milliSecondsPerHour = milliSecondsPerMinute * 60;
-      const milliSecondsPerDay = milliSecondsPerHour * 24;
-
-      const elapsed = currentSfTime - dateFromFb;
-
-      if (elapsed < milliSecondsPerMinute) {
-        return "< 1 minute ago";
-      } else if (elapsed < milliSecondsPerHour) {
-        const minutes = Math.round(elapsed / milliSecondsPerMinute);
-        return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
-      } else if (elapsed < milliSecondsPerDay) {
-        const hours = Math.round(elapsed / milliSecondsPerHour);
-        return `${hours} hour${hours > 1 ? "s" : ""} ago`;
-      } else {
-        const days = Math.round(elapsed / milliSecondsPerDay);
-        return `${days} day${days > 1 ? "s" : ""} ago`;
-      }
-    }
+  function getNiceCommentString(date) {
+    return date === "Just now" ? "Just now" : getNiceDataString(date);
   }
 
   return (
@@ -35,7 +11,7 @@ export default function Comment({ review }) {
       <div className="text-left">
         <div>
           <span className="text-xs opacity-40">
-            {getNiceDataString(review?.submittedAt)}
+            {getNiceCommentString(review?.submittedAt)}
           </span>
           <p className="text-lg font-medium">{review?.userName}</p>
         </div>
