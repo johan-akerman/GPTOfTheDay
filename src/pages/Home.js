@@ -3,11 +3,9 @@ import { Jumbotron } from "../components/Jumbotron";
 import GPTCard from "../components/GPTCard";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getCurrentUser } from "../authentication";
 import { getHottest, getMostRecent } from "../firestore";
-import SubmitForm from "../components/SubmitForm";
-import { Timestamp } from "firebase/firestore";
-import Carousel from "../components/Carousel";
+import { analyticsLogSelectedLoadMore } from "../ganalytics";
+
 
 export default function Home({ user }) {
   const [dataHottest, setDataHottest] = useState([]);
@@ -16,6 +14,7 @@ export default function Home({ user }) {
   const [currentPageRecent, setCurrentPageRecent] = useState(0);
 
   function handleLoadMoreHottest() {
+    analyticsLogSelectedLoadMore("Hottest")
     setCurrentPageHottest((old) => old + 1);
   }
   useEffect(() => {
@@ -23,6 +22,7 @@ export default function Home({ user }) {
   }, [currentPageHottest]);
 
   function handleLoadMoreRecent() {
+    analyticsLogSelectedLoadMore("Recent")
     setCurrentPageRecent((old) => old + 1);
   }
 

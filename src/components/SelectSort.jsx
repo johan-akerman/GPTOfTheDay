@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { analyticsLogChangedSort } from "../ganalytics";
 
 const people = [
   { name: "Most upvotes", value: "upvote_count", order: "desc" },
@@ -14,6 +15,7 @@ export default function SelectSort({ setCurrentSort }) {
   const [selected, setSelected] = useState(people[0]);
 
   useEffect(() => {
+    analyticsLogChangedSort(selected.name);
     setCurrentSort(selected);
   }, [selected]);
 

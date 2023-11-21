@@ -3,6 +3,7 @@ import GPTCard from "../components/GPTCard";
 import { useEffect } from "react";
 import SelectSort from "../components/SelectSort";
 import { getGpt, getGptsWithFilter, getMoreGpts } from "../firestore";
+import { analyticsLogChangedCategory, analyticsLogSelectedLoadMore } from "../ganalytics";
 export default function Directory() {
   const [gpts, setGpts] = useState();
 
@@ -21,6 +22,7 @@ export default function Directory() {
 
   const [currentPage, setCurrentPage] = useState(0);
   function handleLoadMore() {
+    analyticsLogSelectedLoadMore("Directory");
     setCurrentPage((old) => old + 1);
   }
 
@@ -38,6 +40,7 @@ export default function Directory() {
     );
     updatedCategories[oldCategoryIndex].selected = false;
     updatedCategories[id].selected = true;
+    analyticsLogChangedCategory(categories[id].title)
     setCurrentCategory((old) => categories[id].title);
   }
 
