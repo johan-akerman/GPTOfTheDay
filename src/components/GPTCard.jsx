@@ -4,22 +4,12 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import UpvoteButton from "./UpvoteButton";
 import { getNiceDataString } from "../utils/strings";
+import { CATEGORY_INFO } from "../utils/categories";
 
 export default function GPTCard({ gpt, i }) {
   const url = window.location.href;
   const gpt_page = url.split("/")[url.split("/").length - 2] == "gpts";
-  const category_info = [
-    { id: 0, title: "All", icon: "🌐", selected: true },
-    { id: 1, title: "Productivity", icon: "⏰", selected: false },
-    { id: 2, title: "DALL-E", icon: "🎨", selected: false },
-    { id: 3, title: "Writing", icon: "✏️", selected: false },
-    { id: 4, title: "Programming", icon: "💻", selected: false },
-    { id: 5, title: "Data Analysis", icon: "📊", selected: false },
-    { id: 6, title: "Education", icon: "📚", selected: false },
-    { id: 7, title: "Lifestyle", icon: "🌴", selected: false },
-    { id: 8, title: "Just for fun", icon: "😄", selected: false },
-    { id: 9, title: "Miscellaneous", icon: "📦", selected: false },
-  ];
+  const category_info = CATEGORY_INFO;
   const gpt_category_index = category_info.findIndex(
     (c) => c.title === gpt?.data?.category
   );
