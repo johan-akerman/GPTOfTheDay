@@ -119,12 +119,12 @@ export default function Carousel() {
   let reversedGpts = [...data].reverse();
 
   return (
-    <div className="w-screen py-12">
+    <div className="w-full py-12">
       <h1 className="text-center block uppercase tracking-wide text-darkBrown font-bold mb-6 px-6 text-lg">
         Featuring the best GPT creators today. Everyday.
       </h1>
 
-      <div className="w-screen  mx-auto overflow-x-hidden text-center gap-12 ">
+      <div className="w-full mx-auto overflow-x-hidden text-center gap-12 ">
         <div className="flex gap-8 animate-[wiggle_40s_linear_infinite] -translate-x-1/2 flex-row w-fit mb-6  ml-28 ">
           {data.map((gpt, id) => (
             <CarouselCard
