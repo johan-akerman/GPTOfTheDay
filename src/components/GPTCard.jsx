@@ -91,14 +91,12 @@ export default function GPTCard({ gpt, i }) {
 
       <div className="md:hidden block transform ease-in w-full bg-white bg-opacity-50 hover:bg-opacity-100 rounded-md border p-4 text-left">
         <div className="flex items-center text-left justify-between">
-          <div className="flex items-center gap-4">
-            <div>
-              <p className="text-2xl font-semibold text-gray-900 leading-none">
+          <div className="flex items-center gap-4 w-5/6">
+            <div className="w-full">
+              <p className="text-2xl font-semibold text-gray-900 leading-none truncate">
                 {gpt?.data?.title}
               </p>
-              <p className="text-lg pt-1 pb-1 truncate">
-                {gpt?.data?.description}
-              </p>
+              <p className="text-lg pt-1 truncate">{gpt?.data?.description}</p>
 
               <div className="flex text-sm mb-2 gap-2">
                 <p>
