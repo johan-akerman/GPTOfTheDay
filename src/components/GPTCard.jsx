@@ -13,34 +13,29 @@ export default function GPTCard({ gpt, i }) {
   return (
     <>
       <Link to={`/gpts/${gpt?.id}`}>
-        <div className="md:block hidden transform ease-in w-full hover:bg-mediumBrown rounded-md py-1 text-left">
-          <div className="flex items-center text-left gap-4 w-full px-4 py-2">
-            <div className="flex items-center w-full">
-              <div className="w-full">
-                <p className="text-xl font-semibold text-gray-900 leading-none truncate">
-                  {gpt?.data?.title}
-                </p>
-                <p className="text-lg w-full truncate opacity-50">
-                  {gpt?.data?.description}
-                </p>
+        <div className="md:block hidden transform ease-in w-full hover:bg-mediumBrown  rounded-md py-1 text-left">
+          <div className="flex items-center text-left gap-4 w-full px-4 py-2 justify-between">
+            <div className=" items-center w-5/6">
+              <p className="text-xl font-semibold text-gray-900 leading-none truncate">
+                {gpt?.data?.title}
+              </p>
+              <p className="text-lg w-full opacity-50 truncate">
+                {gpt?.data?.description}
+              </p>
 
-                <div className="flex gap-2 text-sm">
-                  <p>
-                    Posted by {gpt?.data?.creator}{" "}
-                    {getNiceDataString(gpt?.data?.submittedAt)}.
-                  </p>
-                  <p>
-                    {gpt?.data?.comments.length}{" "}
-                    {gpt?.data?.comments.length === 1 ? " comment" : "comments"}
-                    .
-                  </p>
-                </div>
+              <div className="flex gap-2 text-sm">
+                <p>
+                  Posted by {gpt?.data?.creator}{" "}
+                  {getNiceDataString(gpt?.data?.submittedAt)}.
+                </p>
+                <p>
+                  {gpt?.data?.comments.length}{" "}
+                  {gpt?.data?.comments.length === 1 ? " comment" : "comments"}.
+                </p>
               </div>
             </div>
 
-            <div className="flex">
-              <UpvoteButton g={gpt} />
-            </div>
+            <UpvoteButton g={gpt} />
           </div>
         </div>
       </Link>

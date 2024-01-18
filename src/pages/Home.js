@@ -18,7 +18,7 @@ export default function Home() {
           <div className="w-full mx-auto text-center">
             <button
               className="cursor-pointer px-5 py-2 font-medium rounded-md text-white bg-darkGray hover:bg-opacity-80  text-lg transform ease-in duration-100 mt-6 mx-auto"
-              onClick={() => setDays((res) => res + 3)}
+              onClick={() => setDays((res) => res + 1)}
             >
               Load more days
             </button>

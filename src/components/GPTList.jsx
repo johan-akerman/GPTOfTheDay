@@ -70,14 +70,26 @@ export default function GPTList({ i }) {
     }
   }
 
+  function generateTitle() {
+    if (i == 0) {
+      return "Top GPTs posted today";
+    } else if (i == 1) {
+      return "Yesterday's top GPTs";
+    } else {
+      return (
+        getDayName(day.getDay()) +
+        ", " +
+        getMonthName(day.getMonth()) +
+        " " +
+        day.getDate()
+      );
+    }
+  }
+
   return (
     <div className="mb-16">
-      <h1 className="text-black text-left text-4xl sm:mt-5 font-bold pt-4 mb-4 px-3">
-        {getDayName(day.getDay()) +
-          ", " +
-          getMonthName(day.getMonth()) +
-          " " +
-          day.getDate()}
+      <h1 className="text-black text-left text-3xl sm:mt-5 font-semibold pt-4 mb-4 px-3">
+        {generateTitle()}
       </h1>
 
       <div className="w-full flex flex-col gap-3">
@@ -86,14 +98,14 @@ export default function GPTList({ i }) {
         })}
 
         {dataHottest?.length == 0 ? (
-          <div className="w-full bg-white bg-opacity-50 border-orange-300 border-2 border-dashed rounded-md  py-8 px-4 text-center">
-            <h1 className="text-2xl mb-4 font-semibold">
-              No GPTs submitted this day! 🤖
+          <div className="mx-3  border border-darkBrown bg-mediumBrown bg-opacity-80 rounded-lg py-2 px-3 align-middle md:flex block justify-between text-center">
+            <h1 className="align-middle mt-1.5 md:mb-0 mb-3">
+              📭 No GPTs were submitted this day.
             </h1>
 
             <Link
+              className="md:mx-0 mx-auto px-5 py-2 border border-transparent font-medium text-sm rounded-md text-white bg-darkBrown transform ease-in duration-100"
               to="/submit"
-              className="px-6 py-2 border border-transparent font-medium rounded-md text-white bg-orange-400 text-xl hover:bg-orange-300"
             >
               Submit GPT
             </Link>

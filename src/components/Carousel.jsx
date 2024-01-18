@@ -119,7 +119,7 @@ export default function Carousel() {
   let reversedGpts = [...data].reverse();
 
   return (
-    <div className="w-full py-12">
+    <div className="w-full pt-12 pb-4">
       <h1 className="text-center block uppercase tracking-wide text-darkBrown opacity-30 font-bold mb-6 px-6 text-md">
         Featuring the best GPT creators every day.
       </h1>
