@@ -19,7 +19,7 @@ import {
 
 let latestFilter = {};
 let latestDoc = {};
-let latestDocHottest = {};
+let latestDocHottest = null;
 let latestDocRecent = {};
 
 const gptsRef = collection(db, "gpts");
@@ -58,7 +58,9 @@ export async function getHottest(lim, getMore = false) {
 
   const querySnapshot = await getDocs(q);
 
-  latestDocHottest = querySnapshot.docs[querySnapshot.docs.length - 1];
+  if (querySnapshot.docs.length > 0) {
+    latestDocHottest = querySnapshot.docs[querySnapshot.docs.length - 1];
+  }
 
   return querySnapshot.docs.map((doc) => ({
     id: doc.id,
@@ -67,9 +69,8 @@ export async function getHottest(lim, getMore = false) {
 }
 
 export async function getWinners(lim, getMore = false, offset) {
-  console.log("offset: ", offset);
   const mostRecentMidnightTimestamp = getPreviousMidnightTimestamp(offset);
-  console.log(mostRecentMidnightTimestamp);
+
   let q = "";
   if (getMore) {
     q = query(
@@ -91,6 +92,8 @@ export async function getWinners(lim, getMore = false, offset) {
   const querySnapshot = await getDocs(q);
 
   latestDocHottest = querySnapshot.docs[querySnapshot.docs.length - 1];
+
+  console.log(latestDocHottest);
 
   return querySnapshot.docs.map((doc) => ({
     id: doc.id,

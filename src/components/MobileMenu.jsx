@@ -42,6 +42,14 @@ export default function MobileMenu({ user, setUser }) {
                   <div className="relative bg-white p-3">
                     <Link
                       onClick={() => buttonRef.current?.click()}
+                      to="/directory"
+                      className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-2xl font-semibold text-gray-900"
+                    >
+                      All GPTs{" "}
+                    </Link>
+
+                    <Link
+                      onClick={() => buttonRef.current?.click()}
                       to="/submit"
                       className="flex items-center text-left p-2 mx-1 my-2 transition duration-150 ease-in-out rounded-lg hover:bg-gray-100 text-2xl font-semibold text-gray-900"
                     >

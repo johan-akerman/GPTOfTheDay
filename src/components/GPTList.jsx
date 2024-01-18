@@ -15,11 +15,10 @@ export default function GPTList({ i }) {
   const [dataHottest, setDataHottest] = useState([]);
 
   const day = getPreviousMidnight(i);
-  console.log("day", day);
-
-  console.log(i);
 
   function handleLoadMoreHottest() {
+    let tmp = [];
+
     getWinners(5, true, i).then((res) =>
       setDataHottest((old) => old.concat(res))
     );
@@ -97,18 +96,28 @@ export default function GPTList({ i }) {
           return <GPTCard gpt={gpt} i={index} key={gpt.id} />;
         })}
 
-        {dataHottest?.length == 0 ? (
+        {dataHottest?.length == 0 && i == 0 ? (
           <div className="mx-3  border border-darkBrown bg-mediumBrown bg-opacity-80 rounded-lg py-2 px-3 align-middle md:flex block justify-between text-center">
             <h1 className="align-middle mt-1.5 md:mb-0 mb-3">
-              📭 No GPTs were submitted this day.
+              📭 No GPTs have been submitted yet!
             </h1>
 
             <Link
               className="md:mx-0 mx-auto px-5 py-2 border border-transparent font-medium text-sm rounded-md text-white bg-darkBrown transform ease-in duration-100"
               to="/submit"
             >
-              Submit GPT
+              Submit your GPT now
             </Link>
+          </div>
+        ) : (
+          ""
+        )}
+
+        {dataHottest?.length == 0 && i != 0 ? (
+          <div className="mx-3 align-middle md:flex block justify-between text-center">
+            <h1 className="align-middle md:mb-0 mb-3">
+              No GPTs were submitted this day.
+            </h1>
           </div>
         ) : (
           ""
