@@ -31,18 +31,18 @@ export default function GPTList({ i }) {
 
   function getMonthName(monthIndex) {
     const months = [
-      "January",
-      "February",
-      "March",
-      "April",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
       "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ];
 
     if (monthIndex >= 0 && monthIndex < 12) {
@@ -88,13 +88,13 @@ export default function GPTList({ i }) {
 
   return (
     <div className="mb-16">
-      <h1 className="text-black text-left text-3xl sm:mt-5 font-semibold pt-4 mb-4 px-3">
+      <h1 className="text-black text-left text-3xl sm:mt-5 font-semibold pt-4 mb-6 px-3">
         {generateTitle()}
       </h1>
 
       <div className="w-full flex flex-col gap-3">
-        {dataHottest?.map((gpt, i) => {
-          return <GPTCard gpt={gpt} i={i} key={gpt.id} />;
+        {dataHottest?.map((gpt, index) => {
+          return <GPTCard gpt={gpt} i={index} key={gpt.id} />;
         })}
 
         {dataHottest?.length == 0 ? (
@@ -120,7 +120,7 @@ export default function GPTList({ i }) {
             onClick={() => handleLoadMoreHottest()}
           >
             <FontAwesomeIcon icon={faChevronDown} className="mr-2" />
-            Show more GPTs
+            Show more GPTs from this day
           </button>
         ) : (
           ""

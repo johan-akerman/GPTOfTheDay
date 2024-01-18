@@ -10,8 +10,6 @@ export function Footer() {
         <Link className="mx-auto mb-4" to="/">
           <img src={logo} className="h-20" />
         </Link>
-
-        <p className="">gptoftheday@gmail.com</p>
       </div>
     </div>
   );

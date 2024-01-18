@@ -20,6 +20,13 @@ export function Navbar() {
         <div className="flex justify-between items-center md:gap-4 gap-2">
           <Link
             className="lg:block hidden text-xl text-darkBrown font-semibold mr-4 ml-4"
+            to="/directory"
+          >
+            All GPTs
+          </Link>
+
+          <Link
+            className="lg:block hidden text-xl text-darkBrown font-semibold mr-4 ml-4"
             to="/submit"
           >
             Submit GPT
@@ -31,7 +38,7 @@ export function Navbar() {
             <>
               <button
                 onClick={() => signInWithGoogle()}
-                className="md:flex hidden gap-2 text-center justify-center transition duration-150 cursor-pointer text-lg  rounded-full  bg-darkGray text-mediumBrown font-semibold px-6 py-3"
+                className="md:flex hidden gap-2 text-center justify-center transition duration-150 cursor-pointer text-lg  rounded-full  bg-darkGray text-lightBrown font-semibold px-6 py-3"
               >
                 <span>Sign in</span>
               </button>
