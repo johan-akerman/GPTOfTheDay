@@ -35,6 +35,12 @@ export const getSfMostRecentMidnight = () => {
   return getSfMostRecentMidnightSf;
 };
 
+export const getPreviousMidnight = (offset) => {
+  const previousMidnightInSf = getSfMostRecentMidnight();
+  previousMidnightInSf.setDate(previousMidnightInSf.getDate() - offset);
+  return previousMidnightInSf;
+};
+
 export const getSfNextMidnight = () => {
   const nextMidnightInSf = getSfMostRecentMidnight();
   nextMidnightInSf.setDate(nextMidnightInSf.getDate() + 1);
@@ -49,4 +55,14 @@ export const getSfMostRecentMidnightTimestamp = () => {
   mostRecentMidnightTimestamp.seconds =
     mostRecentMidnightTimestamp.seconds + getSfTimeOffsetSeconds();
   return mostRecentMidnightTimestamp;
+};
+
+export const getPreviousMidnightTimestamp = (offset) => {
+  const previousMidnightInSf = getSfMostRecentMidnight();
+  previousMidnightInSf.setDate(previousMidnightInSf.getDate() - offset);
+
+  const previousMidnightTimestamp = Timestamp.fromDate(previousMidnightInSf);
+  previousMidnightTimestamp.seconds =
+    previousMidnightTimestamp.seconds + getSfTimeOffsetSeconds();
+  return previousMidnightTimestamp;
 };

@@ -22,14 +22,8 @@ export default function GPTPageCard({ gpt, i }) {
               </p>
 
               <div className="flex gap-2 text-md">
-                <p>
-                  Posted {getNiceDataString(gpt?.data?.submittedAt)} by{" "}
-                  {gpt?.data?.creator}.
-                </p>
-                <p>
-                  {gpt?.data?.comments.length}{" "}
-                  {gpt?.data?.comments.length === 1 ? " comment" : "comments"}.
-                </p>
+                Posted by {gpt?.data?.creator}{" "}
+                {getNiceDataString(gpt?.data?.submittedAt)}.
               </div>
               <p className="text-sm pb-2"> </p>
               <span className="cursor-pointer text-xs font-medium px-3 py-1 rounded-lg  border-2 bg-gray-100 text-gray-900">
@@ -67,29 +61,19 @@ export default function GPTPageCard({ gpt, i }) {
               </p>
 
               <div className="flex text-md  gap-2">
-                <p>
-                  Posted {getNiceDataString(gpt?.data?.submittedAt)} by{" "}
-                  {gpt?.data?.creator}.
-                </p>
-              </div>
-
-              <div className="flex text-md mb-2 gap-2">
+                Posted by {gpt?.data?.creator}{" "}
+                {getNiceDataString(gpt?.data?.submittedAt)}.{" "}
                 <p>
                   {gpt?.data?.comments.length}{" "}
                   {gpt?.data?.comments.length === 1 ? " comment" : "comments"}.
                 </p>
               </div>
-              <span className="cursor-pointer text-xs font-medium px-3 py-1 mt-2 rounded-lg  border-2 bg-gray-100 text-gray-900">
-                {category_info[gpt_category_index].icon +
-                  " " +
-                  category_info[gpt_category_index].title}
-              </span>
             </div>
           </div>
         </div>
         <div className="flex gap-4 mt-6">
           <a
-            className="cursor-pointer px-5 py-2 border-2  hover:border-orange-400 font-medium rounded-md  text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
+            className="cursor-pointer px-5 pt-4 border-2  hover:border-orange-400 font-medium rounded-md  text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
             href={gpt?.data?.url}
             target="blank"
           >

@@ -14,6 +14,7 @@ import {
 import { db } from "./firebase";
 import {
   getSfMostRecentMidnightTimestamp,
+  getPreviousMidnightTimestamp,
 } from "./utils/times";
 
 let latestFilter = {};
@@ -36,7 +37,39 @@ export async function getGpt(id) {
 
 export async function getHottest(lim, getMore = false) {
   const mostRecentMidnightTimestamp = getSfMostRecentMidnightTimestamp();
+  console.log(mostRecentMidnightTimestamp); // 1705564800
+  let q = "";
+  if (getMore) {
+    q = query(
+      gptsRef,
+      where("mostRecentMidnight", "==", mostRecentMidnightTimestamp),
+      orderBy("upvote_count", "desc"),
+      startAfter(latestDocHottest),
+      limit(lim)
+    );
+  } else {
+    q = query(
+      gptsRef,
+      where("mostRecentMidnight", "==", mostRecentMidnightTimestamp),
+      orderBy("upvote_count", "desc"),
+      limit(lim)
+    );
+  }
 
+  const querySnapshot = await getDocs(q);
+
+  latestDocHottest = querySnapshot.docs[querySnapshot.docs.length - 1];
+
+  return querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    data: doc.data(),
+  }));
+}
+
+export async function getWinners(lim, getMore = false, offset) {
+  console.log("offset: ", offset);
+  const mostRecentMidnightTimestamp = getPreviousMidnightTimestamp(offset);
+  console.log(mostRecentMidnightTimestamp);
   let q = "";
   if (getMore) {
     q = query(

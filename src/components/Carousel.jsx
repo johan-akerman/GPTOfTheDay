@@ -120,8 +120,8 @@ export default function Carousel() {
 
   return (
     <div className="w-full py-12">
-      <h1 className="text-center block uppercase tracking-wide text-darkBrown font-bold mb-6 px-6 text-lg">
-        Featuring the best GPT creators today. Everyday.
+      <h1 className="text-center block uppercase tracking-wide text-darkBrown opacity-30 font-bold mb-6 px-6 text-md">
+        Featuring the best GPT creators every day.
       </h1>
 
       <div className="w-full mx-auto overflow-x-hidden text-center gap-12 ">

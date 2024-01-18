@@ -13,21 +13,21 @@ export default function GPTCard({ gpt, i }) {
   return (
     <>
       <Link to={`/gpts/${gpt?.id}`}>
-        <div className="md:block hidden hover:border-darkBrown transform ease-in w-full bg-white bg-opacity-50 hover:bg-opacity-100 rounded-md border py-3 px-4 text-left">
-          <div className="flex items-center text-left justify-between ">
-            <div className="flex items-center gap-4 w-4/6 ">
+        <div className="md:block hidden transform ease-in w-full hover:bg-mediumBrown rounded-md py-1 text-left">
+          <div className="flex items-center text-left gap-4 w-full px-4 py-2">
+            <div className="flex items-center w-full">
               <div className="w-full">
                 <p className="text-xl font-semibold text-gray-900 leading-none truncate">
                   {gpt?.data?.title}
                 </p>
-                <p className="text-lg pt-1 w-full truncate">
+                <p className="text-lg w-full truncate opacity-50">
                   {gpt?.data?.description}
                 </p>
 
                 <div className="flex gap-2 text-sm">
                   <p>
-                    Posted {getNiceDataString(gpt?.data?.submittedAt)} by{" "}
-                    {gpt?.data?.creator}.
+                    Posted by {gpt?.data?.creator}{" "}
+                    {getNiceDataString(gpt?.data?.submittedAt)}.
                   </p>
                   <p>
                     {gpt?.data?.comments.length}{" "}
@@ -35,16 +35,10 @@ export default function GPTCard({ gpt, i }) {
                     .
                   </p>
                 </div>
-                <p className="text-sm pb-2"> </p>
-                <span className="cursor-pointer text-xs font-medium px-3 py-1 rounded-lg  border-2 bg-gray-100 text-gray-900">
-                  {category_info[gpt_category_index].icon +
-                    " " +
-                    category_info[gpt_category_index].title}
-                </span>
               </div>
             </div>
 
-            <div className="flex gap-4 ">
+            <div className="flex">
               <UpvoteButton g={gpt} />
             </div>
           </div>
@@ -55,37 +49,30 @@ export default function GPTCard({ gpt, i }) {
         <div className="flex items-center text-left justify-between">
           <div className="flex items-center gap-4 w-5/6">
             <div className="w-full">
-              <p className="text-2xl font-semibold text-gray-900 leading-none truncate">
+              <p className="text-xl font-semibold text-gray-900 leading-none truncate">
                 {gpt?.data?.title}
               </p>
-              <p className="text-lg pt-1 truncate">{gpt?.data?.description}</p>
+              <p className="text-lg w-full truncate opacity-50">
+                {gpt?.data?.description}
+              </p>
 
-              <div className="flex text-sm mb-2 gap-2">
+              <div className="flex gap-2 text-sm">
                 <p>
-                  Posted {getNiceDataString(gpt?.data?.submittedAt)} by{" "}
-                  {gpt?.data?.creator}.
+                  Posted by {gpt?.data?.creator}{" "}
+                  {getNiceDataString(gpt?.data?.submittedAt)}.
                 </p>
-              </div>
-
-              <div className="flex text-sm mb-4 gap-2">
                 <p>
                   {gpt?.data?.comments.length}{" "}
-                  {gpt?.data?.comments.length === 1 ? " comment" : "comments"}
+                  {gpt?.data?.comments.length === 1 ? " comment" : "comments"}.
                 </p>
               </div>
-
-              <span className="cursor-pointer text-xs font-medium px-3 py-1 mt-2 rounded-lg  border-2 bg-gray-100 text-gray-900">
-                {category_info[gpt_category_index].icon +
-                  " " +
-                  category_info[gpt_category_index].title}
-              </span>
             </div>
           </div>
         </div>
         <div className="flex gap-4 mt-6">
           <Link
             to={`/gpts/${gpt?.id}`}
-            className="cursor-pointer px-3 py-1.5 border-2  hover:border-orange-400 font-medium rounded-md text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
+            className="cursor-pointer px-8 pt-4  border hover:border-orange-400 font-medium rounded-md text-gray-900 bg-gray-100 text-lg transform ease-in duration-100 group"
           >
             Visit
           </Link>

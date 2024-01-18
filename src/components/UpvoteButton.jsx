@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUp, faLock } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowUp,
+  faChevronUp,
+  faLock,
+} from "@fortawesome/free-solid-svg-icons";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { signInWithGoogle } from "../authentication";
@@ -56,7 +60,7 @@ export default function UpvoteButton({ g }) {
   return gpt ? (
     <>
       <button
-        className={` font-semibold cursor-pointer px-3 py-2 border-2 border-orange-400 hover:border-orange-400 hover:bg-orange-400 hover:text-white rounded-md text-lg transform ease-in duration-100 group ${
+        className={` font-semibold cursor-pointer px-3 py-1 border-2 border-orange-400 text-center hover:border-orange-400 hover:bg-orange-400 hover:text-white rounded-md text-lg transform ease-in duration-100 group ${
           userHasUpvoted(gpt.data.upvotes, user?.uid)
             ? "bg-orange-400 text-white"
             : "text-orange-400 bg-transparent"
@@ -64,10 +68,10 @@ export default function UpvoteButton({ g }) {
         onClick={(e) => handleUpvote(e, gpt)}
       >
         <FontAwesomeIcon
-          icon={faArrowUp}
-          className="mr-1.5 group-hover:animate-bounce transform ease-in-out"
-        />{" "}
-        {count}
+          icon={faChevronUp}
+          className="group-hover:animate-bounce transform ease-in-out"
+        />
+        <p className="-mt-2">{count}</p>
       </button>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -100,7 +104,7 @@ export default function UpvoteButton({ g }) {
                     className="text-5xl mb-4 opacity-10"
                   />
                   <h1 className="text-3xl mb-4 font-semibold">
-                    Sign up to vote!
+                    Sign in to upvote!
                   </h1>
                   <p className="mb-6 text-lg">
                     Join our community of people who wants to discover, share
